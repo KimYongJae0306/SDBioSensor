@@ -8944,7 +8944,9 @@ namespace COG
         }
         private void DataGridview_Insp_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return;
+            if (e.RowIndex < 0)
+                return;
+
             m_iGridIndex = e.RowIndex;
             int itype;
             string strTemp = Convert.ToString(DataGridview_Insp.Rows[m_iGridIndex].Cells[1].Value);
@@ -8952,7 +8954,7 @@ namespace COG
                 itype = 0;
             else
                 itype = 1;
-            //m_iSection = Convert.ToInt32(DataGridview_Insp.Rows[m_iGridIndex].Cells[1].Value);
+
             m_enumROIType = (enumROIType)itype;
             double dEdgeWidth;
 
@@ -9041,6 +9043,8 @@ namespace COG
 
             }
             SetText();
+            UpdateParamUI();
+
             btn_ROI_SHOW.PerformClick();
             //Set_InspParams();
         }
@@ -9800,6 +9804,7 @@ namespace COG
 
                             int searchedValue = -1;
                             List<Point> boundRectPointList = new List<Point>();
+
                             if (lengthX > lengthY) // 가로
                             {
                                 double startX = SingleFindLine[i].RunParams.ExpectedLineSegment.StartX;
@@ -9941,6 +9946,7 @@ namespace COG
                                 SingleFindLine[i].RunParams.CaliperRunParams.ContrastThreshold = m_TeachParameter[nROI].iEdgeCaliperThreshold;
                                 SingleFindLine[i].RunParams.CaliperRunParams.FilterHalfSizeInPixels = m_TeachParameter[nROI].iEdgeCaliperFilterSize;
                                 SingleFindLine[i].InputImage = (CogImage8Grey)filterImage;
+                                List_NG.Items.Add("Found Gray Area.");
 
                                 if (Main.machine.PermissionCheck == Main.ePermission.MAKER)
                                 {
@@ -9956,6 +9962,7 @@ namespace COG
                                 SingleFindLine[i].RunParams.CaliperRunParams.ContrastThreshold = noneEdge_Threshold;
                                 SingleFindLine[i].RunParams.CaliperRunParams.FilterHalfSizeInPixels = noeEdge_FilterSize;
                                 SingleFindLine[i].InputImage = cogImage;
+                                List_NG.Items.Add("Not Found Gray Area.");
                             }
 
                             if (cogImage.SelectedSpaceName == "@\\Fixture\\Fixture")

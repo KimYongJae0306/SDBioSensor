@@ -2480,6 +2480,7 @@ namespace COG
                                 //하나의 FindLineTool방향만 정반대로 돌려서 Search진행
                                 double dist = SingleFindLine[i].RunParams.CaliperSearchDirection;
                                 SingleFindLine[i].RunParams.CaliperSearchDirection *= (-1);
+                                SingleFindLine[i].RunParams.CaliperRunParams.Edge0Polarity = SingleFindLine[i].RunParams.CaliperRunParams.Edge1Polarity;
 
 
                                 if (PAT[m_PatTagNo, 0].m_bFInealignFlag)
@@ -2537,6 +2538,9 @@ namespace COG
                                 }
                             }
 
+                            SingleFindLine[i].RunParams.CaliperRunParams.EdgeMode = CogCaliperEdgeModeConstants.SingleEdge;
+                            SingleFindLine[i].LastRunRecordDiagEnable = CogFindLineLastRunRecordDiagConstants.None;
+
                             if (PAT[m_PatTagNo, 0].m_InspParameter[nROI].bThresholdUse == true && i == 1)
                             {
                                 // Crop 처리
@@ -2550,7 +2554,11 @@ namespace COG
                                 image.CoordinateSpaceTree = new CogCoordinateSpaceTree();
                                 image.SelectedSpaceName = "@";
 
+                                edgeAlgorithm.IgnoreSize = PAT[m_PatTagNo, 0].m_InspParameter[nROI].iIgnoreSize;
                                 Mat convertImage = edgeAlgorithm.Inspect(image, ref SingleFindLine[i], cropResult.Item2, transform, cropRect);
+
+                                if (Main.machine.PermissionCheck == Main.ePermission.MAKER)
+                                    convertImage.Save(@"D:\convertImage.bmp");
 
                                 double lengthX = Math.Abs(SingleFindLine[i].RunParams.ExpectedLineSegment.StartX - SingleFindLine[i].RunParams.ExpectedLineSegment.EndX);
                                 double lengthY = Math.Abs(SingleFindLine[i].RunParams.ExpectedLineSegment.StartY - SingleFindLine[i].RunParams.ExpectedLineSegment.EndY);
@@ -2560,53 +2568,143 @@ namespace COG
 
                                 if (lengthX > lengthY) // 가로
                                 {
-                                    var posYList = edgeAlgorithm.GetVerticalMinEdgeTopPosY(convertImage, PAT[m_PatTagNo, 0].m_InspParameter[nROI].iTopCutPixel, PAT[m_PatTagNo, 0].m_InspParameter[nROI].iBottomCutPixel);
+                                    double startX = SingleFindLine[i].RunParams.ExpectedLineSegment.StartX;
+                                    double startY = SingleFindLine[i].RunParams.ExpectedLineSegment.StartY;
+                                    double endX = SingleFindLine[i].RunParams.ExpectedLineSegment.EndX;
+                                    double endY = SingleFindLine[i].RunParams.ExpectedLineSegment.EndY;
+                                    transform.MapPoint(startX, startY, out double orgStartX, out double orgStartY);
+                                    transform.MapPoint(endX, endY, out double orgEndX, out double orgEndY);
 
-                                    if (posYList.Count > 0)
+                                    transform.MapPoint(cropRect.X, cropRect.Y, out double mappingStartX, out double mappingStartY);
+
+                                    if (orgStartX > orgEndX) // 화살표 방향 아래에서 위
                                     {
-                                        searchedValue = posYList.Min();
+                                        int topCutPixel = PAT[m_PatTagNo, 0].m_InspParameter[nROI].iTopCutPixel;
+                                        int bottomCutPixel = PAT[m_PatTagNo, 0].m_InspParameter[nROI].iBottomCutPixel;
 
-                                        transform.MapPoint(cropRect.X, cropRect.Y, out double mappingStartX, out double mappingStartY);
+                                        var minPosY = edgeAlgorithm.GetVerticalMinEdgeTopPosY(convertImage, topCutPixel, bottomCutPixel);
+                                        if (minPosY.Count > 0)
+                                        {
+                                            searchedValue = minPosY.Min();
+                                            int maskX = (int)mappingStartX;
+                                            int maskY = searchedValue + (int)mappingStartY;
 
-                                        // 마스크를 그릴 영역의 X, Y 좌표 계산
-                                        int maskX = (int)mappingStartX; // X 좌표 설정
-                                        int maskY = searchedValue + (int)mappingStartY; // Y 좌표 설정
+                                            Rectangle rect = new Rectangle((int)mappingStartX, 0, convertImage.Width, maskY);
 
-                                        Rectangle rect = new Rectangle((int)mappingStartX, 0, convertImage.Width, maskY);
+                                            int maskWidth = convertImage.Width;
+                                            int maskHeight = rect.Height;
 
-                                        // 마스크를 그릴 영역의 너비와 높이 계산
-                                        int maskWidth = convertImage.Width; // 너비 설정
-                                        int maskHeight = rect.Height; // 높이 설정
+                                            boundRectPointList.Add(new Point(maskX, maskY));
+                                            boundRectPointList.Add(new Point(maskX, maskY - convertImage.Height));
+                                            boundRectPointList.Add(new Point(maskX + maskWidth, maskY - convertImage.Height));
+                                            boundRectPointList.Add(new Point(maskX + maskWidth, maskY));
+                                        }
+                                    }
+                                    else// 화살표 방향 위에서 아래
+                                    {
+                                        int topCutPixel = PAT[m_PatTagNo, 0].m_InspParameter[nROI].iTopCutPixel;
+                                        int bottomCutPixel = PAT[m_PatTagNo, 0].m_InspParameter[nROI].iBottomCutPixel;
 
-                                        boundRectPointList.Add(new Point(maskX, maskY));
-                                        boundRectPointList.Add(new Point(maskX, maskY - convertImage.Height));
-                                        boundRectPointList.Add(new Point(maskX + maskWidth, maskY - convertImage.Height));
-                                        boundRectPointList.Add(new Point(maskX + maskWidth, maskY));
+                                        var edgePointList = edgeAlgorithm.GetVerticalEdgeBottomPos(convertImage, topCutPixel, bottomCutPixel);
+                                        if (edgePointList.Count > 0)
+                                        {
+                                            var target = edgePointList.OrderByDescending(edgePoint => edgePoint.PointY);
+                                            var minEdge = target.Last();
+                                            var maxEdge = target.First();
+
+                                            int leftTopY = (int)mappingStartY;
+                                            int rightTopY = (int)mappingStartY;
+
+                                            int leftTopTempY = minEdge.PointY > maxEdge.PointY ? maxEdge.PointY : minEdge.PointY;
+                                            int rightTopTempY = minEdge.PointY > maxEdge.PointY ? minEdge.PointY : maxEdge.PointY;
+
+                                            leftTopY += leftTopTempY;
+                                            rightTopY += rightTopTempY;
+
+                                            searchedValue = 1;
+
+                                            int maskX = (int)mappingStartX;
+                                            int maskY = (int)mappingStartY; // Y 좌표 설정
+
+                                            boundRectPointList.Add(new Point(maskX, leftTopY));
+                                            boundRectPointList.Add(new Point(maskX + convertImage.Width, rightTopY));
+                                            boundRectPointList.Add(new Point(maskX + convertImage.Width, rightTopY + convertImage.Height));
+                                            boundRectPointList.Add(new Point(maskX, leftTopY + convertImage.Height));
+                                        }
                                     }
                                 }
                                 else
                                 {
-                                    searchedValue = edgeAlgorithm.GetHorizontalMinEdgePosY(convertImage, PAT[m_PatTagNo, 0].m_InspParameter[nROI].iTopCutPixel, PAT[m_PatTagNo, 0].m_InspParameter[nROI].iBottomCutPixel);
-                                    if (searchedValue >= 0)
+                                    double startX = SingleFindLine[i].RunParams.ExpectedLineSegment.StartX;
+                                    double startY = SingleFindLine[i].RunParams.ExpectedLineSegment.StartY;
+                                    double endX = SingleFindLine[i].RunParams.ExpectedLineSegment.EndX;
+                                    double endY = SingleFindLine[i].RunParams.ExpectedLineSegment.EndY;
+                                    transform.MapPoint(startX, startY, out double orgStartX, out double orgStartY);
+                                    transform.MapPoint(endX, endY, out double orgEndX, out double orgEndY);
+
+                                    transform.MapPoint(cropRect.X, cropRect.Y, out double mappingStartX, out double mappingStartY);
+                                    if (orgStartX > orgEndX) // 화살표 방향 오른쪽에서 왼쪽
                                     {
-                                        transform.MapPoint(cropRect.X, cropRect.Y, out double mappingStartX, out double mappingStartY);
+                                        int topCutPixel = PAT[m_PatTagNo, 0].m_InspParameter[nROI].iTopCutPixel;
+                                        int bottomCutPixel = PAT[m_PatTagNo, 0].m_InspParameter[nROI].iBottomCutPixel;
 
-                                        // 마스크를 그릴 영역의 X, Y 좌표 계산
-                                        int maskX = searchedValue + (int)mappingStartX; // X 좌표 설정
-                                        int maskY = (int)mappingStartY; // Y 좌표 설정
+                                        searchedValue = edgeAlgorithm.GetHorizontalMinEdgePosY(convertImage, topCutPixel, bottomCutPixel);
+                                        if (searchedValue >= 0)
+                                        {
+                                            // 마스크를 그릴 영역의 X, Y 좌표 계산
+                                            int maskX = searchedValue + (int)mappingStartX; // X 좌표 설정
+                                            int maskY = (int)mappingStartY; // Y 좌표 설정
 
-                                        Rectangle rect = new Rectangle((int)mappingStartX, 0, convertImage.Width, maskY);
+                                            Rectangle rect = new Rectangle((int)mappingStartX, 0, convertImage.Width, maskY);
 
-                                        // 마스크를 그릴 영역의 너비와 높이 계산
-                                        int maskWidth = convertImage.Width; // 너비 설정
-                                        int maskHeight = convertImage.Height; // 높이 설정
+                                            // 마스크를 그릴 영역의 너비와 높이 계산
+                                            int maskWidth = convertImage.Width; // 너비 설정
+                                            int maskHeight = convertImage.Height; // 높이 설정
 
-                                        boundRectPointList.Add(new Point(maskX, maskY));
-                                        boundRectPointList.Add(new Point(maskX - convertImage.Width, maskY));
-                                        boundRectPointList.Add(new Point(maskX - convertImage.Width, maskY + maskHeight));
-                                        boundRectPointList.Add(new Point(maskX, maskY + maskHeight));
+                                            boundRectPointList.Add(new Point(maskX, maskY));
+                                            boundRectPointList.Add(new Point(maskX - convertImage.Width, maskY));
+                                            boundRectPointList.Add(new Point(maskX - convertImage.Width, maskY + maskHeight));
+                                            boundRectPointList.Add(new Point(maskX, maskY + maskHeight));
+                                        }
                                     }
+                                    else // 화살표 방향 왼쪽에서 오른쪽
+                                    {
+                                        int topCutPixel = PAT[m_PatTagNo, 0].m_InspParameter[nROI].iTopCutPixel;
+                                        int bottomCutPixel = PAT[m_PatTagNo, 0].m_InspParameter[nROI].iBottomCutPixel;
+
+                                        var edgePointList = edgeAlgorithm.GetHorizontalEdgePos(convertImage, topCutPixel, bottomCutPixel);
+                                        if (edgePointList.Count > 0)
+                                        {
+                                            var target = edgePointList.OrderByDescending(edgePoint => edgePoint.PointX);
+                                            var minEdge = target.Last();
+                                            var maxEdge = target.First();
+
+                                            int leftTopTempX = minEdge.PointY > maxEdge.PointY ? maxEdge.PointX : minEdge.PointX;
+                                            int leftBottomTempX = minEdge.PointY > maxEdge.PointY ? minEdge.PointX : maxEdge.PointX;
+
+                                            int leftTopX = (int)mappingStartX;
+                                            int leftBottomX = (int)mappingStartX;
+
+                                            leftTopX += leftTopTempX;
+                                            leftBottomX += leftBottomTempX;
+
+                                            searchedValue = 1;
+
+                                            //searchedValue = min;
+                                            int maskX = (int)mappingStartX;
+                                            int maskY = (int)mappingStartY; // Y 좌표 설정
+
+                                            boundRectPointList.Add(new Point(leftTopX, maskY));
+                                            boundRectPointList.Add(new Point(leftTopX + convertImage.Width, maskY));
+                                            boundRectPointList.Add(new Point(leftBottomX + convertImage.Width, maskY + convertImage.Height));
+                                            boundRectPointList.Add(new Point(leftBottomX, maskY + convertImage.Height));
+
+                                        }
+                                    }
+                                    //   
+
                                 }
+
                                 if (searchedValue >= 0)
                                 {
                                     int MaskingValue = PAT[m_PatTagNo, 0].m_InspParameter[nROI].iMaskingValue; // UI 에 빼야함
@@ -2614,6 +2712,7 @@ namespace COG
 
                                     Mat matImage = edgeAlgorithm.GetConvertMatImage(cogImage.CopyBase(CogImageCopyModeConstants.CopyPixels) as CogImage8Grey);
                                     CvInvoke.FillPoly(matImage, new VectorOfPoint(boundRectPointList.ToArray()), maskingColor);
+                                    //matImage.Save(@"D:\matImage.bmp");
 
                                     var filterImage = edgeAlgorithm.GetConvertCogImage(matImage);
 
