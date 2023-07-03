@@ -18,9 +18,8 @@ namespace COG
 {
     public partial class Form_PatternSelect : Form
     {
-
         public Form_PatternTagSelect PatternTagSelect = new Form_PatternTagSelect();
-        public Form_PatternTeach PatternTeach = new Form_PatternTeach();
+        //public Form_PatternTeach PatternTeach = new Form_PatternTeach();
 
         private List<Button> BTN_UNIT = new List<Button>();
         private List<Label> LB_CALNAME = new List<Label>();
@@ -103,10 +102,10 @@ namespace COG
             }
             else
             {
-                PatternTeach.m_AlignNo = m_Number;
-                PatternTeach.m_PatTagNo = 0;
-                PatternTeach.Init_ListBox();
-                PatternTeach.ShowDialog();
+                //PatternTeach.m_AlignNo = m_Number;
+                //PatternTeach.m_PatTagNo = 0;
+                //PatternTeach.Init_ListBox();
+                //PatternTeach.ShowDialog();
             }
         }
 

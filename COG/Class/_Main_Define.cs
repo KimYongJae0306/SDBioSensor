@@ -1365,7 +1365,7 @@ namespace COG
     {
         public partial struct DEFINE
         {
-            public const bool OPEN_F = false; // laptop mode - true, machine mode - false
+            public const bool OPEN_F = true; // laptop mode - true, machine mode - false
             public const string IMAGE_FILE = SYS_DATADIR + "1-1.bmp";//"QDIDB.idb";//"D:\\SystemData\\20.idb";
             //public const string IMAGE_FILE = SYS_DATADIR + "MODEL_VISION\\INSPECTION_1\\10_29_31_892__INSPECTION_1_1_CAMERA___UP.bmp";
         }

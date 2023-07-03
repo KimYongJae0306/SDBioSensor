@@ -203,7 +203,6 @@ namespace COG
         private int m_BlobROI = 0;
         private int m_HistoROI = 0;
         private int m_PrevROINo = 0;
-        private int m_iOverFusionCnt = 0;
         private int m_iHistoramROICnt = 0;
         private int nROIFineAlignIndex = (int)enumROIFineAlignPosition.Left;
         private double dFinealignMarkScore = 0;
@@ -212,7 +211,6 @@ namespace COG
         private double dInspPrevTranslationX = 0;
         private double dInspPrevTranslationY = 0;
         private double dInspPrevTranslationT = 0;
-        private bool m_bUseOverFusion = false;
         private bool[] m_bTrakingRoot = new bool[4] { false, false, false, false };
         private bool[] m_bTrakingRootHisto = new bool[32];
         private bool bROIFinealignTeach = false;
@@ -474,35 +472,13 @@ namespace COG
                     element.TrackingCircle = this.TrackingCircle;
                     element.TrackingCircle.RunParams.ExpectedCircularArc.CenterX = this.CenterX;
                     element.TrackingCircle.RunParams.ExpectedCircularArc.CenterY = this.CenterY;
-                    // element.TrackingCircle.RunParams.ExpectedCircularArc.AngleStart =
-                    //element.TrackingCircle.RunParams.ExpectedCircularArc.StartX = this.StartX;
-                    //element.TrackingCircle.RunParams.ExpectedCircularArc.StartY = this.StartY;
                     element.TrackingCircle.RunParams.CaliperSearchLength = this.CaliperSearchLength;
                     element.TrackingCircle.RunParams.CaliperProjectionLength = this.CaliperProjectionLength;
-                    //element.TrackingCircle.RunParams.CaliperSearchDirection = this.CaliperSearchDirection;
                     element.TrackingCircle.RunParams.NumCalipers = this.NumberOfCalipers;
                     element.TrackingCircle.RunParams.RadiusConstraint = this.RadiusConstraint;
                     element.TrackingCircle.RunParams.ExpectedCircularArc.AngleSpan = this.AngleSpan;
                     element.TrackingCircle.RunParams.ExpectedCircularArc.AngleStart = this.AngleStart;
-                    //element.TrackingCircle.RunParams.ExpectedCircularArc.ArcLength = this.ArcLength;
                     element.TrackingCircle.RunParams.ExpectedCircularArc.Radius = this.Radius;
-
-                    //element.TrackingCircle = this.TrackingCircle;
-                    //element.CenterX = this.CenterX;
-                    //element.CenterY = this.CenterY;
-                    //element.StartX = this.StartX;
-                    //element.StartY = this.StartY;
-                    //element.EndX = this.EndX;
-                    //element.EndY = this.EndY;
-                    //element.CaliperSearchLength = this.CaliperSearchLength;
-                    //element.CaliperProjectionLength = this.CaliperProjectionLength;
-                    //element.CaliperSearchDirection = this.CaliperSearchDirection;
-                    //element.NumberOfCalipers = this.NumberOfCalipers;
-                    //element.RadiusConstraint = this.RadiusConstraint;
-                    //element.AngleSpan = this.AngleSpan;
-                    //element.AngleStart = this.AngleStart;
-                    //element.ArcLength = this.ArcLength;
-                    //element.Radius = this.Radius;
 
                     return element;
                 }
@@ -611,9 +587,8 @@ namespace COG
             m_TeachParameter = new List<Main.PatternTag.SDParameter>();
             m_TeachParameter.Add(ResetStruct());
             mlock = new object();
-            for (int i = 0; i < 10; i++)
-                m_CogBlobTool[i] = new CogBlobTool();
-            //m_TeachParameter = Main.AlignUnit[m_AlignNo].PAT[m_PatTagNo, m_PatNo].m_InspParameter;
+            //for (int i = 0; i < 10; i++)
+            //    m_CogBlobTool[i] = new CogBlobTool();
         }
         private void Allocate_Array()
         {
@@ -859,7 +834,9 @@ namespace COG
         }
         private void Form_PatternTeach_Load(object sender, EventArgs e)
         {
-            if (Main.DEFINE.OPEN_F) BTN_IMAGE_OPEN.Visible = true;
+            if (Main.DEFINE.OPEN_F)
+                BTN_IMAGE_OPEN.Visible = true;
+
             BTN_LIVEMODE.Checked = false;
             BTN_LIVEMODE.BackColor = Color.DarkGray;
             this.Text = Main.AlignUnit[m_AlignNo].m_AlignName;
@@ -873,11 +850,6 @@ namespace COG
                 TABC_MANU.SelectedIndex = M_TOOL_MODE = Main.DEFINE.M_FINDLINETOOL;
             else
                 TABC_MANU.SelectedIndex = M_TOOL_MODE = Main.DEFINE.M_CNLSEARCHTOOL;
-
-            if (Main.machine.PermissionCheck == Main.ePermission.MAKER)
-                Panel_Maker_Parameter.Visible = true;
-            else
-                Panel_Maker_Parameter.Visible = false;
 
             m_PatNo_Sub = 0;
             m_LineSubNo = 0;
@@ -3227,6 +3199,7 @@ namespace COG
             {
                 if (Convert.ToInt32(TABC_MANU.SelectedTab.Tag) == 5)
                 {
+                    UpdateParamUI();
                     _useROITracking = false;
                     chkUseRoiTracking.Checked = _useROITracking;
                     _eTabSelect = enumTabSelect.Insp;
@@ -8410,7 +8383,6 @@ namespace COG
                 lblParamFilterSizeValue.Text = m_TempFindLineTool.RunParams.CaliperRunParams.FilterHalfSizeInPixels.ToString();
                 LAB_CALIPER_SEARCHLENTH.Text = string.Format("{0:F3}", m_TempFindLineTool.RunParams.CaliperSearchLength);
                 m_TempFindLineTool.RunParams.CaliperRunParams.EdgeMode = CogCaliperEdgeModeConstants.Pair;
-                //LAB_EDGE_WIDTH.Text = string.Format("{0:F2}", Math.Abs(m_TempFindLineTool.RunParams.CaliperRunParams.Edge0Position * 2));
                 Polarity = m_TempFindLineTool.RunParams.CaliperRunParams.Edge0Polarity;
                 TmepIndex = (int)Polarity;
                 Combo_Polarity1.SelectedIndex = TmepIndex - 1;
@@ -8426,7 +8398,6 @@ namespace COG
                 LAB_CALIPER_SEARCHLENTH.Text = string.Format("{0:F3}", m_TempFindCircleTool.RunParams.CaliperSearchLength);
                 lblParamFilterSizeValue.Text = m_TempFindCircleTool.RunParams.CaliperRunParams.FilterHalfSizeInPixels.ToString();
                 m_TempFindCircleTool.RunParams.CaliperRunParams.EdgeMode = CogCaliperEdgeModeConstants.Pair;
-                // LAB_EDGE_WIDTH.Text = string.Format("{0:F2}", Math.Abs(m_TempFindCircleTool.RunParams.CaliperRunParams.Edge0Position * 2));
                 Polarity = m_TempFindCircleTool.RunParams.CaliperRunParams.Edge0Polarity;
                 TmepIndex = (int)Polarity;
                 Combo_Polarity1.SelectedIndex = TmepIndex - 1;
@@ -8444,6 +8415,8 @@ namespace COG
             lblBottomCutPixel.Text = m_TeachParameter[m_iGridIndex].iBottomCutPixel.ToString();
             lblMaskingValue.Text = m_TeachParameter[m_iGridIndex].iMaskingValue.ToString();
             lblIgnoreSize.Text = m_TeachParameter[m_iGridIndex].iIgnoreSize.ToString();
+            lblEdgeCaliperThreshold.Text = m_TeachParameter[m_iGridIndex].iEdgeCaliperThreshold.ToString();
+            lblEdgeCaliperFilterSize.Text = m_TeachParameter[m_iGridIndex].iEdgeCaliperFilterSize.ToString();
         }
         private void FindLineROI()
         {
@@ -8482,9 +8455,7 @@ namespace COG
             PT_Display01.InteractiveGraphics.Clear();
             m_TempCaliperTool.InputImage = (CogImage8Grey)PT_Display01.Image;
             CogRectangleAffine _cogRectAffine = new CogRectangleAffine();
-            //CogRectangleAffine[] _cogRectAffine2 = new CogRectangleAffine[4];
-            //for (int i = 0; i < 4; i++)
-            //{
+
             if (m_TempCaliperTool.Region == null)
             {
                 _cogRectAffine.GraphicDOFEnable = CogRectangleAffineDOFConstants.Position | CogRectangleAffineDOFConstants.Size | CogRectangleAffineDOFConstants.Skew | CogRectangleAffineDOFConstants.Rotation;
@@ -8648,8 +8619,6 @@ namespace COG
             RestData.CenterY = 0;
             RestData.LenthX = 0;
             RestData.LenthY = 0;
-            RestData.bUseOverFusion = false;
-            RestData.iOverFusionCnt = 0;
             RestData.dSpecDistance = 0;
             RestData.IDistgnore = 0;
             return RestData;
@@ -8814,27 +8783,13 @@ namespace COG
                 strData[0] = i.ToString();
                 if (i == 0)
                 {
-                    m_bUseOverFusion = Tempdata.bUseOverFusion;
-                    m_iOverFusionCnt = Tempdata.iOverFusionCnt;
                     m_iHistoramROICnt = Tempdata.iHistogramROICnt;
-                    Chk_Use_Over_Fusion.Checked = m_bUseOverFusion;
                     for (int iHitoCnt = 0; iHitoCnt < m_iHistoramROICnt; iHitoCnt++)
                     {
                         m_bTrakingRootHisto[iHitoCnt] = false;
                     }
-                    if (Chk_Use_Over_Fusion.Checked == true)
-                    {
-                        Panel_Over_Fusion.Visible = true;
-                    }
-                    else
-                    {
-                        Panel_Over_Fusion.Visible = false;
-                    }
-                    lab_Over_Fusion_ROI_Cnt.Text = m_iOverFusionCnt.ToString();
+                   
                     lab_Histogram_ROI_Count.Text = m_iHistoramROICnt.ToString();
-
-                    UpdateOverFusionCnt(m_iOverFusionCnt, 0);
-                    UpdateOverFusionCnt(m_iHistoramROICnt, 1);
                 }
                 if (enumROIType.Line == (enumROIType)Tempdata.m_enumROIType)
                 {
@@ -9212,26 +9167,13 @@ namespace COG
                 _AffineTransform.Run();
                 m_SectionImage[iSection] = (CogImage8Grey)_AffineTransform.OutputImage;
             }
-            Section_Combo_init();
-            Comb_Over_Fusion_ROI_No.SelectedIndex = 0;
-            m_iSection = Comb_Over_Fusion_ROI_No.SelectedIndex;
         }
-        private void Section_Combo_init()
-        {
-            Comb_Over_Fusion_ROI_No.Items.Clear();
-            if (List_CenterX.Count <= 0) return;
-            for (int i = 0; i < List_CenterX.Count; i++)
-            {
-                Comb_Over_Fusion_ROI_No.Items.Add((i + 1).ToString());
-            }
 
-        }
         private void Comb_Section_SelectedIndexChanged(object sender, EventArgs e)
         {
             _PrePointX = null;
             PT_Display01.InteractiveGraphics.Clear();
             PT_Display01.StaticGraphics.Clear();
-            m_BlobROI = Comb_Over_Fusion_ROI_No.SelectedIndex;
             var TempBlob = m_TeachParameter[0];
             m_CogBlobTool[m_BlobROI] = TempBlob.m_CogBlobTool[m_BlobROI];
             if (_useROITracking)
@@ -9393,8 +9335,6 @@ namespace COG
             iCountClick += 1;
             PT_Display01.InteractiveGraphics.Clear();
             PT_Display01.StaticGraphics.Clear();
-            //m_iSection = Convert.ToInt32(DataGridview_Insp.Rows[m_iGridIndex].Cells[1].Value);
-            //DataGridview_Insp.Rows[m_iGridIndex].Cells[1].Value = m_iSection;
             m_iCount = DataGridview_Insp.Rows.Count;
             if (Chk_All_Select.Checked == false)
             {
@@ -9404,33 +9344,7 @@ namespace COG
                 if (m_enumROIType == enumROIType.Line)
                 {
                     strTemp = "Line";
-                    // PJH_Modify_2022.08.08_S
-                    //if (_useROITracking)
-                    //{
-                    //    TrackingLine.TrackingLine.RunParams.CaliperRunParams.ContrastThreshold = m_TempFindLineTool.RunParams.CaliperRunParams.ContrastThreshold;
-                    //    TrackingLine.TrackingLine.RunParams.NumCalipers = m_TempFindLineTool.RunParams.NumCalipers;
-                    //    TrackingLine.TrackingLine.RunParams.CaliperProjectionLength = m_TempFindLineTool.RunParams.CaliperProjectionLength;
-                    //    TrackingLine.TrackingLine.RunParams.CaliperSearchLength = m_TempFindLineTool.RunParams.CaliperSearchLength;
-                    //    TrackingLine.TrackingLine.RunParams.CaliperRunParams.Edge0Polarity = m_TempFindLineTool.RunParams.CaliperRunParams.Edge0Polarity;
-                    //    TrackingLine.TrackingLine.RunParams.CaliperRunParams.Edge1Polarity = m_TempFindLineTool.RunParams.CaliperRunParams.Edge1Polarity;
-                    //    if (m_TempFindLineTool.RunParams.CaliperRunParams.Edge0Position == 0 || m_TempFindLineTool.RunParams.CaliperRunParams.Edge1Position == 0)
-                    //    {
-                    //        TrackingLine.TrackingLine.RunParams.CaliperRunParams.Edge0Position = m_TempFindLineTool.RunParams.CaliperRunParams.Edge0Position = -(dEdgeWidth / 2);
-                    //        TrackingLine.TrackingLine.RunParams.CaliperRunParams.Edge1Position = m_TempFindLineTool.RunParams.CaliperRunParams.Edge1Position = (dEdgeWidth / 2);
-                    //    }
-                    //    else
-                    //    {
-                    //        TrackingLine.TrackingLine.RunParams.CaliperRunParams.Edge0Position = m_TempFindLineTool.RunParams.CaliperRunParams.Edge0Position;
-                    //        TrackingLine.TrackingLine.RunParams.CaliperRunParams.Edge1Position = m_TempFindLineTool.RunParams.CaliperRunParams.Edge1Position;
-                    //    }
-                    //    ApplyTrackingData(m_enumROIType);
-                    //    TempData.IDistgnore = m_dDist_ignore;
-                    //    TempData.dSpecDistance = m_SpecDist;
-                    //    TempData.m_FindLineTool = TrackingLine.TrackingLine;
-                    //}
-                    // PJH_Modify_2022.08.08_E
-                    //else
-                    //{
+                  
                     DataGridview_Insp.Rows[m_iGridIndex].Cells[1].Value = strTemp;
                     DataGridview_Insp.Rows[m_iGridIndex].Cells[2].Value = m_TempFindLineTool.RunParams.ExpectedLineSegment.StartX;
                     DataGridview_Insp.Rows[m_iGridIndex].Cells[3].Value = m_TempFindLineTool.RunParams.ExpectedLineSegment.StartY;
@@ -9455,6 +9369,7 @@ namespace COG
                     DataGridview_Insp.Rows[m_iGridIndex].Cells[16].Value = string.Format("{0:F2}", m_SpecDist);
                     DataGridview_Insp.Rows[m_iGridIndex].Cells[17].Value = m_TempFindLineTool.RunParams.CaliperRunParams.FilterHalfSizeInPixels;
                     DataGridview_Insp.Rows[m_iGridIndex].Cells[18].Value = string.Format("{0:F2}", m_SpecDistMax);
+
                     TempData.IDistgnore = m_dDist_ignore;
                     TempData.dSpecDistance = m_SpecDist;
                     TempData.dSpecDistanceMax = m_SpecDistMax;
@@ -9466,41 +9381,6 @@ namespace COG
                 {
                     strTemp = "Circle";
 
-                    // PJH_Modify_2022.08.08_S
-                    //if (_useROITracking)
-                    //{
-                    //    TrackingCircle.TrackingCircle.RunParams.CaliperRunParams.ContrastThreshold = m_TempFindCircleTool.RunParams.CaliperRunParams.ContrastThreshold;
-                    //    TrackingCircle.TrackingCircle.RunParams.NumCalipers = m_TempFindCircleTool.RunParams.NumCalipers;
-                    //    TrackingCircle.TrackingCircle.RunParams.CaliperProjectionLength = m_TempFindCircleTool.RunParams.CaliperProjectionLength;
-                    //    TrackingCircle.TrackingCircle.RunParams.CaliperSearchLength = m_TempFindCircleTool.RunParams.CaliperSearchLength;
-                    //    TrackingCircle.TrackingCircle.RunParams.CaliperRunParams.Edge0Polarity = m_TempFindCircleTool.RunParams.CaliperRunParams.Edge0Polarity;
-                    //    TrackingCircle.TrackingCircle.RunParams.CaliperRunParams.Edge1Polarity = m_TempFindCircleTool.RunParams.CaliperRunParams.Edge1Polarity;
-                    //    if (m_TempFindCircleTool.RunParams.CaliperRunParams.Edge0Position == 0)
-                    //    {
-                    //        TrackingCircle.TrackingCircle.RunParams.CaliperRunParams.Edge0Position = m_TempFindCircleTool.RunParams.CaliperRunParams.Edge0Position = -(dEdgeWidth / 2);
-                    //        TrackingCircle.TrackingCircle.RunParams.CaliperRunParams.Edge1Position = m_TempFindCircleTool.RunParams.CaliperRunParams.Edge1Position = (dEdgeWidth / 2);
-                    //    }
-
-                    //    if (m_TempFindCircleTool.RunParams.CaliperRunParams.Edge0Position == 0 || m_TempFindCircleTool.RunParams.CaliperRunParams.Edge1Position == 0)
-                    //    {
-                    //        TrackingCircle.TrackingCircle.RunParams.CaliperRunParams.Edge0Position = m_TempFindCircleTool.RunParams.CaliperRunParams.Edge0Position = -(dEdgeWidth / 2);
-                    //        TrackingCircle.TrackingCircle.RunParams.CaliperRunParams.Edge1Position = m_TempFindCircleTool.RunParams.CaliperRunParams.Edge1Position = (dEdgeWidth / 2);
-                    //    }
-                    //    else
-                    //    {
-                    //        TrackingCircle.TrackingCircle.RunParams.CaliperRunParams.Edge0Position = m_TempFindCircleTool.RunParams.CaliperRunParams.Edge0Position;
-                    //        TrackingCircle.TrackingCircle.RunParams.CaliperRunParams.Edge1Position = m_TempFindCircleTool.RunParams.CaliperRunParams.Edge1Position;
-                    //    }
-
-
-                    //    ApplyTrackingData(m_enumROIType);
-                    //    TempData.IDistgnore = m_dDist_ignore;
-                    //    TempData.dSpecDistance = m_SpecDist;
-                    //    TempData.m_FindCircleTool = TrackingCircle.TrackingCircle;
-                    //}
-                    //// PJH_Modify_2022.08.08_E
-                    //else
-                    //{
                     DataGridview_Insp.Rows[m_iGridIndex].Cells[1].Value = strTemp;
                     DataGridview_Insp.Rows[m_iGridIndex].Cells[2].Value = m_TempFindCircleTool.RunParams.ExpectedCircularArc.CenterX;
                     DataGridview_Insp.Rows[m_iGridIndex].Cells[3].Value = m_TempFindCircleTool.RunParams.ExpectedCircularArc.CenterY;
@@ -9530,9 +9410,15 @@ namespace COG
                     TempData.m_FindCircleTool = m_TempFindCircleTool;
                     //}
                 }
+
                 m_TeachParameter[m_iGridIndex].bThresholdUse = chkUseEdgeThreshold.Checked;
                 m_TeachParameter[m_iGridIndex].iThreshold = Convert.ToInt16(lblEdgeThreshold.Text);
-
+                m_TeachParameter[m_iGridIndex].iEdgeCaliperThreshold = Convert.ToInt16(lblEdgeCaliperThreshold.Text);
+                m_TeachParameter[m_iGridIndex].iEdgeCaliperFilterSize = Convert.ToInt16(lblEdgeCaliperFilterSize.Text);
+                m_TeachParameter[m_iGridIndex].iTopCutPixel = Convert.ToInt16(lblTopCutPixel.Text);
+                m_TeachParameter[m_iGridIndex].iBottomCutPixel = Convert.ToInt16(lblBottomCutPixel.Text);
+                m_TeachParameter[m_iGridIndex].iMaskingValue = Convert.ToInt16(lblMaskingValue.Text);
+                m_TeachParameter[m_iGridIndex].iIgnoreSize = Convert.ToInt16(lblIgnoreSize.Text);
 
 
                 DataGridview_Insp.Rows[m_iGridIndex].Cells[19].Value = m_TeachParameter[m_iGridIndex].bThresholdUse;
@@ -9551,39 +9437,14 @@ namespace COG
                     var TempData = m_TeachParameter[i];
                     double dEdgeWidth = Convert.ToDouble(LAB_EDGE_WIDTH.Text);
                     double dThreshold = Convert.ToDouble(LAB_Insp_Threshold.Text);
-                    // TempData.m_enumROIType = (Main.PatternTag.SDParameter.enumROIType)m_enumROIType;
                     if ((enumROIType)TempData.m_enumROIType == enumROIType.Line)
                     {
 
                         m_TempFindLineTool = TempData.m_FindLineTool;
-                        //m_TempFindLineTool.RunParams.CaliperRunParams.ContrastThreshold = dThreshold;
                         strTemp = "Line";
-                        // PJH_Modify_2022.08.08_S
                         if (_useROITracking)
                         {
-                            //if (TrackingLine.TrackingLine == null)
-                            //    TrackingLine.TrackingLine = TempData.m_FindLineTool;
-                            //m_iGridIndex = i;
-                            //TrackingLine.TrackingLine.RunParams.CaliperRunParams.ContrastThreshold = m_TempFindLineTool.RunParams.CaliperRunParams.ContrastThreshold;
-                            //TrackingLine.TrackingLine.RunParams.NumCalipers = m_TempFindLineTool.RunParams.NumCalipers;
-                            //TrackingLine.TrackingLine.RunParams.CaliperProjectionLength = m_TempFindLineTool.RunParams.CaliperProjectionLength;
-                            //TrackingLine.TrackingLine.RunParams.CaliperSearchLength = m_TempFindLineTool.RunParams.CaliperSearchLength;
-                            //TrackingLine.TrackingLine.RunParams.CaliperRunParams.Edge0Polarity = m_TempFindLineTool.RunParams.CaliperRunParams.Edge0Polarity;
-                            //TrackingLine.TrackingLine.RunParams.CaliperRunParams.Edge1Polarity = m_TempFindLineTool.RunParams.CaliperRunParams.Edge1Polarity;
-                            //if (m_TempFindLineTool.RunParams.CaliperRunParams.Edge0Position == 0 || m_TempFindLineTool.RunParams.CaliperRunParams.Edge1Position == 0)
-                            //{
-                            //    TrackingLine.TrackingLine.RunParams.CaliperRunParams.Edge0Position = m_TempFindLineTool.RunParams.CaliperRunParams.Edge0Position = -(dEdgeWidth / 2);
-                            //    TrackingLine.TrackingLine.RunParams.CaliperRunParams.Edge1Position = m_TempFindLineTool.RunParams.CaliperRunParams.Edge1Position = (dEdgeWidth / 2);
-                            //}
-                            //else
-                            //{
-                            //    TrackingLine.TrackingLine.RunParams.CaliperRunParams.Edge0Position = m_TempFindLineTool.RunParams.CaliperRunParams.Edge0Position;
-                            //    TrackingLine.TrackingLine.RunParams.CaliperRunParams.Edge1Position = m_TempFindLineTool.RunParams.CaliperRunParams.Edge1Position;
-                            //}
-                            //ApplyTrackingData(m_enumROIType);
-                            //TempData.IDistgnore = m_dDist_ignore;
-                            //TempData.dSpecDistance = m_SpecDist;
-                            //TempData.m_FindLineTool = TrackingLine.TrackingLine;
+                        
                         }
                         // PJH_Modify_2022.08.08_E
                         else
@@ -9601,8 +9462,6 @@ namespace COG
                             DataGridview_Insp.Rows[i].Cells[11].Value = string.Format("{0:F3}", m_TempFindLineTool.RunParams.CaliperSearchLength);
                             DataGridview_Insp.Rows[i].Cells[12].Value = Convert.ToInt32(m_TempFindLineTool.RunParams.CaliperRunParams.Edge0Polarity);
                             DataGridview_Insp.Rows[i].Cells[13].Value = Convert.ToInt32(m_TempFindLineTool.RunParams.CaliperRunParams.Edge1Polarity);
-                            //if (m_TempFindLineTool.RunParams.CaliperRunParams.Edge0Position == 0)
-                            //{
 
                             m_TempFindLineTool.RunParams.CaliperRunParams.Edge0Position = -(dEdgeWidth / 2);
                             m_TempFindLineTool.RunParams.CaliperRunParams.Edge1Position = (dEdgeWidth / 2);
@@ -9622,46 +9481,12 @@ namespace COG
                     else
                     {
                         m_TempFindCircleTool = TempData.m_FindCircleTool;
-                        //m_TempFindCircleTool.RunParams.CaliperRunParams.ContrastThreshold = dThreshold;
                         strTemp = "Circle";
 
-                        // PJH_Modify_2022.08.08_S
                         if (_useROITracking)
                         {
-                            //if (Search_PATCNL())
-                            //if (TrackingCircle.TrackingCircle == null)
-                            //    TrackingCircle.TrackingCircle = TempData.m_FindCircleTool;
-                            //m_iGridIndex = i;
-                            //TrackingCircle.TrackingCircle.RunParams.CaliperRunParams.ContrastThreshold = m_TempFindCircleTool.RunParams.CaliperRunParams.ContrastThreshold;
-                            //TrackingCircle.TrackingCircle.RunParams.NumCalipers = m_TempFindCircleTool.RunParams.NumCalipers;
-                            //TrackingCircle.TrackingCircle.RunParams.CaliperProjectionLength = m_TempFindCircleTool.RunParams.CaliperProjectionLength;
-                            //TrackingCircle.TrackingCircle.RunParams.CaliperSearchLength = m_TempFindCircleTool.RunParams.CaliperSearchLength;
-                            //TrackingCircle.TrackingCircle.RunParams.CaliperRunParams.Edge0Polarity = m_TempFindCircleTool.RunParams.CaliperRunParams.Edge0Polarity;
-                            //TrackingCircle.TrackingCircle.RunParams.CaliperRunParams.Edge1Polarity = m_TempFindCircleTool.RunParams.CaliperRunParams.Edge1Polarity;
-                            //if (m_TempFindCircleTool.RunParams.CaliperRunParams.Edge0Position == 0)
-                            //{
-                            //    TrackingCircle.TrackingCircle.RunParams.CaliperRunParams.Edge0Position = m_TempFindCircleTool.RunParams.CaliperRunParams.Edge0Position = -(dEdgeWidth / 2);
-                            //    TrackingCircle.TrackingCircle.RunParams.CaliperRunParams.Edge1Position = m_TempFindCircleTool.RunParams.CaliperRunParams.Edge1Position = (dEdgeWidth / 2);
-                            //}
-
-                            //if (m_TempFindCircleTool.RunParams.CaliperRunParams.Edge0Position == 0 || m_TempFindCircleTool.RunParams.CaliperRunParams.Edge1Position == 0)
-                            //{
-                            //    TrackingCircle.TrackingCircle.RunParams.CaliperRunParams.Edge0Position = m_TempFindCircleTool.RunParams.CaliperRunParams.Edge0Position = -(dEdgeWidth / 2);
-                            //    TrackingCircle.TrackingCircle.RunParams.CaliperRunParams.Edge1Position = m_TempFindCircleTool.RunParams.CaliperRunParams.Edge1Position = (dEdgeWidth / 2);
-                            //}
-                            //else
-                            //{
-                            //    TrackingCircle.TrackingCircle.RunParams.CaliperRunParams.Edge0Position = m_TempFindCircleTool.RunParams.CaliperRunParams.Edge0Position;
-                            //    TrackingCircle.TrackingCircle.RunParams.CaliperRunParams.Edge1Position = m_TempFindCircleTool.RunParams.CaliperRunParams.Edge1Position;
-                            //}
-
-
-                            //ApplyTrackingData(m_enumROIType);
-                            //TempData.IDistgnore = m_dDist_ignore;
-                            //TempData.dSpecDistance = m_SpecDist;
-                            //TempData.m_FindCircleTool = TrackingCircle.TrackingCircle;
+                           
                         }
-                        // PJH_Modify_2022.08.08_E
                         else
                         {
                             DataGridview_Insp.Rows[i].Cells[1].Value = strTemp;
@@ -9677,17 +9502,13 @@ namespace COG
                             DataGridview_Insp.Rows[i].Cells[11].Value = string.Format("{0:F3}", m_TempFindCircleTool.RunParams.CaliperSearchLength);
                             DataGridview_Insp.Rows[i].Cells[12].Value = Convert.ToInt32(m_TempFindCircleTool.RunParams.CaliperRunParams.Edge0Polarity);
                             DataGridview_Insp.Rows[i].Cells[13].Value = Convert.ToInt32(m_TempFindCircleTool.RunParams.CaliperRunParams.Edge1Polarity);
-                            //if (m_TempFindCircleTool.RunParams.CaliperRunParams.Edge0Position == 0)
-                            //{
+
                             m_TempFindCircleTool.RunParams.CaliperRunParams.Edge0Position = -(dEdgeWidth / 2);
                             m_TempFindCircleTool.RunParams.CaliperRunParams.Edge1Position = (dEdgeWidth / 2);
-                            //}
                             DataGridview_Insp.Rows[i].Cells[14].Value = string.Format("{0:F2}", m_TempFindCircleTool.RunParams.CaliperRunParams.Edge0Position * 2);
-                            //DataGridview_Insp.Rows[i].Cells[15].Value = m_dDist_ignore.ToString();
                             DataGridview_Insp.Rows[i].Cells[16].Value = string.Format("{0:F2}", m_SpecDist);
                             DataGridview_Insp.Rows[m_iGridIndex].Cells[17].Value = m_TempFindCircleTool.RunParams.CaliperRunParams.FilterHalfSizeInPixels;
                             DataGridview_Insp.Rows[i].Cells[18].Value = string.Format("{0:F2}", m_SpecDistMax);
-                            //TempData.IDistgnore = m_dDist_ignore;
                             TempData.dSpecDistance = m_SpecDist;
                             TempData.dSpecDistanceMax = m_SpecDistMax;
                             TempData.m_FindCircleTool = m_TempFindCircleTool;
@@ -9852,6 +9673,8 @@ namespace COG
                 double Cal_EndX = 0;
                 double Cal_EndY = 0;
 
+                double noneEdge_Threshold = 0;
+                int noeEdge_FilterSize = 0;
                 try
                 {
                     if (!m_bROIFinealignFlag)
@@ -9880,10 +9703,12 @@ namespace COG
                     bool isTwiceFixture = false;
                     double dist = 0;
 
-                    for (int i = 0; i < 2; i++) //Left, Right 의미
+                    for (int i = 0; i < 2; i++) 
                     {
                         SingleFindLine[i] = new CogFindLineTool();
                         SingleFindLine[i] = m_LineTool;
+                        noneEdge_Threshold = SingleFindLine[i].RunParams.CaliperRunParams.ContrastThreshold;
+                        noeEdge_FilterSize = SingleFindLine[i].RunParams.CaliperRunParams.FilterHalfSizeInPixels;
 
                         if (i == 1)
                         {
@@ -10114,6 +9939,8 @@ namespace COG
 
                                 var filterImage = edgeAlgorithm.GetConvertCogImage(matImage);
 
+                                SingleFindLine[i].RunParams.CaliperRunParams.ContrastThreshold = m_TeachParameter[nROI].iEdgeCaliperThreshold;
+                                SingleFindLine[i].RunParams.CaliperRunParams.FilterHalfSizeInPixels = m_TeachParameter[nROI].iEdgeCaliperFilterSize;
                                 SingleFindLine[i].InputImage = (CogImage8Grey)filterImage;
 
                                 if (Main.machine.PermissionCheck == Main.ePermission.MAKER)
@@ -10127,6 +9954,8 @@ namespace COG
                             else
                             {
                                 // Edge 못찾은 경우
+                                SingleFindLine[i].RunParams.CaliperRunParams.ContrastThreshold = noneEdge_Threshold;
+                                SingleFindLine[i].RunParams.CaliperRunParams.FilterHalfSizeInPixels = noeEdge_FilterSize;
                                 SingleFindLine[i].InputImage = cogImage;
                             }
 
@@ -10147,6 +9976,7 @@ namespace COG
                         }
                         else
                         {
+
                             SingleFindLine[i].InputImage = cogImage;
                         }
 
@@ -10154,6 +9984,8 @@ namespace COG
 
                         if (SingleFindLine[i].Results == null)
                         {
+                            m_LineTool.RunParams.CaliperRunParams.ContrastThreshold = noneEdge_Threshold;
+                            m_LineTool.RunParams.CaliperRunParams.FilterHalfSizeInPixels = noeEdge_FilterSize;
                             m_LineTool.RunParams.CaliperSearchDirection = searchDirection;
                             m_LineTool.RunParams.CaliperRunParams.Edge0Polarity = edgePolarity;
                             m_LineTool.RunParams.ExpectedLineSegment.StartX = startPosX;
@@ -10171,7 +10003,6 @@ namespace COG
                             {
                                 if (isTwiceFixture)
                                 {
-                                    //var graphic = SingleFindLine[i].Results[j].CreateResultGraphics(CogFindLineResultGraphicConstants.CaliperEdge | CogFindLineResultGraphicConstants.CaliperRegion);
                                     var graphic = SingleFindLine[i].Results[j].CreateResultGraphics(CogFindLineResultGraphicConstants.CaliperEdge);
 
                                     foreach (var item in graphic.Shapes)
@@ -10179,7 +10010,6 @@ namespace COG
                                         if (item is CogLineSegment line)
                                         {
                                             cogImage.GetTransform("@", cogImage.SelectedSpaceName).MapPoint(line.StartX, line.StartY, out double mX, out double mY);
-                                            //line.Color = CogColorConstants.Red;
                                             mCogFixtureTool2.RunParams.UnfixturedFromFixturedTransform.MapPoint(line.StartX, line.StartY, out double mappingStartX, out double mappingStartY);
                                             line.StartX = mappingStartX;
                                             line.StartY = mappingStartY;
@@ -10196,7 +10026,6 @@ namespace COG
                                 {
                                     //
                                     var graphic = SingleFindLine[i].Results[j].CreateResultGraphics(CogFindLineResultGraphicConstants.CaliperEdge);
-                                    //var graphic = SingleFindLine[i].Results[j].CreateResultGraphics(CogFindLineResultGraphicConstants.CaliperEdge | CogFindLineResultGraphicConstants.CaliperRegion);
                                     GraphicData.Add(graphic);
                                 }
 
@@ -10230,6 +10059,9 @@ namespace COG
                         Math.Pow(RawSearchData[0, i].Y - RawSearchData[1, i].Y, 2)))) * 13.36 / 1000;
                     }
                     #endregion
+
+                    m_LineTool.RunParams.CaliperRunParams.ContrastThreshold = noneEdge_Threshold;
+                    m_LineTool.RunParams.CaliperRunParams.FilterHalfSizeInPixels = noeEdge_FilterSize;
                     m_LineTool.RunParams.CaliperSearchDirection = searchDirection;
                     m_LineTool.RunParams.CaliperRunParams.Edge0Polarity = edgePolarity;
                     m_LineTool.RunParams.ExpectedLineSegment.StartX = startPosX;
@@ -10241,6 +10073,8 @@ namespace COG
                 }
                 catch (Exception err)
                 {
+                    m_LineTool.RunParams.CaliperRunParams.ContrastThreshold = noneEdge_Threshold;
+                    m_LineTool.RunParams.CaliperRunParams.FilterHalfSizeInPixels = noeEdge_FilterSize;
                     m_LineTool.RunParams.CaliperSearchDirection = searchDirection;
                     m_LineTool.RunParams.CaliperRunParams.Edge0Polarity = edgePolarity;
                     m_LineTool.RunParams.ExpectedLineSegment.StartX = startPosX;
@@ -11011,53 +10845,6 @@ namespace COG
                                     PT_Display01.StaticGraphics.Add(Result, "Histogram1");
                                 }
                             }
-                            if (m_TeachParameter[i].bUseOverFusion == true)
-                            {
-
-                                for (int iBlobCnt = 0; iBlobCnt < m_TeachParameter[i].iOverFusionCnt; iBlobCnt++)
-                                {
-
-                                    double dROIX, dROIY;
-                                    List<CogPolygon> SearchBlob = new List<CogPolygon>();
-                                    CogBlobTool InspCogBolob = new CogBlobTool();
-                                    CogPolygon BlobTracking = new CogPolygon();
-                                    CogPolygon ROI = new CogPolygon();
-                                    InspCogBolob = m_TeachParameter[i].m_CogBlobTool[iBlobCnt];
-                                    BlobTracking = (CogPolygon)InspCogBolob.Region;
-                                    BlobTracking.Color = CogColorConstants.Blue;
-                                    BlobTracking.Interactive = false;
-                                    PT_Display01.StaticGraphics.Add(BlobTracking as ICogGraphic, "BLOB");
-                                    InspCogBolob.InputImage = (CogImage8Grey)PT_Display01.Image;
-                                    InspCogBolob.Run();
-                                    if (InspCogBolob.Results.GetBlobs().Count > 0)
-                                    {
-
-                                        string LogMsg;
-                                        LogMsg = string.Format("Over Fusion NG ROI:{0:D}", iBlobCnt); // 실제로 Mark를 못찾는지 확인하는 Log 뿌려줌 - cyh
-                                        LogMsg += "\n";
-                                        List_NG.Items.Add(LogMsg);
-                                        Label = new CogGraphicLabel[InspCogBolob.Results.GetBlobs().Count];
-                                        for (int nSearchCnt = 0; nSearchCnt < InspCogBolob.Results.GetBlobs().Count; nSearchCnt++)
-                                        {
-                                            Label[nSearchCnt] = new CogGraphicLabel();
-                                            Label[nSearchCnt].Font = new Font(Main.DEFINE.FontStyle, 15);
-                                            double dArea = InspCogBolob.Results.GetBlobs()[nSearchCnt].Area;
-                                            Label[nSearchCnt].Color = CogColorConstants.Red;
-                                            double dCenterX = InspCogBolob.Results.GetBlobs()[nSearchCnt].CenterOfMassX;
-                                            double dCenterY = InspCogBolob.Results.GetBlobs()[nSearchCnt].CenterOfMassY;
-                                            SearchBlob.Add(InspCogBolob.Results.GetBlobs()[nSearchCnt].GetBoundary());
-                                            SearchBlob[nSearchCnt].Color = CogColorConstants.Red;
-                                            Label[nSearchCnt].Text = string.Format("NG Size: {0:F3}", dArea);
-                                            Label[nSearchCnt].X = dCenterX;
-                                            Label[nSearchCnt].Y = dCenterY;
-                                            PT_Display01.StaticGraphics.Add(SearchBlob[nSearchCnt] as ICogGraphic, "BLOB");
-                                            PT_Display01.StaticGraphics.Add(Label[nSearchCnt] as ICogGraphic, "Result Text");
-                                            bRes = false;
-                                        }
-                                    }
-
-                                }
-                            }
                         }
                         m_enumROIType = (enumROIType)m_TeachParameter[i].m_enumROIType;
                         if (enumROIType.Line == m_enumROIType)
@@ -11484,8 +11271,6 @@ namespace COG
         }
         private void Get_BlobParameter()
         {
-            lab_BlobThr.Text = m_CogBlobTool[m_BlobROI].RunParams.SegmentationParams.HardFixedThreshold.ToString();
-            lab_blobSize.Text = m_CogBlobTool[m_BlobROI].RunParams.ConnectivityMinPixels.ToString();
             _PrePolyGon = null;
             dBlobPrevTranslationX = 0;
             dBlobPrevTranslationY = 0;
@@ -11900,312 +11685,7 @@ namespace COG
             //해당 변수가 True 일 경우, Live Mode Off
             bLiveStop = chkUseLoadImageTeachMode.Checked;
         }
-        private void lab_Over_Fusion_ROI_Cnt_Click(object sender, EventArgs e)
-        {
-            var stucTempBlob = m_TeachParameter[0];
-            int iOverFusionCnt = Convert.ToInt32(lab_Over_Fusion_ROI_Cnt.Text);
-            Form_KeyPad KeyPad = new Form_KeyPad(1, 10, iOverFusionCnt, "Input Data", 0);
-            KeyPad.ShowDialog();
-            iOverFusionCnt = (int)KeyPad.m_data;
-            lab_Over_Fusion_ROI_Cnt.Text = iOverFusionCnt.ToString();
-            m_iOverFusionCnt = iOverFusionCnt;
-            stucTempBlob.iOverFusionCnt = m_iOverFusionCnt;
-            m_TeachParameter[0] = stucTempBlob;
-            UpdateOverFusionCnt(iOverFusionCnt, 0);
-        }
-        private void UpdateOverFusionCnt(int iCnt, int Type)
-        {
-            if (Type == 0)
-            {
-                Comb_Over_Fusion_ROI_No.Items.Clear();
-                if (iCnt <= 0) return;
-                for (int i = 0; i < iCnt; i++)
-                {
-                    Comb_Over_Fusion_ROI_No.Items.Add("ROI" + (i + 1).ToString());
-                }
-                Comb_Over_Fusion_ROI_No.SelectedIndex = 0;
-            }
-            else
-            {
-                combo_Histogram_ROI_NO.Items.Clear();
-                if (iCnt <= 0) return;
-                for (int i = 0; i < iCnt; i++)
-                {
-                    combo_Histogram_ROI_NO.Items.Add("ROI" + (i + 1).ToString());
-                }
-                m_HistoROI = 0;
-                combo_Histogram_ROI_NO.SelectedIndex = 0;
-            }
-        }
-
-        private void btn_Over_Fusion_Up_Click(object sender, EventArgs e)
-        {
-            var stucTempBlob = m_TeachParameter[0];
-            if (stucTempBlob.iOverFusionCnt >= 10)
-            {
-                MessageBox.Show("Over Count ROI of Over Fusion");
-                return;
-            }
-            else
-            {
-                m_iOverFusionCnt++;
-                stucTempBlob.iOverFusionCnt = m_iOverFusionCnt;
-                lab_Over_Fusion_ROI_Cnt.Text = stucTempBlob.iOverFusionCnt.ToString();
-                UpdateOverFusionCnt(stucTempBlob.iOverFusionCnt, 0);
-                m_TeachParameter[0] = stucTempBlob;
-            }
-        }
-
-        private void btn_Over_Fusion_down_Click(object sender, EventArgs e)
-        {
-            var stucTempBlob = m_TeachParameter[0];
-            if (stucTempBlob.iOverFusionCnt <= 0)
-            {
-                MessageBox.Show("Count ROI 0");
-                return;
-            }
-            else
-            {
-                m_iOverFusionCnt--;
-                stucTempBlob.iOverFusionCnt = m_iOverFusionCnt;
-                lab_Over_Fusion_ROI_Cnt.Text = stucTempBlob.iOverFusionCnt.ToString();
-                UpdateOverFusionCnt(stucTempBlob.iOverFusionCnt, 0);
-                m_TeachParameter[0] = stucTempBlob;
-            }
-        }
-
-        private void Chk_Use_Over_Fusion_CheckedChanged(object sender, EventArgs e)
-        {
-            var Temp = m_TeachParameter[0];
-            if (Chk_Use_Over_Fusion.Checked == true)
-            {
-                m_bUseOverFusion = Panel_Over_Fusion.Visible = true;
-                Temp.bUseOverFusion = m_bUseOverFusion;
-            }
-            else
-            {
-
-                m_bUseOverFusion = Panel_Over_Fusion.Visible = false;
-                Temp.bUseOverFusion = m_bUseOverFusion;
-            }
-            m_TeachParameter[0] = Temp;
-        }
-
-        private void button11_Click(object sender, EventArgs e)
-        {
-            PT_Display01.InteractiveGraphics.Clear();
-            PT_Display01.StaticGraphics.Clear();
-            CogPolygon PolygonROI = new CogPolygon();
-            if (m_CogBlobTool[m_BlobROI].Region == null)
-            {
-                PolygonROI = new CogPolygon();
-                PolygonROI.NumVertices = 4;
-                PolygonROI.SetVertexX(0, 0);
-                PolygonROI.SetVertexY(0, 0);
-                PolygonROI.SetVertexX(1, 100);
-                PolygonROI.SetVertexY(1, 0);
-                PolygonROI.SetVertexX(3, 0);
-                PolygonROI.SetVertexY(3, 100);
-                PolygonROI.SetVertexX(2, 100);
-                PolygonROI.SetVertexY(2, 100);
-                PolygonROI.GraphicDOFEnable = CogPolygonDOFConstants.All;
-                PolygonROI.Interactive = true;
-                m_CogBlobTool[m_BlobROI].Region = PolygonROI;
-            }
-
-            m_CogBlobTool[m_BlobROI].InputImage = PT_Display01.Image;
-            m_CogBlobTool[m_BlobROI].CurrentRecordEnable = CogBlobCurrentRecordConstants.InputImage | CogBlobCurrentRecordConstants.Region;
-
-            Display.SetInteractiveGraphics(PT_Display01, m_CogBlobTool[m_BlobROI].CreateCurrentRecord(), false);
-            if (-1 < PT_Display01.InteractiveGraphics.ZOrderGroups.IndexOf(GraphicIndex ? "Result0" : "Result1"))
-                PT_Display01.InteractiveGraphics.Remove(GraphicIndex ? "Result0" : "Result1");
-        }
-
-        private void button14_Click(object sender, EventArgs e)
-        {
-            PT_Display01.InteractiveGraphics.Clear();
-            PT_Display01.StaticGraphics.Clear();
-            CogPolygon PolygonROI;
-            if (m_CogBlobTool[m_BlobROI].Region == null) return;
-            PolygonROI = new CogPolygon(m_CogBlobTool[m_BlobROI].Region as CogPolygon);
-            int iPointCnt = PolygonROI.NumVertices;
-            PolygonROI.AddVertex(PolygonROI.GetVertexX(iPointCnt - 1) + 100, PolygonROI.GetVertexY(iPointCnt - 1) + 100, iPointCnt);
-            m_CogBlobTool[m_BlobROI].Region = PolygonROI;
-            Display.SetInteractiveGraphics(PT_Display01, m_CogBlobTool[m_BlobROI].CreateCurrentRecord(), false);
-            if (-1 < PT_Display01.InteractiveGraphics.ZOrderGroups.IndexOf(GraphicIndex ? "Result0" : "Result1"))
-                PT_Display01.InteractiveGraphics.Remove(GraphicIndex ? "Result0" : "Result1");
-        }
-
-        private void button13_Click(object sender, EventArgs e)
-        {
-            PT_Display01.InteractiveGraphics.Clear();
-            PT_Display01.StaticGraphics.Clear();
-            CogPolygon PolygonROI;
-            if (m_CogBlobTool[m_BlobROI].Region == null) return;
-            PolygonROI = new CogPolygon(m_CogBlobTool[m_BlobROI].Region as CogPolygon);
-            int iPointCnt = PolygonROI.NumVertices;
-            PolygonROI.RemoveVertex(iPointCnt - 1);
-            m_CogBlobTool[m_BlobROI].Region = PolygonROI;
-            Display.SetInteractiveGraphics(PT_Display01, m_CogBlobTool[m_BlobROI].CreateCurrentRecord(), false);
-            if (-1 < PT_Display01.InteractiveGraphics.ZOrderGroups.IndexOf(GraphicIndex ? "Result0" : "Result1"))
-                PT_Display01.InteractiveGraphics.Remove(GraphicIndex ? "Result0" : "Result1");
-        }
-        private void lab_BlobThr_Click(object sender, EventArgs e)
-        {
-            int iBlobThr = Convert.ToInt32(lab_BlobThr.Text);
-            Form_KeyPad KeyPad = new Form_KeyPad(1, 255, iBlobThr, "Input Data", 0);
-            KeyPad.ShowDialog();
-            iBlobThr = (int)KeyPad.m_data;
-            m_CogBlobTool[m_BlobROI].RunParams.SegmentationParams.HardFixedThreshold = iBlobThr;
-            lab_BlobThr.Text = iBlobThr.ToString();
-        }
-
-        private void btn_blobThr_Up_Click(object sender, EventArgs e)
-        {
-            int iBlobThr = m_CogBlobTool[m_BlobROI].RunParams.SegmentationParams.HardFixedThreshold;
-            if (iBlobThr >= 1 || iBlobThr <= 255)
-                iBlobThr++;
-            m_CogBlobTool[m_BlobROI].RunParams.SegmentationParams.HardFixedThreshold = iBlobThr;
-            lab_BlobThr.Text = iBlobThr.ToString();
-        }
-
-        private void btn_blobThr_Down_Click(object sender, EventArgs e)
-        {
-            int iBlobThr = m_CogBlobTool[m_BlobROI].RunParams.SegmentationParams.HardFixedThreshold;
-            if (iBlobThr >= 1 || iBlobThr <= 255)
-                iBlobThr--;
-            m_CogBlobTool[m_BlobROI].RunParams.SegmentationParams.HardFixedThreshold = iBlobThr;
-            lab_BlobThr.Text = iBlobThr.ToString();
-        }
-
-        private void btn_Blob_Apply_Click(object sender, EventArgs e)
-        {
-            if (PT_Display01.InteractiveGraphics.Count == 0) return;
-            m_bTrakingRoot[m_BlobROI] = false;
-            PT_Display01.InteractiveGraphics.Clear();
-            PT_Display01.StaticGraphics.Clear();
-            var Temp = m_TeachParameter[0];
-            Temp.iOverFusionCnt = m_iOverFusionCnt;
-            Temp.bUseOverFusion = m_bUseOverFusion;
-            if (_useROITracking)
-            {
-                //dPrevTranslationX;
-                CogPolygon TransCogPolygon = new CogPolygon(m_CogBlobTool[m_BlobROI].Region as CogPolygon);
-                int vetiecNum = TransCogPolygon.NumVertices;
-                for (int i = 0; i < vetiecNum; i++)
-                {
-                    double TransPointX = TransCogPolygon.GetVertexX(i);
-                    double TransPointY = TransCogPolygon.GetVertexY(i);
-                    TransPointX += dBlobPrevTranslationX;
-                    TransPointY += dBlobPrevTranslationY;
-                    TransCogPolygon.SetVertex(i, TransPointX, TransPointY);
-                    m_CogBlobTool[m_BlobROI].Region = TransCogPolygon;
-                }
-                double dx = TransCogPolygon.GetVertexX(0);
-                dBlobPrevTranslationX = 0;
-                dBlobPrevTranslationY = 0;
-
-            }
-            Temp.m_CogBlobTool[m_BlobROI] = m_CogBlobTool[m_BlobROI];
-            m_TeachParameter[0].m_CogBlobTool[m_BlobROI] = Temp.m_CogBlobTool[m_BlobROI];
-        }
-        private void lab_blobSize_Click(object sender, EventArgs e)
-        {
-            int iBlobSize = Convert.ToInt32(lab_blobSize.Text);
-            Form_KeyPad KeyPad = new Form_KeyPad(1, 10000, iBlobSize, "Input Data", 0);
-            KeyPad.ShowDialog();
-            iBlobSize = (int)KeyPad.m_data;
-            m_CogBlobTool[m_BlobROI].RunParams.ConnectivityMinPixels = iBlobSize;
-            lab_blobSize.Text = iBlobSize.ToString();
-        }
-        private void btn_BlobSize_Up_Click(object sender, EventArgs e)
-        {
-            int iBlobSize = m_CogBlobTool[m_BlobROI].RunParams.ConnectivityMinPixels;
-            if (iBlobSize >= 1 || iBlobSize <= 255)
-                iBlobSize++;
-            m_CogBlobTool[m_BlobROI].RunParams.ConnectivityMinPixels = iBlobSize;
-            lab_blobSize.Text = iBlobSize.ToString();
-        }
-
-        private void btn_BlobSize_Down_Click(object sender, EventArgs e)
-        {
-            int iBlobSize = m_CogBlobTool[m_BlobROI].RunParams.ConnectivityMinPixels;
-            if (iBlobSize >= 1 || iBlobSize <= 255)
-                iBlobSize--;
-            m_CogBlobTool[m_BlobROI].RunParams.ConnectivityMinPixels = iBlobSize;
-            lab_blobSize.Text = iBlobSize.ToString();
-        }
-        private void btn_BlobTest_Click(object sender, EventArgs e)
-        {
-            PT_Display01.InteractiveGraphics.Clear();
-            PT_Display01.StaticGraphics.Clear();
-            double dx, dy;
-            if (PT_Display01.Image == null && m_CogBlobTool[m_BlobROI] == null) return;
-            m_CogBlobTool[m_BlobROI].InputImage = PT_Display01.Image;
-            try
-            {
-                float nFontSize = (float)((PT_Display01.Height / Main.DEFINE.FontSize) * PT_Display01.Zoom);
-                bool bSearchRes = Search_PATCNL();
-                if (bSearchRes == true)
-                {
-                    List<CogPolygon> SearchBlob = new List<CogPolygon>();
-                    CogPolygon PolyGonROI = new CogPolygon();
-                    double TranslationX = PT_Pattern[m_PatNo, m_PatNo_Sub].Pattern.Origin.TranslationX - PatResult.TranslationX;
-                    double TranslationY = PT_Pattern[m_PatNo, m_PatNo_Sub].Pattern.Origin.TranslationY - PatResult.TranslationY;
-                    CogPolygon ROITracking = (CogPolygon)m_CogBlobTool[m_BlobROI].Region;
-
-                    ROITracking.Color = CogColorConstants.Blue;
-                    ROITracking.Interactive = false;
-                    PT_Display01.StaticGraphics.Add(ROITracking as ICogGraphic, "BLOB");
-                    m_CogBlobTool[m_BlobROI].Region = ROITracking;
-                    m_CogBlobTool[m_BlobROI].Run();
-                    if (m_CogBlobTool[m_BlobROI].Results != null)
-                    {
-                        if (m_CogBlobTool[m_BlobROI].Results.GetBlobs().Count > 0)
-                        {
-                            CogGraphicLabel[] Label = new CogGraphicLabel[m_CogBlobTool[m_BlobROI].Results.GetBlobs().Count];
-                            for (int i = 0; i < m_CogBlobTool[m_BlobROI].Results.GetBlobs().Count; i++)
-                            {
-                                Label[i] = new CogGraphicLabel();
-                                Label[i].Font = new Font(Main.DEFINE.FontStyle, 15);
-
-                                double dArea = m_CogBlobTool[m_BlobROI].Results.GetBlobs()[i].Area;
-                                Label[i].Color = CogColorConstants.Red;
-                                double dCenterX = m_CogBlobTool[m_BlobROI].Results.GetBlobs()[i].CenterOfMassX;
-                                double dCenterY = m_CogBlobTool[m_BlobROI].Results.GetBlobs()[i].CenterOfMassY;
-                                SearchBlob.Add(m_CogBlobTool[m_BlobROI].Results.GetBlobs()[i].GetBoundary());
-                                SearchBlob[i].Color = CogColorConstants.Red;
-                                Label[i].Text = string.Format("NG Size: {0:F3}", dArea);
-                                Label[i].X = dCenterX;
-                                Label[i].Y = dCenterY;
-                                PT_Display01.StaticGraphics.Add(SearchBlob[i] as ICogGraphic, "BLOB");
-                                PT_Display01.StaticGraphics.Add(Label[i] as ICogGraphic, "Result Text");
-                            }
-                        }
-                    }
-                }
-            }
-            catch { }
-
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            for (int i = 0; i < m_iOverFusionCnt; i++)
-            {
-                CogBlobTool TempBlobTool = new CogBlobTool();
-                var Temp = m_TeachParameter[0];
-                TempBlobTool = m_TeachParameter[0].m_CogBlobTool[i];
-
-                TempBlobTool.InputImage = PT_Display01.Image;
-                TempBlobTool.CurrentRecordEnable = CogBlobCurrentRecordConstants.InputImage | CogBlobCurrentRecordConstants.Region;
-
-                Display.SetInteractiveGraphics(PT_Display01, TempBlobTool.CreateCurrentRecord(), false);
-                if (-1 < PT_Display01.InteractiveGraphics.ZOrderGroups.IndexOf(GraphicIndex ? "Result0" : "Result1"))
-                    PT_Display01.InteractiveGraphics.Remove(GraphicIndex ? "Result0" : "Result1");
-
-            }
-        }
+    
         private void Chk_All_Select_CheckedChanged(object sender, EventArgs e)
         {
             //if (Chk_All_Select.Checked == true)
@@ -12225,7 +11705,6 @@ namespace COG
             m_iHistoramROICnt = iHistogramROICnt;
             stucTemp.iHistogramROICnt = m_iHistoramROICnt;
             m_TeachParameter[0] = stucTemp;
-            UpdateOverFusionCnt(m_iHistoramROICnt, 1);
         }
 
         private void combo_Histogram_ROI_NO_SelectedIndexChanged(object sender, EventArgs e)
@@ -13468,11 +12947,12 @@ namespace COG
             int nEdgeThreshold = (int)KeyPad.m_data;
 
             lblEdgeThreshold.Text = nEdgeThreshold.ToString();
-            btn_Param_Apply.PerformClick();
+            m_TeachParameter[m_iGridIndex].iThreshold = nEdgeThreshold;
         }
 
         private void chkUseEdgeThreshold_Click(object sender, EventArgs e)
         {
+            UpdateParamUI();
             btn_Param_Apply.PerformClick();
         }
 
@@ -13618,16 +13098,89 @@ namespace COG
 
         private void lblIgnoreSize_Click(object sender, EventArgs e)
         {
-            Label TempBtn = (Label)sender;
-            Form_KeyPad KeyPad = new Form_KeyPad(0, 255, Convert.ToInt16(TempBtn.Text.ToString()), "Input Data", 0);
+            Form_KeyPad KeyPad = new Form_KeyPad(0, 255, Convert.ToInt16(lblIgnoreSize.Text.ToString()), "Input Data", 0);
             KeyPad.ShowDialog();
-            int iInputData = (int)KeyPad.m_data;
+            int ignoreSize = (int)KeyPad.m_data;
 
-            if (TempBtn.Name.Equals("lblIgnoreSize"))
+            m_TeachParameter[m_iGridIndex].iIgnoreSize = ignoreSize;
+            lblIgnoreSize.Text = ignoreSize.ToString();
+        }
+
+        private void UpdateParamUI()
+        {
+            if (chkUseEdgeThreshold.Checked)
             {
-                m_TeachParameter[m_iGridIndex].iIgnoreSize = iInputData;
-                TempBtn.Text = iInputData.ToString();
+                pnlOrgParam.Visible = false;
+                if (Main.machine.PermissionCheck == Main.ePermission.MAKER)
+                    pnlEdgeParam.Visible = true;
+                else
+                    pnlEdgeParam.Visible = false;
+
+                pnlParam.Controls.Clear();
+                pnlEdgeParam.Dock = DockStyle.Fill;
+                pnlParam.Controls.Add(pnlEdgeParam);
             }
+            else
+            {
+                pnlOrgParam.Visible = true;
+                pnlEdgeParam.Visible = false;
+                pnlParam.Controls.Clear();
+                pnlOrgParam.Dock = DockStyle.Fill;
+                pnlParam.Controls.Add(pnlOrgParam);
+            }
+        }
+
+        private void lblEdgeCaliperThreshold_Click(object sender, EventArgs e)
+        {
+            double nCurData = Convert.ToDouble(lblEdgeCaliperThreshold.Text);
+            Form_KeyPad KeyPad = new Form_KeyPad(0, 255, nCurData, "Input Data", 1);
+            KeyPad.ShowDialog();
+            int threshold = (int)KeyPad.m_data;
+            m_TeachParameter[m_iGridIndex].iEdgeCaliperThreshold = threshold;
+
+            lblEdgeCaliperThreshold.Text = threshold.ToString();
+        }
+
+        private void lblEdgeCaliperFilterSize_Click(object sender, EventArgs e)
+        {
+            double nCurData = Convert.ToDouble(lblEdgeCaliperFilterSize.Text);
+            Form_KeyPad KeyPad = new Form_KeyPad(1, 255, nCurData, "Input Data", 2);
+            KeyPad.ShowDialog();
+            int FilterSize = (int)KeyPad.m_data;
+            m_TeachParameter[m_iGridIndex].iEdgeCaliperFilterSize = FilterSize;
+
+            lblEdgeCaliperFilterSize.Text = FilterSize.ToString();
+
+        }
+
+        private void lblTopCutPixel_Click(object sender, EventArgs e)
+        {
+            Form_KeyPad KeyPad = new Form_KeyPad(0, 255, Convert.ToInt16(lblTopCutPixel.Text.ToString()), "Input Data", 0);
+            KeyPad.ShowDialog();
+            int topCutPixel = (int)KeyPad.m_data;
+            m_TeachParameter[m_iGridIndex].iTopCutPixel = topCutPixel;
+
+            lblTopCutPixel.Text = topCutPixel.ToString();
+        }
+
+        private void lblBottomCutPixel_Click(object sender, EventArgs e)
+        {
+            Form_KeyPad KeyPad = new Form_KeyPad(0, 255, Convert.ToInt16(lblBottomCutPixel.Text.ToString()), "Input Data", 0);
+            KeyPad.ShowDialog();
+            int bottomCutPixel = (int)KeyPad.m_data;
+            m_TeachParameter[m_iGridIndex].iBottomCutPixel = bottomCutPixel;
+
+            lblBottomCutPixel.Text = bottomCutPixel.ToString();
+        }
+
+        private void lblMaskingValue_Click(object sender, EventArgs e)
+        {
+            Form_KeyPad KeyPad = new Form_KeyPad(0, 255, Convert.ToInt16(lblMaskingValue.Text.ToString()), "Input Data", 0);
+            KeyPad.ShowDialog();
+            int maskingValue = (int)KeyPad.m_data;
+            m_TeachParameter[m_iGridIndex].iMaskingValue = maskingValue;
+
+            lblMaskingValue.Text = maskingValue.ToString();
         }
     }
 }

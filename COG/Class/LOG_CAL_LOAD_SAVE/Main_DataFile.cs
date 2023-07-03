@@ -930,20 +930,10 @@ namespace COG
                             ModelFile.SetData(InspectionName, buf, SaveData[0].LenthX);
                             buf = "IMAGE LENTH Y";
                             ModelFile.SetData(InspectionName, buf, SaveData[0].LenthY);
-                            buf = "Use OverFusion";
-                            ModelFile.SetData(InspectionName, buf, SaveData[0].bUseOverFusion);
-                            buf = "Blob ROI Count";
-                            ModelFile.SetData(InspectionName, buf, SaveData[0].iOverFusionCnt);
                             buf = "Histogram ROI Count";
                             ModelFile.SetData(InspectionName, buf, SaveData[0].iHistogramROICnt);
                             int HistogramRoiCnt = SaveData[0].iHistogramROICnt;
-                            int overfusionCnt = SaveData[0].iOverFusionCnt;
-                            for (int j = 0; j < overfusionCnt; j++)
-                            {
-
-                                string FileName1 = ModelDir + ProjectName + "\\" + "OverFusionBlob" + InspectionName + "_" + j.ToString() + ".Vpp";
-                                CogSerializer.SaveObjectToFile(SaveData[i].m_CogBlobTool[j], FileName1, typeof(System.Runtime.Serialization.Formatters.Binary.BinaryFormatter), CogSerializationOptionsConstants.ExcludeDataBindings);
-                            }
+                         
                             for (int j = 0; j < HistogramRoiCnt; j++)
                             {
                                 string FileName2 = ModelDir + ProjectName + "\\" + "Historam" + InspectionName + "_" + j.ToString() + ".Vpp";
@@ -969,6 +959,12 @@ namespace COG
                         ModelFile.SetData(InspectionName, buf, SaveData[i].iMaskingValue);
                         buf = "Insp_Ignore_Size" + i.ToString();
                         ModelFile.SetData(InspectionName, buf, SaveData[i].iIgnoreSize);
+
+                        buf = "Insp_Edge_Caliper_TH" + i.ToString();
+                        ModelFile.SetData(InspectionName, buf, SaveData[i].iEdgeCaliperThreshold);
+
+                        buf = "Insp_Edge_Caliper_Filter_Size" + i.ToString();
+                        ModelFile.SetData(InspectionName, buf, SaveData[i].iEdgeCaliperFilterSize);
                     }
 
                 }
@@ -1630,22 +1626,8 @@ namespace COG
                                         LoadData.LenthX = ModelFile.GetFData(InspectionName, buf);
                                         buf = "IMAGE LENTH Y";
                                         LoadData.LenthY = ModelFile.GetFData(InspectionName, buf);
-                                        buf = "Use OverFusion";
-                                        LoadData.bUseOverFusion = ModelFile.GetBData(InspectionName, buf);
-                                        buf = "Blob ROI Count";
-                                        LoadData.iOverFusionCnt = ModelFile.GetIData(InspectionName, buf);
                                         buf = "Histogram ROI Count";
                                         LoadData.iHistogramROICnt = ModelFile.GetIData(InspectionName, buf);
-                                        for (int j = 0; j < LoadData.iOverFusionCnt; j++)
-                                        {
-
-                                            try
-                                            {
-                                                string FileName1 = ModelDir + ProjectName + "\\" + "OverFusionBlob" + InspectionName + "_" + j.ToString() + ".Vpp";
-                                                LoadData.m_CogBlobTool[j] = CogSerializer.LoadObjectFromFile(FileName1) as CogBlobTool;
-                                            }
-                                            catch { }
-                                        }
                                         for (int j = 0; j < LoadData.iHistogramROICnt; j++)
                                         {
                                             try
@@ -1670,14 +1652,7 @@ namespace COG
                                     buf = "Insp_Dist_Ingnore" + i.ToString();
                                     LoadData.IDistgnore = ModelFile.GetIData(InspectionName, buf);
 
-                                    buf = "Insp_Edge_Threshold_Use" + i.ToString();
-                                    LoadData.bThresholdUse = ModelFile.GetBData(InspectionName, buf);
-
-
-                                    buf = "Insp_Edge_Threshold" + i.ToString();
-                                    LoadData.iThreshold = ModelFile.GetIData(InspectionName, buf);
-
-
+                                 
                                     string FileName = ModelDir + ProjectName + "\\" + "FindLine_" + InspectionName + ".VPP";
                                     if (File.Exists(FileName))
                                         LoadData.m_FindLineTool = CogSerializer.LoadObjectFromFile(FileName) as CogFindLineTool;
@@ -1686,18 +1661,36 @@ namespace COG
                                     if (File.Exists(FileName))
                                         LoadData.m_FindCircleTool = CogSerializer.LoadObjectFromFile(FileName) as CogFindCircleTool;
 
+                                    buf = "Insp_Edge_Threshold_Use" + i.ToString();
+                                    LoadData.bThresholdUse = ModelFile.GetBData(InspectionName, buf);
+
+                                    buf = "Insp_Edge_Threshold" + i.ToString();
+                                    int value = ModelFile.GetIData(InspectionName, buf);
+                                    LoadData.iThreshold = value == 0 ? LoadData.iThreshold : value;
 
                                     buf = "Insp_Top_Cut_Pixel" + i.ToString();
-                                    LoadData.iTopCutPixel = ModelFile.GetIData(InspectionName, buf);
+                                    value = ModelFile.GetIData(InspectionName, buf);
+                                    LoadData.iTopCutPixel = value == 0 ? LoadData.iTopCutPixel : value;
 
                                     buf = "Insp_Bottom_Cut_Pixel" + i.ToString();
-                                    LoadData.iBottomCutPixel = ModelFile.GetIData(InspectionName, buf);
+                                    value = ModelFile.GetIData(InspectionName, buf);
+                                    LoadData.iBottomCutPixel = value == 0 ? LoadData.iBottomCutPixel : value;
 
                                     buf = "Insp_Masking_Value" + i.ToString();
-                                    LoadData.iMaskingValue = ModelFile.GetIData(InspectionName, buf);
+                                    value = ModelFile.GetIData(InspectionName, buf);
+                                    LoadData.iMaskingValue = value == 0 ? LoadData.iMaskingValue : value;
 
                                     buf = "Insp_Ignore_Size" + i.ToString();
-                                    LoadData.iIgnoreSize = ModelFile.GetIData(InspectionName, buf);
+                                    value = ModelFile.GetIData(InspectionName, buf);
+                                    LoadData.iIgnoreSize = value == 0 ? LoadData.iIgnoreSize : value;
+
+                                    buf = "Insp_Edge_Caliper_TH" + i.ToString();
+                                    value = ModelFile.GetIData(InspectionName, buf);
+                                    LoadData.iEdgeCaliperThreshold = value == 0 ? LoadData.iEdgeCaliperThreshold : value;
+
+                                    buf = "Insp_Edge_Caliper_Filter_Size" + i.ToString();
+                                    value = ModelFile.GetIData(InspectionName, buf);
+                                    LoadData.iEdgeCaliperFilterSize = value == 0 ? LoadData.iEdgeCaliperFilterSize : value;
 
                                     m_InspParameter[i] = LoadData;
                                 }
@@ -1788,532 +1781,6 @@ namespace COG
                     buf = "Object_Distance_X_Spec";
                     m_dObjectDistanceSpecX = ModelFile.GetFData(m_PatternName, buf);
                     //shkang_e
-                    #endregion
-                    #region CALIPER
-                    //string m_CaliName;
-                    //for (int i = 0; i < Main.DEFINE.CALIPER_MAX; i++)
-                    //{
-                    //    m_CaliName = m_PatternName + "_CALIPER";
-                    //    buf = "CALIPER_CENTERX" + i.ToString();
-                    //    CaliperTools[i].Region.CenterX = ModelFile.GetFData(m_CaliName, buf);
-
-                    //    buf = "CALIPER_CENTERY" + i.ToString();
-                    //    CaliperTools[i].Region.CenterY = ModelFile.GetFData(m_CaliName, buf);
-
-                    //    buf = "CALIPER_SIZEX" + i.ToString();
-                    //    if (ModelFile.GetFData(m_CaliName, buf) <= 0)
-                    //    {
-                    //        CaliperTools[i].Region.SideXLength = 200;
-                    //        CaliperTools[i].Region.CenterX = vision.IMAGE_CENTER_X[m_CamNo];
-                    //    }
-                    //    else CaliperTools[i].Region.SideXLength = ModelFile.GetFData(m_CaliName, buf);
-
-                    //    buf = "CALIPER_SIZEY" + i.ToString();
-                    //    if (ModelFile.GetFData(m_CaliName, buf) <= 0)
-                    //    {
-                    //        CaliperTools[i].Region.SideYLength = 200;
-                    //        CaliperTools[i].Region.CenterY = vision.IMAGE_CENTER_Y[m_CamNo];
-                    //    }
-                    //    else CaliperTools[i].Region.SideYLength = ModelFile.GetFData(m_CaliName, buf);
-
-                    //    buf = "CALIPER_THRESHOLD" + i.ToString();
-                    //    CaliperTools[i].RunParams.ContrastThreshold = ModelFile.GetFData(m_CaliName, buf);
-
-                    //    buf = "CALIPER_DIRECTION" + i.ToString();
-                    //    CaliperTools[i].Region.Rotation = ModelFile.GetFData(m_CaliName, buf);// * 90 * Main.DEFINE.radian;
-
-                    //    buf = "CALIPER_POLARLITY" + i.ToString();
-                    //    if (ModelFile.GetIData(m_CaliName, buf) == 0)
-                    //        CaliperTools[i].RunParams.Edge0Polarity = CogCaliperPolarityConstants.DarkToLight; // 1-> 기본
-                    //    else
-                    //        CaliperTools[i].RunParams.Edge0Polarity = (CogCaliperPolarityConstants)ModelFile.GetIData(m_CaliName, buf);
-
-                    //    buf = "CALIPER_EDGE_MODE" + i.ToString();
-                    //    if (ModelFile.GetIData(m_CaliName, buf) == 0)
-                    //        CaliperTools[i].RunParams.EdgeMode = CogCaliperEdgeModeConstants.SingleEdge;      // 기본값 설정 
-                    //    else
-                    //        CaliperTools[i].RunParams.EdgeMode = (CogCaliperEdgeModeConstants)ModelFile.GetIData(m_CaliName, buf);
-
-                    //    buf = "CALIPER_POSITION_0" + i.ToString();
-                    //    CaliperTools[i].RunParams.Edge0Position = ModelFile.GetFData(m_CaliName, buf);
-
-                    //    buf = "CALIPER_POSITION_1" + i.ToString();
-                    //    if (ModelFile.GetFData(m_CaliName, buf) == 0)
-                    //        CaliperTools[i].RunParams.Edge1Position = 100;
-                    //    else
-                    //        CaliperTools[i].RunParams.Edge1Position = ModelFile.GetFData(m_CaliName, buf);
-
-                    //    if (Main.GetCaliperPairMode(CaliperTools[i].RunParams.EdgeMode))
-                    //    {
-                    //        Main.SetCaliperPairPolarity(CaliperTools[i]);
-                    //    }
-
-                    //    buf = "CALIPER_USE" + i.ToString();
-                    //    CaliperPara[i].m_UseCheck = ModelFile.GetBData(m_CaliName, buf);
-
-                    //    buf = "Caliper FilterHSPixel" + i.ToString();
-                    //    if (ModelFile.GetIData(m_CaliName, buf) == 0)
-                    //        CaliperTools[i].RunParams.FilterHalfSizeInPixels = 2; //2기본
-                    //    else
-                    //        CaliperTools[i].RunParams.FilterHalfSizeInPixels = ModelFile.GetIData(m_CaliName, buf);
-
-
-                    //    buf = "CALIPER_COP_MODE" + i.ToString();
-                    //    CaliperPara[i].m_bCOPMode = ModelFile.GetBData(m_CaliName, buf);
-
-                    //    buf = "CALIPER_COP_DVDCOUNT" + i.ToString();
-                    //    CaliperPara[i].m_nCOPROICnt = ModelFile.GetIData(m_CaliName, buf);
-
-                    //    buf = "CALIPER_COP_DVDOFFSET" + i.ToString();
-                    //    CaliperPara[i].m_nCOPROIOffset = ModelFile.GetIData(m_CaliName, buf);
-
-                    //    CaliperTools[i].Region.SelectedSpaceName = ".";
-                    //    CaliperTools[i].LastRunRecordDiagEnable = CogCaliperLastRunRecordDiagConstants.TransformedRegionPixels;
-                    //    CaliperTools[i].LastRunRecordEnable = CogCaliperLastRunRecordConstants.FilteredProjectionGraph | CogCaliperLastRunRecordConstants.Edges2;
-
-                    //    for (int k = 0; k < Main.DEFINE.M_TOOLMAXCOUNT; k++)
-                    //    {
-                    //        buf = "TARGET_TO_CENTER_X" + i.ToString() + "_" + k.ToString();
-                    //        CaliperPara[i].m_TargetToCenter[k].X = ModelFile.GetFData(m_CaliName, buf);
-
-                    //        buf = "TARGET_TO_CENTER_Y" + i.ToString() + "_" + k.ToString();
-                    //        CaliperPara[i].m_TargetToCenter[k].Y = ModelFile.GetFData(m_CaliName, buf);
-                    //    }
-
-                    //}
-                    #endregion
-
-                    #region BLOB 수정한거
-                    //CogRectangleAffine BlobRegion;
-                    //string m_BlobName;
-                    //for (int i = 0; i < Main.DEFINE.BLOB_CNT_MAX; i++)
-                    //{
-                    //    BlobRegion = new CogRectangleAffine();
-                    //    double nCenterX, nCenterY, nWidth, nHeight, nRotation, nSkew;
-
-                    //    m_BlobName = m_PatternName + "_BLOB";
-
-                    //    buf = "BLOBUSE" + i.ToString();
-                    //    BlobPara[i].m_UseCheck = ModelFile.GetBData(m_BlobName, buf);
-
-                    //    buf = "BLOBREGION_CENTERX" + i.ToString();
-                    //    nCenterX = ModelFile.GetFData(m_BlobName, buf);
-
-                    //    buf = "BLOBREGION_CENTERY" + i.ToString();
-                    //    nCenterY = ModelFile.GetFData(m_BlobName, buf);
-
-                    //    buf = "BLOBREGION_WIDTH" + i.ToString();
-                    //    nWidth = ModelFile.GetFData(m_BlobName, buf);
-
-                    //    buf = "BLOBREGION_HEIGHT" + i.ToString();
-                    //    nHeight = ModelFile.GetFData(m_BlobName, buf);
-
-                    //    buf = "BLOBREGION_ROTATION" + i.ToString();
-                    //    nRotation = ModelFile.GetFData(m_BlobName, buf);
-
-                    //    buf = "BLOBREGION_SKEW" + i.ToString();
-                    //    nSkew = ModelFile.GetFData(m_BlobName, buf);
-
-                    //    if (nWidth == 0 || nHeight == 0)
-                    //        BlobRegion.SetCenterLengthsRotationSkew(vision.IMAGE_CENTER_X[m_CamNo], vision.IMAGE_CENTER_Y[m_CamNo], 200, 200, 0, 0);
-                    //    else
-                    //        BlobRegion.SetCenterLengthsRotationSkew(nCenterX, nCenterY, nWidth, nHeight, nRotation, nSkew);
-
-                    //    /// Select Use ///---------------------------------------------------------
-                    //    BlobTools[i].Region = new CogRectangleAffine(BlobRegion);
-
-                    //    buf = "BLOB_POLARITY" + i.ToString();
-                    //    BlobTools[i].RunParams.SegmentationParams.Polarity = (CogBlobSegmentationPolarityConstants)ModelFile.GetIData(m_BlobName, buf);
-
-                    //    buf = "BLOB_MINPIXELS" + i.ToString();
-                    //    BlobTools[i].RunParams.ConnectivityMinPixels = ModelFile.GetIData(m_BlobName, buf);
-
-                    //    buf = "BLOB_THRESHOLD" + i.ToString();
-                    //    BlobTools[i].RunParams.SegmentationParams.HardFixedThreshold = ModelFile.GetIData(m_BlobName, buf);
-
-                    //    BlobTools[i].RunParams.SegmentationParams.Mode = CogBlobSegmentationModeConstants.HardFixedThreshold;
-
-                    //    BlobTools[i].RunParams.MorphologyOperations.Clear();
-                    //    BlobTools[i].RunParams.MorphologyOperations.Add(CogBlobMorphologyConstants.ErodeSquare);   //사각형침식
-                    //    BlobTools[i].RunParams.MorphologyOperations.Add(CogBlobMorphologyConstants.DilateSquare);  //사각형확장  
-                    //    BlobTools[i].LastRunRecordEnable = CogBlobLastRunRecordConstants.ResultsBoundary | CogBlobLastRunRecordConstants.BlobImageAsGraphic | CogBlobLastRunRecordConstants.ResultsCenterOfMass;
-
-                    //    BlobTools[i].RunParams.RunTimeMeasures.Clear();
-                    //    CogBlobMeasure[] nItem = new CogBlobMeasure[3];
-                    //    for (int j = 0; j < nItem.Length; j++)
-                    //    {
-                    //        nItem[j] = new CogBlobMeasure();
-                    //    }
-                    //    nItem[0].Measure = CogBlobMeasureConstants.Area;
-                    //    BlobTools[i].RunParams.RunTimeMeasures.Add(nItem[0]);
-
-                    //    nItem[1].Measure = CogBlobMeasureConstants.CenterMassX;
-                    //    BlobTools[i].RunParams.RunTimeMeasures.Add(nItem[1]);
-
-                    //    nItem[2].Measure = CogBlobMeasureConstants.CenterMassY;
-                    //    BlobTools[i].RunParams.RunTimeMeasures.Add(nItem[2]);
-
-                    //    for (int k = 0; k < Main.DEFINE.M_TOOLMAXCOUNT; k++)
-                    //    {
-                    //        buf = "TARGET_TO_CENTER_X" + i.ToString() + "_" + k.ToString();
-                    //        BlobPara[i].m_TargetToCenter[k].X = ModelFile.GetFData(m_BlobName, buf);
-
-                    //        buf = "TARGET_TO_CENTER_Y" + i.ToString() + "_" + k.ToString();
-                    //        BlobPara[i].m_TargetToCenter[k].Y = ModelFile.GetFData(m_BlobName, buf);
-                    //    }
-                    //}
-                    #endregion
-
-                    #region FINDLine
-                    //buf = "TRAY_GUIDE_DIS_X";
-                    //TRAY_GUIDE_DISX = ModelFile.GetFData(m_PatternName, buf);
-
-                    //buf = "TRAY_GUIDE_DIS_Y";
-                    //TRAY_GUIDE_DISY = ModelFile.GetFData(m_PatternName, buf);
-
-                    //buf = "TRAY_PITCH_DIS_X";
-                    //TRAY_PITCH_DISX = ModelFile.GetFData(m_PatternName, buf);
-
-                    //buf = "TRAY_PITCH_DIS_Y";
-                    //TRAY_PITCH_DISY = ModelFile.GetFData(m_PatternName, buf);
-
-                    //string m_FINDLineName, m_LineMaxName;
-                    //double StartX, StartY, LengTh, Direction;
-
-                    //for (int ii = 0; ii < Main.DEFINE.SUBLINE_MAX; ii++)
-                    //{
-                    //    for (int i = 0; i < Main.DEFINE.FINDLINE_MAX; i++)
-                    //    {
-                    //        m_FINDLineName = m_PatternName + "_FINDLine_" + ii.ToString();
-                    //        buf = "FINDLINE_STARTX" + i.ToString();
-                    //        StartX = ModelFile.GetFData(m_FINDLineName, buf);
-
-                    //        buf = "FINDLINE_STARTY" + i.ToString();
-                    //        StartY = ModelFile.GetFData(m_FINDLineName, buf);
-
-                    //        buf = "FINDLINE_LENGTH" + i.ToString();
-                    //        LengTh = ModelFile.GetFData(m_FINDLineName, buf);
-
-                    //        buf = "FINDLINE_DIRECTION" + i.ToString();
-                    //        Direction = ModelFile.GetFData(m_FINDLineName, buf);
-
-                    //        if (LengTh < 1)
-                    //        {
-                    //            StartX = vision.IMAGE_CENTER_X[m_CamNo];
-                    //            StartY = vision.IMAGE_CENTER_Y[m_CamNo];
-                    //            LengTh = vision.IMAGE_CENTER_X[m_CamNo];
-                    //            Direction = 0;
-                    //        }
-                    //        else
-                    //            FINDLineTools[ii, i].RunParams.ExpectedLineSegment.SetStartLengthRotation(StartX, StartY, LengTh, Direction);
-
-                    //        buf = "FINDLINE_CALIPER_CNT" + i.ToString();
-                    //        if (ModelFile.GetIData(m_FINDLineName, buf) <= 0)
-                    //        {
-                    //            FINDLineTools[ii, i].RunParams.NumCalipers = 16;
-                    //        }
-                    //        else FINDLineTools[ii, i].RunParams.NumCalipers = ModelFile.GetIData(m_FINDLineName, buf);
-
-                    //        buf = "FINDLINE_NUMTOLGNORE" + i.ToString();
-                    //        if (ModelFile.GetIData(m_FINDLineName, buf) <= 0)
-                    //        {
-                    //            FINDLineTools[ii, i].RunParams.NumToIgnore = 8;
-                    //        }
-                    //        else FINDLineTools[ii, i].RunParams.NumToIgnore = ModelFile.GetIData(m_FINDLineName, buf);
-
-                    //        buf = "FINDLINE_CALIPERX" + i.ToString();
-                    //        if (ModelFile.GetFData(m_FINDLineName, buf) <= 0)   // Caliper X
-                    //        {
-                    //            FINDLineTools[ii, i].RunParams.CaliperProjectionLength = 100;
-                    //        }
-                    //        else FINDLineTools[ii, i].RunParams.CaliperProjectionLength = ModelFile.GetFData(m_FINDLineName, buf);
-
-                    //        buf = "FINDLINE_CALIPERY" + i.ToString();
-                    //        if (ModelFile.GetFData(m_FINDLineName, buf) <= 0)   // Caliper Y
-                    //        {
-                    //            FINDLineTools[ii, i].RunParams.CaliperSearchLength = 400;
-                    //        }
-                    //        else FINDLineTools[ii, i].RunParams.CaliperSearchLength = ModelFile.GetFData(m_FINDLineName, buf);
-
-                    //        buf = "FINDLINE_CALIPER_THRESHOLD" + i.ToString();
-                    //        if (ModelFile.GetFData(m_FINDLineName, buf) <= 0)
-                    //        {
-                    //            FINDLineTools[ii, i].RunParams.CaliperRunParams.ContrastThreshold = 10;
-                    //        }
-                    //        else FINDLineTools[ii, i].RunParams.CaliperRunParams.ContrastThreshold = ModelFile.GetFData(m_FINDLineName, buf);
-
-                    //        buf = "FINDLINE_CALIPER_POLARLITY" + i.ToString();
-                    //        if (ModelFile.GetIData(m_FINDLineName, buf) == 0) FINDLineTools[ii, i].RunParams.CaliperRunParams.Edge0Polarity = (CogCaliperPolarityConstants)2; // 1-> 기본
-                    //        else FINDLineTools[ii, i].RunParams.CaliperRunParams.Edge0Polarity = (CogCaliperPolarityConstants)ModelFile.GetIData(m_FINDLineName, buf);
-
-                    //        buf = "FINDLINE_CALIPER_USE" + i.ToString();
-                    //        FINDLinePara[ii, i].m_UseCheck = ModelFile.GetBData(m_FINDLineName, buf);
-
-                    //        buf = "FINDLINE_CALIPER_PAIR_USE" + i.ToString();
-                    //        FINDLinePara[ii, i].m_UsePairCheck = ModelFile.GetBData(m_FINDLineName, buf);
-                    //        if (FINDLinePara[ii, i].m_UsePairCheck)
-                    //            FINDLineTools[ii, i].RunParams.CaliperRunParams.EdgeMode = CogCaliperEdgeModeConstants.Pair;
-
-                    //        buf = "FINDLINE_CALIPER_POLARLITY_1" + i.ToString();
-                    //        if (ModelFile.GetIData(m_FINDLineName, buf) == 0) FINDLineTools[ii, i].RunParams.CaliperRunParams.Edge1Polarity = (CogCaliperPolarityConstants)1; // 1-> 기본
-                    //        else FINDLineTools[ii, i].RunParams.CaliperRunParams.Edge1Polarity = (CogCaliperPolarityConstants)ModelFile.GetIData(m_FINDLineName, buf);
-
-                    //        buf = "FINDLINE_CALIPER_FINDLine1POS" + i.ToString();    //Pos 간격 이하만 찾아라.
-                    //        FINDLineTools[ii, i].RunParams.CaliperRunParams.Edge1Position = ModelFile.GetFData(m_FINDLineName, buf);
-
-                    //        buf = "FINDLINE_CALIPER_FINDLineMODE" + i.ToString();
-                    //        if (ModelFile.GetIData(m_FINDLineName, buf) == 0) FINDLineTools[ii, i].RunParams.CaliperRunParams.EdgeMode = (CogCaliperEdgeModeConstants)1; // 1-> 기본
-                    //        else FINDLineTools[ii, i].RunParams.CaliperRunParams.EdgeMode = (CogCaliperEdgeModeConstants)ModelFile.GetIData(m_FINDLineName, buf);
-
-                    //        buf = "FINDLINE_CALIPER_SEARCHDIRECTION" + i.ToString();
-                    //        try
-                    //        {
-                    //            FINDLineTools[ii, i].RunParams.CaliperSearchDirection = ModelFile.GetFData(m_FINDLineName, buf);
-                    //        }
-                    //        catch (Exception ex)
-                    //        {
-
-                    //        }
-                    //        buf = "FINDLINE_FILTERHALFSIZE" + i.ToString();
-                    //        FINDLineTools[ii, i].RunParams.CaliperRunParams.FilterHalfSizeInPixels = (ModelFile.GetIData(m_FINDLineName, buf) < 1) ? 2 : ModelFile.GetIData(m_FINDLineName, buf);
-
-                    //        buf = "FINDLINE_CALIPER_METHOD" + i.ToString();
-                    //        FINDLineTools[ii, i].RunParams.CaliperRunParams.SingleEdgeScorers.Clear();
-                    //        FINDLinePara[ii, i].m_LineCaliperMethod = ModelFile.GetIData(m_FINDLineName, buf);
-
-                    //        if (FINDLinePara[ii, i].m_LineCaliperMethod == DEFINE.CLP_METHOD_SCORE)
-                    //        {
-                    //            CogCaliperScorerContrast scorer = new CogCaliperScorerContrast();
-                    //            scorer.Enabled = true;
-                    //            FINDLineTools[ii, i].RunParams.CaliperRunParams.SingleEdgeScorers.Add(scorer);
-                    //        }
-                    //        else if (FINDLinePara[ii, i].m_LineCaliperMethod == DEFINE.CLP_METHOD_POS)
-                    //        {
-                    //            CogCaliperScorerPosition scorer = new CogCaliperScorerPosition();
-                    //            scorer.Enabled = true;
-                    //            FINDLineTools[ii, i].RunParams.CaliperRunParams.SingleEdgeScorers.Add(scorer);
-                    //        }
-
-                    //        FINDLineTools[ii, i].RunParams.ExpectedLineSegment.SelectedSpaceName = ".";
-                    //        FINDLineTools[ii, i].LastRunRecordDiagEnable = CogFindLineLastRunRecordDiagConstants.TransformedRegionPixels;
-                    //        FINDLineTools[ii, i].LastRunRecordEnable = CogFindLineLastRunRecordConstants.BestFitLineSegment | CogFindLineLastRunRecordConstants.FoundEdges;
-
-                    //        for (int k = 0; k < Main.DEFINE.M_TOOLMAXCOUNT; k++)
-                    //        {
-                    //            buf = "TARGET_TO_CENTER_X" + i.ToString() + "_" + k.ToString();
-                    //            FINDLinePara[ii, i].m_TargetToCenter[k].X = ModelFile.GetFData(m_FINDLineName, buf);
-                    //            buf = "TARGET_TO_CENTER_Y" + i.ToString() + "_" + k.ToString();
-                    //            FINDLinePara[ii, i].m_TargetToCenter[k].Y = ModelFile.GetFData(m_FINDLineName, buf);
-
-                    //            buf = "TARGET_TO_CENTER_2X" + i.ToString() + "_" + k.ToString();
-                    //            FINDLinePara[ii, i].m_TargetToCenter[k].X2 = ModelFile.GetFData(m_FINDLineName, buf);
-                    //            buf = "TARGET_TO_CENTER_2Y" + i.ToString() + "_" + k.ToString();
-                    //            FINDLinePara[ii, i].m_TargetToCenter[k].Y2 = ModelFile.GetFData(m_FINDLineName, buf);
-                    //        }
-
-                    //        //==================== LINEMAX ====================//
-                    //        m_LineMaxName = m_PatternName + "_LineMax_" + ii.ToString();
-
-                    //        buf = "LINEMAX_CENTERX" + i.ToString();
-                    //        (LineMaxTools[ii, i].Region as CogRectangleAffine).CenterX = ModelFile.GetFData(m_LineMaxName, buf);
-
-                    //        buf = "LINEMAX_CENTERY" + i.ToString();
-                    //        (LineMaxTools[ii, i].Region as CogRectangleAffine).CenterY = ModelFile.GetFData(m_LineMaxName, buf);
-
-                    //        buf = "LINEMAX_EXPLINE_ANGLE" + i.ToString();
-                    //        LineMaxTools[ii, i].RunParams.ExpectedLineNormal.Angle = ModelFile.GetFData(m_LineMaxName, buf);
-
-                    //        buf = "LINEMAX_GRAKERNEL_SIZE" + i.ToString();
-                    //        if (ModelFile.GetFData(m_LineMaxName, buf) <= 0) LineMaxTools[ii, i].RunParams.EdgeDetectionParams.GradientKernelSizeInPixels = 2;
-                    //        else LineMaxTools[ii, i].RunParams.EdgeDetectionParams.GradientKernelSizeInPixels = ModelFile.GetFData(m_LineMaxName, buf);
-
-                    //        buf = "LINEMAX_PROJECTION_LENGTH" + i.ToString();
-                    //        if (ModelFile.GetFData(m_LineMaxName, buf) <= 0) LineMaxTools[ii, i].RunParams.EdgeDetectionParams.ProjectionLengthInPixels = 10;
-                    //        else LineMaxTools[ii, i].RunParams.EdgeDetectionParams.ProjectionLengthInPixels = ModelFile.GetFData(m_LineMaxName, buf);
-
-                    //        buf = "LINEMAX_CONTRAST_THRES" + i.ToString();
-                    //        if (ModelFile.GetFData(m_LineMaxName, buf) <= 0) LineMaxTools[ii, i].RunParams.EdgeDetectionParams.ContrastThreshold = 5;
-                    //        else LineMaxTools[ii, i].RunParams.EdgeDetectionParams.ContrastThreshold = ModelFile.GetFData(m_LineMaxName, buf);
-
-                    //        buf = "LINEMAX_POLARITY" + i.ToString();
-                    //        if (ModelFile.GetIData(m_LineMaxName, buf) <= 0) LineMaxTools[ii, i].RunParams.Polarity = CogLineMaxPolarityConstants.LightToDark;
-                    //        else LineMaxTools[ii, i].RunParams.Polarity = (CogLineMaxPolarityConstants)ModelFile.GetIData(m_LineMaxName, buf);
-
-                    //        buf = "LINEMAX_EDGE_ANGLE_TOL" + i.ToString();
-                    //        if (ModelFile.GetFData(m_LineMaxName, buf) <= 0) LineMaxTools[ii, i].RunParams.EdgeAngleTolerance = 5 * DEFINE.radian;
-                    //        else LineMaxTools[ii, i].RunParams.EdgeAngleTolerance = ModelFile.GetFData(m_LineMaxName, buf);
-
-                    //        buf = "LINEMAX_EDGE_DIST_TOL" + i.ToString();
-                    //        if (ModelFile.GetFData(m_LineMaxName, buf) <= 0) LineMaxTools[ii, i].RunParams.DistanceTolerance = 1;
-                    //        else LineMaxTools[ii, i].RunParams.DistanceTolerance = ModelFile.GetFData(m_LineMaxName, buf);
-
-                    //        buf = "LINEMAX_MAX_LINES" + i.ToString();
-                    //        if (ModelFile.GetIData(m_LineMaxName, buf) <= 0) LineMaxTools[ii, i].RunParams.MaxNumLines = 1;
-                    //        else LineMaxTools[ii, i].RunParams.MaxNumLines = ModelFile.GetIData(m_LineMaxName, buf);
-
-                    //        buf = "LINEMAX_LINE_ANGLE_TOL" + i.ToString();
-                    //        if (ModelFile.GetFData(m_LineMaxName, buf) <= 0) LineMaxTools[ii, i].RunParams.LineAngleTolerance = 5 * DEFINE.radian;
-                    //        else LineMaxTools[ii, i].RunParams.LineAngleTolerance = ModelFile.GetFData(m_LineMaxName, buf);
-
-                    //        buf = "LINEMAX_COVERAGE_THRES" + i.ToString();
-                    //        if (ModelFile.GetFData(m_LineMaxName, buf) < 0) LineMaxTools[ii, i].RunParams.CoverageThreshold = 0.5;
-                    //        else LineMaxTools[ii, i].RunParams.CoverageThreshold = ModelFile.GetFData(m_LineMaxName, buf);
-
-                    //        buf = "LINEMAX_LENGTH_THRES" + i.ToString();
-                    //        if (ModelFile.GetFData(m_LineMaxName, buf) < 0) LineMaxTools[ii, i].RunParams.LengthThreshold = 0;
-                    //        else LineMaxTools[ii, i].RunParams.LengthThreshold = ModelFile.GetFData(m_LineMaxName, buf);
-
-                    //        buf = "LINEMAX_HORIZONTAL_COND" + i.ToString();
-                    //        FINDLinePara[ii, i].m_LineMaxHCond = ModelFile.GetIData(m_LineMaxName, buf);
-
-                    //        buf = "LINEMAX_VERTICAL_COND" + i.ToString();
-                    //        FINDLinePara[ii, i].m_LineMaxVCond = ModelFile.GetIData(m_LineMaxName, buf);
-                    //    }
-                    //}
-                    #endregion
-
-                    #region CIRCLE
-                    //string m_CircleName;
-                    //for (int i = 0; i < Main.DEFINE.CIRCLE_MAX; i++)
-                    //{
-                    //    m_CircleName = m_PatternName + "_CIRCLE";
-
-                    //    buf = "CIRCLE_CENTERX" + i.ToString();
-                    //    CircleTools[i].RunParams.ExpectedCircularArc.CenterX = ModelFile.GetFData(m_CircleName, buf);
-
-                    //    buf = "CIRCLE_CENTERY" + i.ToString();
-                    //    CircleTools[i].RunParams.ExpectedCircularArc.CenterY = ModelFile.GetFData(m_CircleName, buf);
-
-                    //    buf = "CIRCLE_RADIUS" + i.ToString();
-                    //    if (ModelFile.GetFData(m_CircleName, buf) == 0 || ModelFile.GetFData(m_CircleName, buf) < 0)
-                    //        if (i == Main.DEFINE.VCM)
-                    //            CircleTools[i].RunParams.ExpectedCircularArc.Radius = 90;
-                    //        else
-                    //            CircleTools[i].RunParams.ExpectedCircularArc.Radius = 55;
-                    //    else
-                    //        CircleTools[i].RunParams.ExpectedCircularArc.Radius = ModelFile.GetFData(m_CircleName, buf);
-
-                    //    buf = "RUNPARAMS_NUMCALIPERTS" + i.ToString();
-                    //    if (ModelFile.GetFData(m_CircleName, buf) == 0 || ModelFile.GetFData(m_CircleName, buf) < 0)
-                    //        CircleTools[i].RunParams.NumCalipers = 15;
-                    //    else
-                    //        CircleTools[i].RunParams.NumCalipers = ModelFile.GetIData(m_CircleName, buf);
-
-
-                    //    buf = "RUNPARAMS_SEARCHLENGTH" + i.ToString();
-                    //    if (ModelFile.GetFData(m_CircleName, buf) == 0 || ModelFile.GetFData(m_CircleName, buf) < 0)
-                    //    {
-                    //        if (i == Main.DEFINE.VCM)
-                    //            CircleTools[i].RunParams.CaliperSearchLength = 200;
-                    //        else
-                    //            CircleTools[i].RunParams.CaliperSearchLength = 100;
-                    //    }
-                    //    else
-                    //        CircleTools[i].RunParams.CaliperSearchLength = ModelFile.GetFData(m_CircleName, buf);
-
-
-                    //    buf = "RUNPARAMS_SEARCHDIRECTION" + i.ToString();
-                    //    if (ModelFile.GetFData(m_CircleName, buf) == 0)
-                    //        CircleTools[i].RunParams.CaliperSearchDirection = CogFindCircleSearchDirectionConstants.Inward;
-                    //    else
-                    //        CircleTools[i].RunParams.CaliperSearchDirection = CogFindCircleSearchDirectionConstants.Outward;
-
-                    //    buf = "RUNPARAMS_PROJECTIONLENGTH" + i.ToString();
-
-                    //    if (ModelFile.GetFData(m_CircleName, buf) == 0 || ModelFile.GetFData(m_CircleName, buf) < 0)
-                    //        CircleTools[i].RunParams.CaliperProjectionLength = 30;
-                    //    else
-                    //        CircleTools[i].RunParams.CaliperProjectionLength = ModelFile.GetFData(m_CircleName, buf);
-
-                    //    buf = "RUNPARAMS_RADIUSCONSTRAINT_ENABLE" + i.ToString();
-                    //    CircleTools[i].RunParams.RadiusConstraintEnabled = ModelFile.GetBData(m_CircleName, buf);
-
-                    //    buf = "RUNPARAMS_RADIUSCONSTRAINT" + i.ToString();
-                    //    if (ModelFile.GetFData(m_CircleName, buf) == 0 || ModelFile.GetFData(m_CircleName, buf) < 0)
-                    //        CircleTools[i].RunParams.RadiusConstraint = 70;
-                    //    else
-                    //        CircleTools[i].RunParams.RadiusConstraint = ModelFile.GetFData(m_CircleName, buf);
-
-                    //    buf = "RUNPARAMS_NUMTOLGNORE" + i.ToString();
-
-                    //    if (ModelFile.GetFData(m_CircleName, buf) == 0 || ModelFile.GetFData(m_CircleName, buf) < 0)
-                    //        CircleTools[i].RunParams.NumToIgnore = 5;
-                    //    else
-                    //        CircleTools[i].RunParams.NumToIgnore = ModelFile.GetIData(m_CircleName, buf);
-
-                    //    buf = "RUNPARAMS_ANGLESTART" + i.ToString();
-
-                    //    if (ModelFile.GetFData(m_CircleName, buf) < -180 || ModelFile.GetFData(m_CircleName, buf) > 179)
-                    //        CircleTools[i].RunParams.ExpectedCircularArc.AngleStart = 0;
-                    //    else
-                    //        CircleTools[i].RunParams.ExpectedCircularArc.AngleStart = ModelFile.GetFData(m_CircleName, buf);
-
-                    //    buf = "RUNPARAMS_ANGLESPAN" + i.ToString();
-
-                    //    if (ModelFile.GetFData(m_CircleName, buf) == 0 || Math.Abs(ModelFile.GetFData(m_CircleName, buf)) > Math.PI)
-                    //        CircleTools[i].RunParams.ExpectedCircularArc.AngleSpan = Math.PI / 2;
-                    //    else
-                    //        CircleTools[i].RunParams.ExpectedCircularArc.AngleSpan = ModelFile.GetFData(m_CircleName, buf);
-
-                    //    buf = "CALIPER_THRESHOLD" + i.ToString();
-                    //    if (ModelFile.GetIData(m_CircleName, buf) == 0)
-                    //        CircleTools[i].RunParams.CaliperRunParams.ContrastThreshold = 7;
-                    //    else
-                    //        CircleTools[i].RunParams.CaliperRunParams.ContrastThreshold = ModelFile.GetFData(m_CircleName, buf);
-
-                    //    buf = "CALIPER_EDGE_MODE" + i.ToString();
-                    //    if (ModelFile.GetIData(m_CircleName, buf) == 0)
-                    //        CircleTools[i].RunParams.CaliperRunParams.EdgeMode = CogCaliperEdgeModeConstants.SingleEdge;      // 기본값 설정 
-                    //    else
-                    //        CircleTools[i].RunParams.CaliperRunParams.EdgeMode = (CogCaliperEdgeModeConstants)ModelFile.GetIData(m_CircleName, buf);
-
-                    //    buf = "CALIPER_POLARLITY" + i.ToString();
-                    //    if (ModelFile.GetIData(m_CircleName, buf) == 0)
-                    //        CircleTools[i].RunParams.CaliperRunParams.Edge0Polarity = CogCaliperPolarityConstants.DarkToLight; // 1-> 기본
-                    //    else
-                    //        CircleTools[i].RunParams.CaliperRunParams.Edge0Polarity = (CogCaliperPolarityConstants)ModelFile.GetIData(m_CircleName, buf);
-
-                    //    //                         buf = "CALIPER_POSITION_0" + i.ToString();
-                    //    //                         CircleTools[i].RunParams.CaliperRunParams.Edge0Position = ModelFile.GetFData(m_CircleName, buf);
-                    //    // 
-                    //    //                         buf = "CALIPER_POSITION_1" + i.ToString();
-                    //    //                         CircleTools[i].RunParams.CaliperRunParams.Edge1Position = ModelFile.GetFData(m_CircleName, buf);
-
-                    //    buf = "CIRCLE_USE" + i.ToString();
-                    //    CirclePara[i].m_UseCheck = ModelFile.GetBData(m_CircleName, buf);
-
-                    //    buf = "CIRCLE_CALIPER_METHOD" + i.ToString();
-                    //    CircleTools[i].RunParams.CaliperRunParams.SingleEdgeScorers.Clear();
-                    //    CirclePara[i].m_CircleCaliperMethod = ModelFile.GetIData(m_CircleName, buf);
-
-                    //    if (CirclePara[i].m_CircleCaliperMethod == DEFINE.CLP_METHOD_SCORE)
-                    //    {
-                    //        CogCaliperScorerContrast scorer = new CogCaliperScorerContrast();
-                    //        scorer.Enabled = true;
-                    //        CircleTools[i].RunParams.CaliperRunParams.SingleEdgeScorers.Add(scorer);
-                    //    }
-                    //    else if (CirclePara[i].m_CircleCaliperMethod == DEFINE.CLP_METHOD_POS)
-                    //    {
-                    //        CogCaliperScorerPosition scorer = new CogCaliperScorerPosition();
-                    //        scorer.Enabled = true;
-                    //        CircleTools[i].RunParams.CaliperRunParams.SingleEdgeScorers.Add(scorer);
-                    //    }
-
-                    //    //CircleTools[i].RunParams.ExpectedCircularArc.AngleStart = 0;
-                    //    ////CircleTools[i].RunParams.ExpectedCircularArc.AngleSpan = 6.28318530717959;
-                    //    //CircleTools[i].RunParams.ExpectedCircularArc.AngleSpan = 3.141592;
-
-                    //    CircleTools[i].LastRunRecordDiagEnable = CogFindCircleLastRunRecordDiagConstants.TransformedRegionPixels;
-                    //    CircleTools[i].LastRunRecordEnable = CogFindCircleLastRunRecordConstants.FoundEdges | CogFindCircleLastRunRecordConstants.FilteredProjectionGraph;
-
-                    //    for (int k = 0; k < Main.DEFINE.M_TOOLMAXCOUNT; k++)
-                    //    {
-                    //        buf = "TARGET_TO_CENTER_X" + i.ToString() + "_" + k.ToString();
-                    //        CirclePara[i].m_TargetToCenter[k].X = ModelFile.GetFData(m_CircleName, buf);
-                    //        buf = "TARGET_TO_CENTER_Y" + i.ToString() + "_" + k.ToString();
-                    //        CirclePara[i].m_TargetToCenter[k].Y = ModelFile.GetFData(m_CircleName, buf);
-                    //    }
-                    //}
                     #endregion
                 }
 

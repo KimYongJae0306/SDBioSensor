@@ -268,16 +268,16 @@ namespace COG
                 public double dSpecDistance;
                 public double dSpecDistanceMax;
                 public int IDistgnore;
-                public int iOverFusionCnt;
                 public int iHistogramROICnt;
                 public int[] iHistogramSpec;
-                public bool bUseOverFusion;
                 public bool bThresholdUse;
-                public int iThreshold;
-                public int iTopCutPixel;
-                public int iIgnoreSize;
-                public int iBottomCutPixel;
-                public int iMaskingValue;
+                public int iThreshold { get; set; } = 32;
+                public int iTopCutPixel { get; set; } = 15;
+                public int iIgnoreSize { get; set; } = 20;
+                public int iBottomCutPixel { get; set; } = 10;
+                public int iMaskingValue { get; set; } = 210;
+                public int iEdgeCaliperThreshold { get; set; } = 55;
+                public int iEdgeCaliperFilterSize { get; set; } = 10;
             }
 
             public SDParameter Reset()
@@ -300,12 +300,10 @@ namespace COG
                     RestData.iHistogramSpec[i] = new int();
                 }
                 RestData.m_enumROIType = new SDParameter.enumROIType();
-                RestData.bUseOverFusion = false;
                 RestData.CenterX = 0;
                 RestData.CenterY = 0;
                 RestData.LenthX = 0;
                 RestData.LenthY = 0;
-                RestData.iOverFusionCnt = 0;
                 RestData.dSpecDistance = 0;
                 RestData.dSpecDistanceMax = 0;
                 RestData.IDistgnore = 0;

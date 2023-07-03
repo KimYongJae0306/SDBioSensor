@@ -784,24 +784,16 @@ namespace COG
         }
         private void BTN_TEACH_Click(object sender, EventArgs e)
         {
-            if (!MessageShow()) return;
-            if (!MessageShowPermission()) return;
-            LiveFormHide();
+            if (!MessageShow())
+                return;
 
-            //             Form_Password formpassword = new Form_Password(false);
-            //             formpassword.ShowDialog();
-            // 
-            //             if (!formpassword.LOGINOK)
-            //             {
-            //                 formpassword.Dispose();
-            //                 return;
-            //             }
-            //             formpassword.Dispose();
+            if (!MessageShowPermission())
+                return;
+            LiveFormHide();
 
             Main.Status.MC_MODE = Main.DEFINE.MC_TEACHFORM;
             Pattern_Select.ShowDialog();
             Main.Status.MC_MODE = Main.DEFINE.MC_MAINFORM;
-            //           Main.machine.EngineerMode = false;
         }
         private void BTN_SETUP_Click(object sender, EventArgs e)
         {
@@ -1107,7 +1099,7 @@ namespace COG
                 form_trayDataview.Dispose();
                 Pattern_Select.PatternTagSelect.PatternTeach.Dispose();
                 Pattern_Select.PatternTagSelect.Dispose();
-                Pattern_Select.PatternTeach.Dispose();
+                //Pattern_Select.PatternTeach.Dispose();
                 Pattern_Select.Dispose();
                 formCalDis.Dispose();
                 formMessage.Dispose();

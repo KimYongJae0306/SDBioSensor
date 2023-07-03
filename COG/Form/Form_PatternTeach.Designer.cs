@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_PatternTeach));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BTN_IMAGE_OPEN = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.BTN_PATTERN_RUN = new System.Windows.Forms.Button();
@@ -292,8 +292,7 @@
             this.label19 = new System.Windows.Forms.Label();
             this.LB_SEARCH_CIR = new System.Windows.Forms.Label();
             this.TAB_05 = new System.Windows.Forms.TabPage();
-            this.label77 = new System.Windows.Forms.Label();
-            this.lblEdgeThreshold = new System.Windows.Forms.Label();
+            this.pnlParam = new System.Windows.Forms.Panel();
             this.chkUseEdgeThreshold = new System.Windows.Forms.CheckBox();
             this.chkUseInspDirectionChange = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -306,11 +305,6 @@
             this.text_Spec_Dist_Max = new System.Windows.Forms.Label();
             this.btn_ignore_dist_down = new System.Windows.Forms.Button();
             this.CHK_ROI_CREATE = new System.Windows.Forms.CheckBox();
-            this.lblEdgeDirection = new System.Windows.Forms.Button();
-            this.lblParamFilterSizeValueDown = new System.Windows.Forms.Button();
-            this.lblParamFilterSizeValueUp = new System.Windows.Forms.Button();
-            this.lblParamFilterSIze = new System.Windows.Forms.Label();
-            this.lblParamFilterSizeValue = new System.Windows.Forms.Label();
             this.btn_HistogramTest = new System.Windows.Forms.Button();
             this.btn_Histogram_Apply = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
@@ -320,27 +314,6 @@
             this.label70 = new System.Windows.Forms.Label();
             this.lab_Histogram_ROI_Count = new System.Windows.Forms.Label();
             this.Chk_All_Select = new System.Windows.Forms.CheckBox();
-            this.Panel_Over_Fusion = new System.Windows.Forms.Panel();
-            this.btn_Blob_Apply = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.label69 = new System.Windows.Forms.Label();
-            this.button14 = new System.Windows.Forms.Button();
-            this.btn_BlobTest = new System.Windows.Forms.Button();
-            this.lab_Over_Fusion_ROI_Cnt = new System.Windows.Forms.Label();
-            this.button11 = new System.Windows.Forms.Button();
-            this.btn_Over_Fusion_Up = new System.Windows.Forms.Button();
-            this.btn_BlobSize_Down = new System.Windows.Forms.Button();
-            this.btn_Over_Fusion_down = new System.Windows.Forms.Button();
-            this.btn_BlobSize_Up = new System.Windows.Forms.Button();
-            this.label60 = new System.Windows.Forms.Label();
-            this.lab_Size = new System.Windows.Forms.Label();
-            this.lab_blobSize = new System.Windows.Forms.Label();
-            this.Comb_Over_Fusion_ROI_No = new System.Windows.Forms.ComboBox();
-            this.label71 = new System.Windows.Forms.Label();
-            this.btn_blobThr_Down = new System.Windows.Forms.Button();
-            this.lab_BlobThr = new System.Windows.Forms.Label();
-            this.btn_blobThr_Up = new System.Windows.Forms.Button();
-            this.Chk_Use_Over_Fusion = new System.Windows.Forms.CheckBox();
             this.chkUseRoiTracking = new System.Windows.Forms.CheckBox();
             this.List_NG = new System.Windows.Forms.ListBox();
             this.btn_Spec_Dist_Down = new System.Windows.Forms.Button();
@@ -359,35 +332,12 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Combo_Polarity2 = new System.Windows.Forms.ComboBox();
-            this.label58 = new System.Windows.Forms.Label();
-            this.Combo_Polarity1 = new System.Windows.Forms.ComboBox();
-            this.label57 = new System.Windows.Forms.Label();
-            this.btn_TrimOrigin = new System.Windows.Forms.Button();
-            this.btn_image_Apply = new System.Windows.Forms.Button();
             this.btn_Param_Apply = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label55 = new System.Windows.Forms.Label();
-            this.LAB_Caliper_Cnt = new System.Windows.Forms.Label();
-            this.btn_Section_Apply = new System.Windows.Forms.Button();
-            this.btn_Caliper_SearchLenth_Down = new System.Windows.Forms.Button();
-            this.btn_Caliper_SearchLenth_Up = new System.Windows.Forms.Button();
-            this.label56 = new System.Windows.Forms.Label();
-            this.LAB_CALIPER_SEARCHLENTH = new System.Windows.Forms.Label();
-            this.btn_ProjectionLenth_Down = new System.Windows.Forms.Button();
-            this.btn_ProjectionLenth_Up = new System.Windows.Forms.Button();
-            this.btn_Threshold_Down = new System.Windows.Forms.Button();
-            this.btn_THRESHOLD_Up = new System.Windows.Forms.Button();
             this.btn_ROI_SHOW = new System.Windows.Forms.Button();
-            this.label54 = new System.Windows.Forms.Label();
-            this.LAB_CALIPER_PROJECTIONLENTH = new System.Windows.Forms.Label();
             this.BTN_INSP_DELETE = new System.Windows.Forms.Button();
             this.BTN_INSP_ADD = new System.Windows.Forms.Button();
             this.BTN_ROI_SKEW_CIRCLE = new System.Windows.Forms.Button();
             this.BTN_ROI_SKEW_LINE = new System.Windows.Forms.Button();
-            this.label78 = new System.Windows.Forms.Label();
-            this.LAB_Insp_Threshold = new System.Windows.Forms.Label();
             this.RBTN_AKKON00 = new System.Windows.Forms.RadioButton();
             this.DataGridview_Insp = new System.Windows.Forms.DataGridView();
             this.COL_00 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -499,6 +449,33 @@
             this.RDB_BONDING_ALIGN = new System.Windows.Forms.RadioButton();
             this.RDB_MATERIAL_ALIGN = new System.Windows.Forms.RadioButton();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label77 = new System.Windows.Forms.Label();
+            this.lblEdgeThreshold = new System.Windows.Forms.Label();
+            this.lblEdgeDirection = new System.Windows.Forms.Button();
+            this.Combo_Polarity2 = new System.Windows.Forms.ComboBox();
+            this.label58 = new System.Windows.Forms.Label();
+            this.Combo_Polarity1 = new System.Windows.Forms.ComboBox();
+            this.label57 = new System.Windows.Forms.Label();
+            this.lblParamFilterSizeValueDown = new System.Windows.Forms.Button();
+            this.lblParamFilterSizeValueUp = new System.Windows.Forms.Button();
+            this.lblParamFilterSIze = new System.Windows.Forms.Label();
+            this.lblParamFilterSizeValue = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label55 = new System.Windows.Forms.Label();
+            this.LAB_Caliper_Cnt = new System.Windows.Forms.Label();
+            this.btn_Caliper_SearchLenth_Down = new System.Windows.Forms.Button();
+            this.btn_Caliper_SearchLenth_Up = new System.Windows.Forms.Button();
+            this.label56 = new System.Windows.Forms.Label();
+            this.LAB_CALIPER_SEARCHLENTH = new System.Windows.Forms.Label();
+            this.btn_ProjectionLenth_Down = new System.Windows.Forms.Button();
+            this.btn_ProjectionLenth_Up = new System.Windows.Forms.Button();
+            this.btn_Threshold_Down = new System.Windows.Forms.Button();
+            this.btn_THRESHOLD_Up = new System.Windows.Forms.Button();
+            this.label54 = new System.Windows.Forms.Label();
+            this.LAB_CALIPER_PROJECTIONLENTH = new System.Windows.Forms.Label();
+            this.label78 = new System.Windows.Forms.Label();
+            this.LAB_Insp_Threshold = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
             this.Lab_Tact = new System.Windows.Forms.Label();
             this.GB_TRAY = new System.Windows.Forms.GroupBox();
@@ -546,15 +523,20 @@
             this.btnImageNext = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.PT_DISPLAY_CONTROL = new JAS.Controls.Display.Display();
-            this.Panel_Maker_Parameter = new System.Windows.Forms.Panel();
+            this.lblIgnoreSize = new System.Windows.Forms.Label();
+            this.label84 = new System.Windows.Forms.Label();
             this.lblMaskingValue = new System.Windows.Forms.Label();
             this.label86 = new System.Windows.Forms.Label();
             this.lblBottomCutPixel = new System.Windows.Forms.Label();
             this.lblTopCutPixel = new System.Windows.Forms.Label();
             this.label82 = new System.Windows.Forms.Label();
             this.label79 = new System.Windows.Forms.Label();
-            this.lblIgnoreSize = new System.Windows.Forms.Label();
-            this.label84 = new System.Windows.Forms.Label();
+            this.pnlEdgeParam = new System.Windows.Forms.Panel();
+            this.label83 = new System.Windows.Forms.Label();
+            this.lblEdgeCaliperThreshold = new System.Windows.Forms.Label();
+            this.lblEdgeCaliperFilterSize = new System.Windows.Forms.Label();
+            this.label90 = new System.Windows.Forms.Label();
+            this.pnlOrgParam = new System.Windows.Forms.Panel();
             this.groupBoxLightSetting.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TBAR_LIGHT)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -612,7 +594,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.TBAR_THRES_CIR)).BeginInit();
             this.TAB_05.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.Panel_Over_Fusion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Result)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridview_Insp)).BeginInit();
             this.TAB_06.SuspendLayout();
@@ -629,7 +610,8 @@
             this.GB_MOVE_.SuspendLayout();
             this.GB_SIZE.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.Panel_Maker_Parameter.SuspendLayout();
+            this.pnlEdgeParam.SuspendLayout();
+            this.pnlOrgParam.SuspendLayout();
             this.SuspendLayout();
             // 
             // BTN_IMAGE_OPEN
@@ -3425,21 +3407,21 @@
             // 
             // ColumnX
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Format = "N3";
-            dataGridViewCellStyle3.NullValue = "-";
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.GreenYellow;
-            this.ColumnX.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.Format = "N3";
+            dataGridViewCellStyle15.NullValue = "-";
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.GreenYellow;
+            this.ColumnX.DefaultCellStyle = dataGridViewCellStyle15;
             this.ColumnX.HeaderText = "POINT X";
             this.ColumnX.Name = "ColumnX";
             this.ColumnX.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // ColumnY
             // 
-            dataGridViewCellStyle4.Format = "N3";
-            dataGridViewCellStyle4.NullValue = "0";
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.GreenYellow;
-            this.ColumnY.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle16.Format = "N3";
+            dataGridViewCellStyle16.NullValue = "0";
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.GreenYellow;
+            this.ColumnY.DefaultCellStyle = dataGridViewCellStyle16;
             this.ColumnY.HeaderText = "POINT Y";
             this.ColumnY.Name = "ColumnY";
             this.ColumnY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -4339,17 +4321,11 @@
             // TAB_05
             // 
             this.TAB_05.BackColor = System.Drawing.Color.Silver;
-            this.TAB_05.Controls.Add(this.label77);
-            this.TAB_05.Controls.Add(this.lblEdgeThreshold);
+            this.TAB_05.Controls.Add(this.pnlParam);
             this.TAB_05.Controls.Add(this.chkUseEdgeThreshold);
             this.TAB_05.Controls.Add(this.chkUseInspDirectionChange);
             this.TAB_05.Controls.Add(this.groupBox3);
             this.TAB_05.Controls.Add(this.CHK_ROI_CREATE);
-            this.TAB_05.Controls.Add(this.lblEdgeDirection);
-            this.TAB_05.Controls.Add(this.lblParamFilterSizeValueDown);
-            this.TAB_05.Controls.Add(this.lblParamFilterSizeValueUp);
-            this.TAB_05.Controls.Add(this.lblParamFilterSIze);
-            this.TAB_05.Controls.Add(this.lblParamFilterSizeValue);
             this.TAB_05.Controls.Add(this.btn_HistogramTest);
             this.TAB_05.Controls.Add(this.btn_Histogram_Apply);
             this.TAB_05.Controls.Add(this.button8);
@@ -4359,8 +4335,6 @@
             this.TAB_05.Controls.Add(this.label70);
             this.TAB_05.Controls.Add(this.lab_Histogram_ROI_Count);
             this.TAB_05.Controls.Add(this.Chk_All_Select);
-            this.TAB_05.Controls.Add(this.Panel_Over_Fusion);
-            this.TAB_05.Controls.Add(this.Chk_Use_Over_Fusion);
             this.TAB_05.Controls.Add(this.chkUseRoiTracking);
             this.TAB_05.Controls.Add(this.List_NG);
             this.TAB_05.Controls.Add(this.btn_Spec_Dist_Down);
@@ -4375,35 +4349,12 @@
             this.TAB_05.Controls.Add(this.LAB_EDGE_WIDTH);
             this.TAB_05.Controls.Add(this.btn_Inspection_Test);
             this.TAB_05.Controls.Add(this.dataGridView_Result);
-            this.TAB_05.Controls.Add(this.Combo_Polarity2);
-            this.TAB_05.Controls.Add(this.label58);
-            this.TAB_05.Controls.Add(this.Combo_Polarity1);
-            this.TAB_05.Controls.Add(this.label57);
-            this.TAB_05.Controls.Add(this.btn_TrimOrigin);
-            this.TAB_05.Controls.Add(this.btn_image_Apply);
             this.TAB_05.Controls.Add(this.btn_Param_Apply);
-            this.TAB_05.Controls.Add(this.button2);
-            this.TAB_05.Controls.Add(this.button3);
-            this.TAB_05.Controls.Add(this.label55);
-            this.TAB_05.Controls.Add(this.LAB_Caliper_Cnt);
-            this.TAB_05.Controls.Add(this.btn_Section_Apply);
-            this.TAB_05.Controls.Add(this.btn_Caliper_SearchLenth_Down);
-            this.TAB_05.Controls.Add(this.btn_Caliper_SearchLenth_Up);
-            this.TAB_05.Controls.Add(this.label56);
-            this.TAB_05.Controls.Add(this.LAB_CALIPER_SEARCHLENTH);
-            this.TAB_05.Controls.Add(this.btn_ProjectionLenth_Down);
-            this.TAB_05.Controls.Add(this.btn_ProjectionLenth_Up);
-            this.TAB_05.Controls.Add(this.btn_Threshold_Down);
-            this.TAB_05.Controls.Add(this.btn_THRESHOLD_Up);
             this.TAB_05.Controls.Add(this.btn_ROI_SHOW);
-            this.TAB_05.Controls.Add(this.label54);
-            this.TAB_05.Controls.Add(this.LAB_CALIPER_PROJECTIONLENTH);
             this.TAB_05.Controls.Add(this.BTN_INSP_DELETE);
             this.TAB_05.Controls.Add(this.BTN_INSP_ADD);
             this.TAB_05.Controls.Add(this.BTN_ROI_SKEW_CIRCLE);
             this.TAB_05.Controls.Add(this.BTN_ROI_SKEW_LINE);
-            this.TAB_05.Controls.Add(this.label78);
-            this.TAB_05.Controls.Add(this.LAB_Insp_Threshold);
             this.TAB_05.Controls.Add(this.RBTN_AKKON00);
             this.TAB_05.Controls.Add(this.DataGridview_Insp);
             this.TAB_05.Location = new System.Drawing.Point(4, 24);
@@ -4413,34 +4364,18 @@
             this.TAB_05.Tag = "5";
             this.TAB_05.Text = "ISNP";
             // 
-            // label77
+            // pnlParam
             // 
-            this.label77.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label77.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label77.Location = new System.Drawing.Point(341, 411);
-            this.label77.Name = "label77";
-            this.label77.Size = new System.Drawing.Size(115, 36);
-            this.label77.TabIndex = 361;
-            this.label77.Text = "EDGE TH";
-            this.label77.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblEdgeThreshold
-            // 
-            this.lblEdgeThreshold.BackColor = System.Drawing.Color.White;
-            this.lblEdgeThreshold.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblEdgeThreshold.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblEdgeThreshold.Location = new System.Drawing.Point(457, 411);
-            this.lblEdgeThreshold.Name = "lblEdgeThreshold";
-            this.lblEdgeThreshold.Size = new System.Drawing.Size(122, 36);
-            this.lblEdgeThreshold.TabIndex = 362;
-            this.lblEdgeThreshold.Text = "0";
-            this.lblEdgeThreshold.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblEdgeThreshold.Click += new System.EventHandler(this.lblEdgeThreshold_Click);
+            this.pnlParam.Location = new System.Drawing.Point(6, 322);
+            this.pnlParam.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlParam.Name = "pnlParam";
+            this.pnlParam.Size = new System.Drawing.Size(357, 321);
+            this.pnlParam.TabIndex = 363;
             // 
             // chkUseEdgeThreshold
             // 
             this.chkUseEdgeThreshold.AutoSize = true;
-            this.chkUseEdgeThreshold.Location = new System.Drawing.Point(341, 390);
+            this.chkUseEdgeThreshold.Location = new System.Drawing.Point(369, 391);
             this.chkUseEdgeThreshold.Name = "chkUseEdgeThreshold";
             this.chkUseEdgeThreshold.Size = new System.Drawing.Size(131, 19);
             this.chkUseEdgeThreshold.TabIndex = 360;
@@ -4451,7 +4386,7 @@
             // chkUseInspDirectionChange
             // 
             this.chkUseInspDirectionChange.AutoSize = true;
-            this.chkUseInspDirectionChange.Location = new System.Drawing.Point(341, 512);
+            this.chkUseInspDirectionChange.Location = new System.Drawing.Point(369, 441);
             this.chkUseInspDirectionChange.Name = "chkUseInspDirectionChange";
             this.chkUseInspDirectionChange.Size = new System.Drawing.Size(169, 19);
             this.chkUseInspDirectionChange.TabIndex = 359;
@@ -4469,9 +4404,9 @@
             this.groupBox3.Controls.Add(this.btn_ignore_dist_up);
             this.groupBox3.Controls.Add(this.text_Spec_Dist_Max);
             this.groupBox3.Controls.Add(this.btn_ignore_dist_down);
-            this.groupBox3.Location = new System.Drawing.Point(341, 537);
+            this.groupBox3.Location = new System.Drawing.Point(634, 391);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(286, 106);
+            this.groupBox3.Size = new System.Drawing.Size(304, 106);
             this.groupBox3.TabIndex = 358;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "관로 폭 Spec";
@@ -4583,71 +4518,11 @@
             this.CHK_ROI_CREATE.UseVisualStyleBackColor = true;
             this.CHK_ROI_CREATE.CheckedChanged += new System.EventHandler(this.CHK_ROI_CREATE_CheckedChanged);
             // 
-            // lblEdgeDirection
-            // 
-            this.lblEdgeDirection.BackColor = System.Drawing.Color.DarkGray;
-            this.lblEdgeDirection.Font = new System.Drawing.Font("맑은 고딕", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblEdgeDirection.Location = new System.Drawing.Point(11, 540);
-            this.lblEdgeDirection.Name = "lblEdgeDirection";
-            this.lblEdgeDirection.Size = new System.Drawing.Size(107, 28);
-            this.lblEdgeDirection.TabIndex = 355;
-            this.lblEdgeDirection.Text = "Edge Direction";
-            this.lblEdgeDirection.UseVisualStyleBackColor = false;
-            this.lblEdgeDirection.Click += new System.EventHandler(this.lblEdgeDirection_Click);
-            // 
-            // lblParamFilterSizeValueDown
-            // 
-            this.lblParamFilterSizeValueDown.BackColor = System.Drawing.Color.DarkGray;
-            this.lblParamFilterSizeValueDown.Location = new System.Drawing.Point(292, 423);
-            this.lblParamFilterSizeValueDown.Name = "lblParamFilterSizeValueDown";
-            this.lblParamFilterSizeValueDown.Size = new System.Drawing.Size(45, 36);
-            this.lblParamFilterSizeValueDown.TabIndex = 350;
-            this.lblParamFilterSizeValueDown.Tag = "1";
-            this.lblParamFilterSizeValueDown.Text = "↓";
-            this.lblParamFilterSizeValueDown.UseVisualStyleBackColor = false;
-            this.lblParamFilterSizeValueDown.Click += new System.EventHandler(this.lblParamFilterSizeValueUpDown_Click);
-            // 
-            // lblParamFilterSizeValueUp
-            // 
-            this.lblParamFilterSizeValueUp.BackColor = System.Drawing.Color.DarkGray;
-            this.lblParamFilterSizeValueUp.Location = new System.Drawing.Point(249, 423);
-            this.lblParamFilterSizeValueUp.Name = "lblParamFilterSizeValueUp";
-            this.lblParamFilterSizeValueUp.Size = new System.Drawing.Size(45, 36);
-            this.lblParamFilterSizeValueUp.TabIndex = 349;
-            this.lblParamFilterSizeValueUp.Tag = "0";
-            this.lblParamFilterSizeValueUp.Text = "↑";
-            this.lblParamFilterSizeValueUp.UseVisualStyleBackColor = false;
-            this.lblParamFilterSizeValueUp.Click += new System.EventHandler(this.lblParamFilterSizeValueUpDown_Click);
-            // 
-            // lblParamFilterSIze
-            // 
-            this.lblParamFilterSIze.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblParamFilterSIze.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblParamFilterSIze.Location = new System.Drawing.Point(11, 423);
-            this.lblParamFilterSIze.Name = "lblParamFilterSIze";
-            this.lblParamFilterSIze.Size = new System.Drawing.Size(115, 36);
-            this.lblParamFilterSIze.TabIndex = 347;
-            this.lblParamFilterSIze.Text = "FILTER SIZE";
-            this.lblParamFilterSIze.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblParamFilterSizeValue
-            // 
-            this.lblParamFilterSizeValue.BackColor = System.Drawing.Color.White;
-            this.lblParamFilterSizeValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblParamFilterSizeValue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblParamFilterSizeValue.Location = new System.Drawing.Point(127, 423);
-            this.lblParamFilterSizeValue.Name = "lblParamFilterSizeValue";
-            this.lblParamFilterSizeValue.Size = new System.Drawing.Size(122, 36);
-            this.lblParamFilterSizeValue.TabIndex = 348;
-            this.lblParamFilterSizeValue.Text = "0";
-            this.lblParamFilterSizeValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblParamFilterSizeValue.Click += new System.EventHandler(this.lblParamFilterSizeValue_Click);
-            // 
             // btn_HistogramTest
             // 
             this.btn_HistogramTest.BackColor = System.Drawing.Color.DarkGray;
             this.btn_HistogramTest.Font = new System.Drawing.Font("맑은 고딕", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btn_HistogramTest.Location = new System.Drawing.Point(855, 354);
+            this.btn_HistogramTest.Location = new System.Drawing.Point(858, 95);
             this.btn_HistogramTest.Name = "btn_HistogramTest";
             this.btn_HistogramTest.Size = new System.Drawing.Size(81, 39);
             this.btn_HistogramTest.TabIndex = 344;
@@ -4659,7 +4534,7 @@
             // 
             this.btn_Histogram_Apply.BackColor = System.Drawing.Color.DarkGray;
             this.btn_Histogram_Apply.Font = new System.Drawing.Font("맑은 고딕", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btn_Histogram_Apply.Location = new System.Drawing.Point(760, 355);
+            this.btn_Histogram_Apply.Location = new System.Drawing.Point(763, 96);
             this.btn_Histogram_Apply.Name = "btn_Histogram_Apply";
             this.btn_Histogram_Apply.Size = new System.Drawing.Size(93, 38);
             this.btn_Histogram_Apply.TabIndex = 344;
@@ -4671,7 +4546,7 @@
             // 
             this.button8.BackColor = System.Drawing.Color.DarkGray;
             this.button8.Font = new System.Drawing.Font("맑은 고딕", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button8.Location = new System.Drawing.Point(854, 314);
+            this.button8.Location = new System.Drawing.Point(857, 55);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(87, 39);
             this.button8.TabIndex = 344;
@@ -4684,7 +4559,7 @@
             this.lab_Spec_GrayVale.BackColor = System.Drawing.Color.White;
             this.lab_Spec_GrayVale.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lab_Spec_GrayVale.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lab_Spec_GrayVale.Location = new System.Drawing.Point(729, 317);
+            this.lab_Spec_GrayVale.Location = new System.Drawing.Point(732, 58);
             this.lab_Spec_GrayVale.Name = "lab_Spec_GrayVale";
             this.lab_Spec_GrayVale.Size = new System.Drawing.Size(122, 36);
             this.lab_Spec_GrayVale.TabIndex = 346;
@@ -4696,7 +4571,7 @@
             // 
             this.label73.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label73.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label73.Location = new System.Drawing.Point(611, 317);
+            this.label73.Location = new System.Drawing.Point(614, 58);
             this.label73.Name = "label73";
             this.label73.Size = new System.Drawing.Size(114, 36);
             this.label73.TabIndex = 345;
@@ -4714,7 +4589,7 @@
             "TOP TO BOTTOM",
             "RIGHT TO LEFT",
             "BOTTOM TO TOP"});
-            this.combo_Histogram_ROI_NO.Location = new System.Drawing.Point(855, 278);
+            this.combo_Histogram_ROI_NO.Location = new System.Drawing.Point(858, 19);
             this.combo_Histogram_ROI_NO.Name = "combo_Histogram_ROI_NO";
             this.combo_Histogram_ROI_NO.Size = new System.Drawing.Size(85, 33);
             this.combo_Histogram_ROI_NO.TabIndex = 344;
@@ -4724,7 +4599,7 @@
             // 
             this.label70.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label70.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label70.Location = new System.Drawing.Point(611, 277);
+            this.label70.Location = new System.Drawing.Point(614, 18);
             this.label70.Name = "label70";
             this.label70.Size = new System.Drawing.Size(114, 36);
             this.label70.TabIndex = 342;
@@ -4736,7 +4611,7 @@
             this.lab_Histogram_ROI_Count.BackColor = System.Drawing.Color.White;
             this.lab_Histogram_ROI_Count.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lab_Histogram_ROI_Count.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lab_Histogram_ROI_Count.Location = new System.Drawing.Point(729, 277);
+            this.lab_Histogram_ROI_Count.Location = new System.Drawing.Point(732, 18);
             this.lab_Histogram_ROI_Count.Name = "lab_Histogram_ROI_Count";
             this.lab_Histogram_ROI_Count.Size = new System.Drawing.Size(122, 36);
             this.lab_Histogram_ROI_Count.TabIndex = 343;
@@ -4755,282 +4630,10 @@
             this.Chk_All_Select.UseVisualStyleBackColor = true;
             this.Chk_All_Select.CheckedChanged += new System.EventHandler(this.Chk_All_Select_CheckedChanged);
             // 
-            // Panel_Over_Fusion
-            // 
-            this.Panel_Over_Fusion.Controls.Add(this.btn_Blob_Apply);
-            this.Panel_Over_Fusion.Controls.Add(this.button13);
-            this.Panel_Over_Fusion.Controls.Add(this.label69);
-            this.Panel_Over_Fusion.Controls.Add(this.button14);
-            this.Panel_Over_Fusion.Controls.Add(this.btn_BlobTest);
-            this.Panel_Over_Fusion.Controls.Add(this.lab_Over_Fusion_ROI_Cnt);
-            this.Panel_Over_Fusion.Controls.Add(this.button11);
-            this.Panel_Over_Fusion.Controls.Add(this.btn_Over_Fusion_Up);
-            this.Panel_Over_Fusion.Controls.Add(this.btn_BlobSize_Down);
-            this.Panel_Over_Fusion.Controls.Add(this.btn_Over_Fusion_down);
-            this.Panel_Over_Fusion.Controls.Add(this.btn_BlobSize_Up);
-            this.Panel_Over_Fusion.Controls.Add(this.label60);
-            this.Panel_Over_Fusion.Controls.Add(this.lab_Size);
-            this.Panel_Over_Fusion.Controls.Add(this.lab_blobSize);
-            this.Panel_Over_Fusion.Controls.Add(this.Comb_Over_Fusion_ROI_No);
-            this.Panel_Over_Fusion.Controls.Add(this.label71);
-            this.Panel_Over_Fusion.Controls.Add(this.btn_blobThr_Down);
-            this.Panel_Over_Fusion.Controls.Add(this.lab_BlobThr);
-            this.Panel_Over_Fusion.Controls.Add(this.btn_blobThr_Up);
-            this.Panel_Over_Fusion.Location = new System.Drawing.Point(610, 40);
-            this.Panel_Over_Fusion.Name = "Panel_Over_Fusion";
-            this.Panel_Over_Fusion.Size = new System.Drawing.Size(335, 209);
-            this.Panel_Over_Fusion.TabIndex = 340;
-            // 
-            // btn_Blob_Apply
-            // 
-            this.btn_Blob_Apply.BackColor = System.Drawing.Color.DarkGray;
-            this.btn_Blob_Apply.Font = new System.Drawing.Font("맑은 고딕", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btn_Blob_Apply.Location = new System.Drawing.Point(150, 165);
-            this.btn_Blob_Apply.Name = "btn_Blob_Apply";
-            this.btn_Blob_Apply.Size = new System.Drawing.Size(93, 38);
-            this.btn_Blob_Apply.TabIndex = 343;
-            this.btn_Blob_Apply.Text = "Apply";
-            this.btn_Blob_Apply.UseVisualStyleBackColor = false;
-            this.btn_Blob_Apply.Click += new System.EventHandler(this.btn_Blob_Apply_Click);
-            // 
-            // button13
-            // 
-            this.button13.BackColor = System.Drawing.Color.DarkGray;
-            this.button13.Font = new System.Drawing.Font("맑은 고딕", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button13.Location = new System.Drawing.Point(274, 52);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(55, 33);
-            this.button13.TabIndex = 342;
-            this.button13.Text = "DELETE";
-            this.button13.UseVisualStyleBackColor = false;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
-            // 
-            // label69
-            // 
-            this.label69.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label69.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label69.Location = new System.Drawing.Point(4, 6);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(115, 36);
-            this.label69.TabIndex = 325;
-            this.label69.Text = "Over Fusion ROI";
-            this.label69.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button14
-            // 
-            this.button14.BackColor = System.Drawing.Color.DarkGray;
-            this.button14.Font = new System.Drawing.Font("맑은 고딕", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button14.Location = new System.Drawing.Point(218, 52);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(55, 33);
-            this.button14.TabIndex = 341;
-            this.button14.Text = "ADD";
-            this.button14.UseVisualStyleBackColor = false;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
-            // 
-            // btn_BlobTest
-            // 
-            this.btn_BlobTest.BackColor = System.Drawing.Color.DarkGray;
-            this.btn_BlobTest.Font = new System.Drawing.Font("맑은 고딕", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btn_BlobTest.Location = new System.Drawing.Point(248, 165);
-            this.btn_BlobTest.Name = "btn_BlobTest";
-            this.btn_BlobTest.Size = new System.Drawing.Size(81, 38);
-            this.btn_BlobTest.TabIndex = 339;
-            this.btn_BlobTest.Text = "Test";
-            this.btn_BlobTest.UseVisualStyleBackColor = false;
-            this.btn_BlobTest.Click += new System.EventHandler(this.btn_BlobTest_Click);
-            // 
-            // lab_Over_Fusion_ROI_Cnt
-            // 
-            this.lab_Over_Fusion_ROI_Cnt.BackColor = System.Drawing.Color.White;
-            this.lab_Over_Fusion_ROI_Cnt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lab_Over_Fusion_ROI_Cnt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lab_Over_Fusion_ROI_Cnt.Location = new System.Drawing.Point(121, 6);
-            this.lab_Over_Fusion_ROI_Cnt.Name = "lab_Over_Fusion_ROI_Cnt";
-            this.lab_Over_Fusion_ROI_Cnt.Size = new System.Drawing.Size(122, 36);
-            this.lab_Over_Fusion_ROI_Cnt.TabIndex = 326;
-            this.lab_Over_Fusion_ROI_Cnt.Text = "0";
-            this.lab_Over_Fusion_ROI_Cnt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lab_Over_Fusion_ROI_Cnt.Click += new System.EventHandler(this.lab_Over_Fusion_ROI_Cnt_Click);
-            // 
-            // button11
-            // 
-            this.button11.BackColor = System.Drawing.Color.DarkGray;
-            this.button11.Font = new System.Drawing.Font("맑은 고딕", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button11.Location = new System.Drawing.Point(4, 165);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(140, 38);
-            this.button11.TabIndex = 338;
-            this.button11.Text = "Over Fusion ROI Show";
-            this.button11.UseVisualStyleBackColor = false;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
-            // 
-            // btn_Over_Fusion_Up
-            // 
-            this.btn_Over_Fusion_Up.BackColor = System.Drawing.Color.DarkGray;
-            this.btn_Over_Fusion_Up.Location = new System.Drawing.Point(243, 7);
-            this.btn_Over_Fusion_Up.Name = "btn_Over_Fusion_Up";
-            this.btn_Over_Fusion_Up.Size = new System.Drawing.Size(45, 36);
-            this.btn_Over_Fusion_Up.TabIndex = 327;
-            this.btn_Over_Fusion_Up.Tag = "0";
-            this.btn_Over_Fusion_Up.Text = "↑";
-            this.btn_Over_Fusion_Up.UseVisualStyleBackColor = false;
-            this.btn_Over_Fusion_Up.Click += new System.EventHandler(this.btn_Over_Fusion_Up_Click);
-            // 
-            // btn_BlobSize_Down
-            // 
-            this.btn_BlobSize_Down.BackColor = System.Drawing.Color.DarkGray;
-            this.btn_BlobSize_Down.Location = new System.Drawing.Point(285, 128);
-            this.btn_BlobSize_Down.Name = "btn_BlobSize_Down";
-            this.btn_BlobSize_Down.Size = new System.Drawing.Size(45, 36);
-            this.btn_BlobSize_Down.TabIndex = 337;
-            this.btn_BlobSize_Down.Tag = "1";
-            this.btn_BlobSize_Down.Text = "↓";
-            this.btn_BlobSize_Down.UseVisualStyleBackColor = false;
-            this.btn_BlobSize_Down.Click += new System.EventHandler(this.btn_BlobSize_Down_Click);
-            // 
-            // btn_Over_Fusion_down
-            // 
-            this.btn_Over_Fusion_down.BackColor = System.Drawing.Color.DarkGray;
-            this.btn_Over_Fusion_down.Location = new System.Drawing.Point(286, 7);
-            this.btn_Over_Fusion_down.Name = "btn_Over_Fusion_down";
-            this.btn_Over_Fusion_down.Size = new System.Drawing.Size(45, 36);
-            this.btn_Over_Fusion_down.TabIndex = 328;
-            this.btn_Over_Fusion_down.Tag = "1";
-            this.btn_Over_Fusion_down.Text = "↓";
-            this.btn_Over_Fusion_down.UseVisualStyleBackColor = false;
-            this.btn_Over_Fusion_down.Click += new System.EventHandler(this.btn_Over_Fusion_down_Click);
-            // 
-            // btn_BlobSize_Up
-            // 
-            this.btn_BlobSize_Up.BackColor = System.Drawing.Color.DarkGray;
-            this.btn_BlobSize_Up.Location = new System.Drawing.Point(242, 128);
-            this.btn_BlobSize_Up.Name = "btn_BlobSize_Up";
-            this.btn_BlobSize_Up.Size = new System.Drawing.Size(45, 36);
-            this.btn_BlobSize_Up.TabIndex = 336;
-            this.btn_BlobSize_Up.Tag = "0";
-            this.btn_BlobSize_Up.Text = "↑";
-            this.btn_BlobSize_Up.UseVisualStyleBackColor = false;
-            this.btn_BlobSize_Up.Click += new System.EventHandler(this.btn_BlobSize_Up_Click);
-            // 
-            // label60
-            // 
-            this.label60.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label60.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label60.Location = new System.Drawing.Point(4, 47);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(115, 36);
-            this.label60.TabIndex = 294;
-            this.label60.Text = "Over Fusion ROI NO";
-            this.label60.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lab_Size
-            // 
-            this.lab_Size.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lab_Size.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lab_Size.Location = new System.Drawing.Point(4, 126);
-            this.lab_Size.Name = "lab_Size";
-            this.lab_Size.Size = new System.Drawing.Size(115, 36);
-            this.lab_Size.TabIndex = 334;
-            this.lab_Size.Text = "Size";
-            this.lab_Size.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lab_blobSize
-            // 
-            this.lab_blobSize.BackColor = System.Drawing.Color.White;
-            this.lab_blobSize.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lab_blobSize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lab_blobSize.Location = new System.Drawing.Point(120, 126);
-            this.lab_blobSize.Name = "lab_blobSize";
-            this.lab_blobSize.Size = new System.Drawing.Size(122, 36);
-            this.lab_blobSize.TabIndex = 335;
-            this.lab_blobSize.Text = "0";
-            this.lab_blobSize.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lab_blobSize.Click += new System.EventHandler(this.lab_blobSize_Click);
-            // 
-            // Comb_Over_Fusion_ROI_No
-            // 
-            this.Comb_Over_Fusion_ROI_No.DisplayMember = "1";
-            this.Comb_Over_Fusion_ROI_No.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Comb_Over_Fusion_ROI_No.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Comb_Over_Fusion_ROI_No.FormattingEnabled = true;
-            this.Comb_Over_Fusion_ROI_No.Items.AddRange(new object[] {
-            "LEFT TO RIGHT",
-            "TOP TO BOTTOM",
-            "RIGHT TO LEFT",
-            "BOTTOM TO TOP"});
-            this.Comb_Over_Fusion_ROI_No.Location = new System.Drawing.Point(120, 49);
-            this.Comb_Over_Fusion_ROI_No.Name = "Comb_Over_Fusion_ROI_No";
-            this.Comb_Over_Fusion_ROI_No.Size = new System.Drawing.Size(92, 33);
-            this.Comb_Over_Fusion_ROI_No.TabIndex = 295;
-            this.Comb_Over_Fusion_ROI_No.SelectedIndexChanged += new System.EventHandler(this.Comb_Section_SelectedIndexChanged);
-            this.Comb_Over_Fusion_ROI_No.Click += new System.EventHandler(this.Comb_Section_Click);
-            // 
-            // label71
-            // 
-            this.label71.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label71.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label71.Location = new System.Drawing.Point(4, 86);
-            this.label71.Name = "label71";
-            this.label71.Size = new System.Drawing.Size(115, 36);
-            this.label71.TabIndex = 330;
-            this.label71.Text = "THRESHOLD";
-            this.label71.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btn_blobThr_Down
-            // 
-            this.btn_blobThr_Down.BackColor = System.Drawing.Color.DarkGray;
-            this.btn_blobThr_Down.Location = new System.Drawing.Point(285, 88);
-            this.btn_blobThr_Down.Name = "btn_blobThr_Down";
-            this.btn_blobThr_Down.Size = new System.Drawing.Size(45, 36);
-            this.btn_blobThr_Down.TabIndex = 333;
-            this.btn_blobThr_Down.Tag = "1";
-            this.btn_blobThr_Down.Text = "↓";
-            this.btn_blobThr_Down.UseVisualStyleBackColor = false;
-            this.btn_blobThr_Down.Click += new System.EventHandler(this.btn_blobThr_Down_Click);
-            // 
-            // lab_BlobThr
-            // 
-            this.lab_BlobThr.BackColor = System.Drawing.Color.White;
-            this.lab_BlobThr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lab_BlobThr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lab_BlobThr.Location = new System.Drawing.Point(120, 86);
-            this.lab_BlobThr.Name = "lab_BlobThr";
-            this.lab_BlobThr.Size = new System.Drawing.Size(122, 36);
-            this.lab_BlobThr.TabIndex = 331;
-            this.lab_BlobThr.Text = "0";
-            this.lab_BlobThr.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lab_BlobThr.Click += new System.EventHandler(this.lab_BlobThr_Click);
-            // 
-            // btn_blobThr_Up
-            // 
-            this.btn_blobThr_Up.BackColor = System.Drawing.Color.DarkGray;
-            this.btn_blobThr_Up.Location = new System.Drawing.Point(242, 88);
-            this.btn_blobThr_Up.Name = "btn_blobThr_Up";
-            this.btn_blobThr_Up.Size = new System.Drawing.Size(45, 36);
-            this.btn_blobThr_Up.TabIndex = 332;
-            this.btn_blobThr_Up.Tag = "0";
-            this.btn_blobThr_Up.Text = "↑";
-            this.btn_blobThr_Up.UseVisualStyleBackColor = false;
-            this.btn_blobThr_Up.Click += new System.EventHandler(this.btn_blobThr_Up_Click);
-            // 
-            // Chk_Use_Over_Fusion
-            // 
-            this.Chk_Use_Over_Fusion.AutoSize = true;
-            this.Chk_Use_Over_Fusion.Enabled = false;
-            this.Chk_Use_Over_Fusion.Location = new System.Drawing.Point(617, 12);
-            this.Chk_Use_Over_Fusion.Name = "Chk_Use_Over_Fusion";
-            this.Chk_Use_Over_Fusion.Size = new System.Drawing.Size(115, 19);
-            this.Chk_Use_Over_Fusion.TabIndex = 329;
-            this.Chk_Use_Over_Fusion.Text = "USE Over Fusion";
-            this.Chk_Use_Over_Fusion.UseVisualStyleBackColor = true;
-            this.Chk_Use_Over_Fusion.Visible = false;
-            this.Chk_Use_Over_Fusion.CheckedChanged += new System.EventHandler(this.Chk_Use_Over_Fusion_CheckedChanged);
-            // 
             // chkUseRoiTracking
             // 
             this.chkUseRoiTracking.AutoSize = true;
-            this.chkUseRoiTracking.Location = new System.Drawing.Point(341, 487);
+            this.chkUseRoiTracking.Location = new System.Drawing.Point(369, 416);
             this.chkUseRoiTracking.Name = "chkUseRoiTracking";
             this.chkUseRoiTracking.Size = new System.Drawing.Size(117, 19);
             this.chkUseRoiTracking.TabIndex = 324;
@@ -5044,7 +4647,7 @@
             this.List_NG.FormattingEnabled = true;
             this.List_NG.HorizontalScrollbar = true;
             this.List_NG.ItemHeight = 21;
-            this.List_NG.Location = new System.Drawing.Point(632, 556);
+            this.List_NG.Location = new System.Drawing.Point(635, 297);
             this.List_NG.Name = "List_NG";
             this.List_NG.Size = new System.Drawing.Size(304, 88);
             this.List_NG.TabIndex = 323;
@@ -5053,7 +4656,7 @@
             // 
             this.btn_Spec_Dist_Down.BackColor = System.Drawing.Color.DarkGray;
             this.btn_Spec_Dist_Down.Enabled = false;
-            this.btn_Spec_Dist_Down.Location = new System.Drawing.Point(731, 499);
+            this.btn_Spec_Dist_Down.Location = new System.Drawing.Point(734, 240);
             this.btn_Spec_Dist_Down.Name = "btn_Spec_Dist_Down";
             this.btn_Spec_Dist_Down.Size = new System.Drawing.Size(85, 36);
             this.btn_Spec_Dist_Down.TabIndex = 318;
@@ -5067,7 +4670,7 @@
             // 
             this.btn_Spec_Dist_Up.BackColor = System.Drawing.Color.DarkGray;
             this.btn_Spec_Dist_Up.Enabled = false;
-            this.btn_Spec_Dist_Up.Location = new System.Drawing.Point(645, 571);
+            this.btn_Spec_Dist_Up.Location = new System.Drawing.Point(648, 312);
             this.btn_Spec_Dist_Up.Name = "btn_Spec_Dist_Up";
             this.btn_Spec_Dist_Up.Size = new System.Drawing.Size(45, 36);
             this.btn_Spec_Dist_Up.TabIndex = 317;
@@ -5081,7 +4684,7 @@
             // 
             this.btn_Insp_Ignore_down.BackColor = System.Drawing.Color.DarkGray;
             this.btn_Insp_Ignore_down.Enabled = false;
-            this.btn_Insp_Ignore_down.Location = new System.Drawing.Point(712, 599);
+            this.btn_Insp_Ignore_down.Location = new System.Drawing.Point(715, 340);
             this.btn_Insp_Ignore_down.Name = "btn_Insp_Ignore_down";
             this.btn_Insp_Ignore_down.Size = new System.Drawing.Size(45, 36);
             this.btn_Insp_Ignore_down.TabIndex = 314;
@@ -5095,7 +4698,7 @@
             // 
             this.btn_Insp_Ignore_Up.BackColor = System.Drawing.Color.DarkGray;
             this.btn_Insp_Ignore_Up.Enabled = false;
-            this.btn_Insp_Ignore_Up.Location = new System.Drawing.Point(669, 599);
+            this.btn_Insp_Ignore_Up.Location = new System.Drawing.Point(672, 340);
             this.btn_Insp_Ignore_Up.Name = "btn_Insp_Ignore_Up";
             this.btn_Insp_Ignore_Up.Size = new System.Drawing.Size(45, 36);
             this.btn_Insp_Ignore_Up.TabIndex = 313;
@@ -5110,7 +4713,7 @@
             this.lab_Inspection_Ignore.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lab_Inspection_Ignore.Enabled = false;
             this.lab_Inspection_Ignore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lab_Inspection_Ignore.Location = new System.Drawing.Point(124, 580);
+            this.lab_Inspection_Ignore.Location = new System.Drawing.Point(634, 543);
             this.lab_Inspection_Ignore.Name = "lab_Inspection_Ignore";
             this.lab_Inspection_Ignore.Size = new System.Drawing.Size(115, 36);
             this.lab_Inspection_Ignore.TabIndex = 311;
@@ -5124,7 +4727,7 @@
             this.text_Insp_Ignore.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.text_Insp_Ignore.Enabled = false;
             this.text_Insp_Ignore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.text_Insp_Ignore.Location = new System.Drawing.Point(240, 580);
+            this.text_Insp_Ignore.Location = new System.Drawing.Point(750, 543);
             this.text_Insp_Ignore.Name = "text_Insp_Ignore";
             this.text_Insp_Ignore.Size = new System.Drawing.Size(122, 36);
             this.text_Insp_Ignore.TabIndex = 312;
@@ -5135,7 +4738,7 @@
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.DarkGray;
-            this.button4.Location = new System.Drawing.Point(712, 559);
+            this.button4.Location = new System.Drawing.Point(715, 300);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(45, 36);
             this.button4.TabIndex = 308;
@@ -5147,7 +4750,7 @@
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.DarkGray;
-            this.button5.Location = new System.Drawing.Point(669, 559);
+            this.button5.Location = new System.Drawing.Point(672, 300);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(45, 36);
             this.button5.TabIndex = 307;
@@ -5160,7 +4763,7 @@
             // 
             this.label59.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label59.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label59.Location = new System.Drawing.Point(124, 540);
+            this.label59.Location = new System.Drawing.Point(634, 503);
             this.label59.Name = "label59";
             this.label59.Size = new System.Drawing.Size(115, 36);
             this.label59.TabIndex = 305;
@@ -5174,7 +4777,7 @@
             this.LAB_EDGE_WIDTH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.LAB_EDGE_WIDTH.Enabled = false;
             this.LAB_EDGE_WIDTH.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LAB_EDGE_WIDTH.Location = new System.Drawing.Point(240, 540);
+            this.LAB_EDGE_WIDTH.Location = new System.Drawing.Point(750, 503);
             this.LAB_EDGE_WIDTH.Name = "LAB_EDGE_WIDTH";
             this.LAB_EDGE_WIDTH.Size = new System.Drawing.Size(122, 36);
             this.LAB_EDGE_WIDTH.TabIndex = 306;
@@ -5187,7 +4790,7 @@
             // 
             this.btn_Inspection_Test.BackColor = System.Drawing.Color.Teal;
             this.btn_Inspection_Test.Font = new System.Drawing.Font("맑은 고딕", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btn_Inspection_Test.Location = new System.Drawing.Point(487, 330);
+            this.btn_Inspection_Test.Location = new System.Drawing.Point(489, 330);
             this.btn_Inspection_Test.Name = "btn_Inspection_Test";
             this.btn_Inspection_Test.Size = new System.Drawing.Size(119, 54);
             this.btn_Inspection_Test.TabIndex = 304;
@@ -5207,7 +4810,7 @@
             this.Column6,
             this.Column5,
             this.Column7});
-            this.dataGridView_Result.Location = new System.Drawing.Point(632, 400);
+            this.dataGridView_Result.Location = new System.Drawing.Point(635, 141);
             this.dataGridView_Result.Name = "dataGridView_Result";
             this.dataGridView_Result.ReadOnly = true;
             this.dataGridView_Result.RowTemplate.Height = 23;
@@ -5243,79 +4846,6 @@
             this.Column7.ReadOnly = true;
             this.Column7.Width = 110;
             // 
-            // Combo_Polarity2
-            // 
-            this.Combo_Polarity2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Combo_Polarity2.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Combo_Polarity2.FormattingEnabled = true;
-            this.Combo_Polarity2.Items.AddRange(new object[] {
-            "DARK TO LIGHT",
-            "LIGHT TO DARK"});
-            this.Combo_Polarity2.Location = new System.Drawing.Point(126, 611);
-            this.Combo_Polarity2.Name = "Combo_Polarity2";
-            this.Combo_Polarity2.Size = new System.Drawing.Size(208, 33);
-            this.Combo_Polarity2.TabIndex = 302;
-            this.Combo_Polarity2.SelectedIndexChanged += new System.EventHandler(this.Combo_Polarity2_SelectedIndexChanged);
-            // 
-            // label58
-            // 
-            this.label58.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label58.Location = new System.Drawing.Point(9, 611);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(114, 36);
-            this.label58.TabIndex = 301;
-            this.label58.Text = "POLARITY 2";
-            this.label58.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Combo_Polarity1
-            // 
-            this.Combo_Polarity1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Combo_Polarity1.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Combo_Polarity1.FormattingEnabled = true;
-            this.Combo_Polarity1.Items.AddRange(new object[] {
-            "DARK TO LIGHT",
-            "LIGHT TO DARK"});
-            this.Combo_Polarity1.Location = new System.Drawing.Point(126, 571);
-            this.Combo_Polarity1.Name = "Combo_Polarity1";
-            this.Combo_Polarity1.Size = new System.Drawing.Size(208, 33);
-            this.Combo_Polarity1.TabIndex = 300;
-            this.Combo_Polarity1.SelectedIndexChanged += new System.EventHandler(this.Combo_Polarity1_SelectedIndexChanged);
-            // 
-            // label57
-            // 
-            this.label57.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label57.Location = new System.Drawing.Point(9, 571);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(114, 36);
-            this.label57.TabIndex = 299;
-            this.label57.Text = "POLARITY 1";
-            this.label57.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btn_TrimOrigin
-            // 
-            this.btn_TrimOrigin.BackColor = System.Drawing.Color.DarkGray;
-            this.btn_TrimOrigin.Font = new System.Drawing.Font("맑은 고딕", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btn_TrimOrigin.Location = new System.Drawing.Point(614, 0);
-            this.btn_TrimOrigin.Name = "btn_TrimOrigin";
-            this.btn_TrimOrigin.Size = new System.Drawing.Size(101, 35);
-            this.btn_TrimOrigin.TabIndex = 298;
-            this.btn_TrimOrigin.Text = "Origin image";
-            this.btn_TrimOrigin.UseVisualStyleBackColor = false;
-            this.btn_TrimOrigin.Visible = false;
-            this.btn_TrimOrigin.Click += new System.EventHandler(this.btn_TrimOrigin_Click);
-            // 
-            // btn_image_Apply
-            // 
-            this.btn_image_Apply.BackColor = System.Drawing.Color.DarkGray;
-            this.btn_image_Apply.Font = new System.Drawing.Font("맑은 고딕", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btn_image_Apply.Location = new System.Drawing.Point(805, 1);
-            this.btn_image_Apply.Name = "btn_image_Apply";
-            this.btn_image_Apply.Size = new System.Drawing.Size(83, 35);
-            this.btn_image_Apply.TabIndex = 297;
-            this.btn_image_Apply.Text = "APPLY";
-            this.btn_image_Apply.UseVisualStyleBackColor = false;
-            this.btn_image_Apply.Visible = false;
-            // 
             // btn_Param_Apply
             // 
             this.btn_Param_Apply.BackColor = System.Drawing.Color.DarkGray;
@@ -5328,197 +4858,17 @@
             this.btn_Param_Apply.UseVisualStyleBackColor = false;
             this.btn_Param_Apply.Click += new System.EventHandler(this.btn_Param_Apply_Click);
             // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.DarkGray;
-            this.button2.Location = new System.Drawing.Point(292, 384);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(45, 36);
-            this.button2.TabIndex = 289;
-            this.button2.Tag = "1";
-            this.button2.Text = "↓";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.Caliper_Count);
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.DarkGray;
-            this.button3.Location = new System.Drawing.Point(249, 384);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(45, 36);
-            this.button3.TabIndex = 288;
-            this.button3.Tag = "0";
-            this.button3.Text = "↑";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.Caliper_Count);
-            // 
-            // label55
-            // 
-            this.label55.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label55.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label55.Location = new System.Drawing.Point(11, 384);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(115, 36);
-            this.label55.TabIndex = 286;
-            this.label55.Text = "CALIPER CNT";
-            this.label55.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LAB_Caliper_Cnt
-            // 
-            this.LAB_Caliper_Cnt.BackColor = System.Drawing.Color.White;
-            this.LAB_Caliper_Cnt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LAB_Caliper_Cnt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LAB_Caliper_Cnt.Location = new System.Drawing.Point(127, 384);
-            this.LAB_Caliper_Cnt.Name = "LAB_Caliper_Cnt";
-            this.LAB_Caliper_Cnt.Size = new System.Drawing.Size(122, 36);
-            this.LAB_Caliper_Cnt.TabIndex = 287;
-            this.LAB_Caliper_Cnt.Text = "0";
-            this.LAB_Caliper_Cnt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LAB_Caliper_Cnt.Click += new System.EventHandler(this.LAB_Caliper_Cnt_Click);
-            // 
-            // btn_Section_Apply
-            // 
-            this.btn_Section_Apply.BackColor = System.Drawing.Color.DarkGray;
-            this.btn_Section_Apply.Font = new System.Drawing.Font("맑은 고딕", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btn_Section_Apply.Location = new System.Drawing.Point(721, 3);
-            this.btn_Section_Apply.Name = "btn_Section_Apply";
-            this.btn_Section_Apply.Size = new System.Drawing.Size(83, 35);
-            this.btn_Section_Apply.TabIndex = 285;
-            this.btn_Section_Apply.Text = "ROI";
-            this.btn_Section_Apply.UseVisualStyleBackColor = false;
-            this.btn_Section_Apply.Visible = false;
-            // 
-            // btn_Caliper_SearchLenth_Down
-            // 
-            this.btn_Caliper_SearchLenth_Down.BackColor = System.Drawing.Color.DarkGray;
-            this.btn_Caliper_SearchLenth_Down.Location = new System.Drawing.Point(292, 501);
-            this.btn_Caliper_SearchLenth_Down.Name = "btn_Caliper_SearchLenth_Down";
-            this.btn_Caliper_SearchLenth_Down.Size = new System.Drawing.Size(45, 36);
-            this.btn_Caliper_SearchLenth_Down.TabIndex = 284;
-            this.btn_Caliper_SearchLenth_Down.Tag = "1";
-            this.btn_Caliper_SearchLenth_Down.Text = "↓";
-            this.btn_Caliper_SearchLenth_Down.UseVisualStyleBackColor = false;
-            this.btn_Caliper_SearchLenth_Down.Click += new System.EventHandler(this.Insp_SearchLenth);
-            // 
-            // btn_Caliper_SearchLenth_Up
-            // 
-            this.btn_Caliper_SearchLenth_Up.BackColor = System.Drawing.Color.DarkGray;
-            this.btn_Caliper_SearchLenth_Up.Location = new System.Drawing.Point(249, 501);
-            this.btn_Caliper_SearchLenth_Up.Name = "btn_Caliper_SearchLenth_Up";
-            this.btn_Caliper_SearchLenth_Up.Size = new System.Drawing.Size(45, 36);
-            this.btn_Caliper_SearchLenth_Up.TabIndex = 283;
-            this.btn_Caliper_SearchLenth_Up.Tag = "0";
-            this.btn_Caliper_SearchLenth_Up.Text = "↑";
-            this.btn_Caliper_SearchLenth_Up.UseVisualStyleBackColor = false;
-            this.btn_Caliper_SearchLenth_Up.Click += new System.EventHandler(this.Insp_SearchLenth);
-            // 
-            // label56
-            // 
-            this.label56.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label56.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label56.Location = new System.Drawing.Point(11, 501);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(115, 36);
-            this.label56.TabIndex = 281;
-            this.label56.Text = "CALIPER SEARCH LENTH";
-            this.label56.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LAB_CALIPER_SEARCHLENTH
-            // 
-            this.LAB_CALIPER_SEARCHLENTH.BackColor = System.Drawing.Color.White;
-            this.LAB_CALIPER_SEARCHLENTH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LAB_CALIPER_SEARCHLENTH.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LAB_CALIPER_SEARCHLENTH.Location = new System.Drawing.Point(127, 501);
-            this.LAB_CALIPER_SEARCHLENTH.Name = "LAB_CALIPER_SEARCHLENTH";
-            this.LAB_CALIPER_SEARCHLENTH.Size = new System.Drawing.Size(122, 36);
-            this.LAB_CALIPER_SEARCHLENTH.TabIndex = 282;
-            this.LAB_CALIPER_SEARCHLENTH.Text = "0";
-            this.LAB_CALIPER_SEARCHLENTH.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LAB_CALIPER_SEARCHLENTH.Click += new System.EventHandler(this.LAB_CALIPER_SEARCHLENTH_Click);
-            // 
-            // btn_ProjectionLenth_Down
-            // 
-            this.btn_ProjectionLenth_Down.BackColor = System.Drawing.Color.DarkGray;
-            this.btn_ProjectionLenth_Down.Location = new System.Drawing.Point(292, 462);
-            this.btn_ProjectionLenth_Down.Name = "btn_ProjectionLenth_Down";
-            this.btn_ProjectionLenth_Down.Size = new System.Drawing.Size(45, 36);
-            this.btn_ProjectionLenth_Down.TabIndex = 280;
-            this.btn_ProjectionLenth_Down.Tag = "1";
-            this.btn_ProjectionLenth_Down.Text = "↓";
-            this.btn_ProjectionLenth_Down.UseVisualStyleBackColor = false;
-            this.btn_ProjectionLenth_Down.Click += new System.EventHandler(this.Caliper_ProjectionLenth);
-            // 
-            // btn_ProjectionLenth_Up
-            // 
-            this.btn_ProjectionLenth_Up.BackColor = System.Drawing.Color.DarkGray;
-            this.btn_ProjectionLenth_Up.Location = new System.Drawing.Point(249, 462);
-            this.btn_ProjectionLenth_Up.Name = "btn_ProjectionLenth_Up";
-            this.btn_ProjectionLenth_Up.Size = new System.Drawing.Size(45, 36);
-            this.btn_ProjectionLenth_Up.TabIndex = 279;
-            this.btn_ProjectionLenth_Up.Tag = "0";
-            this.btn_ProjectionLenth_Up.Text = "↑";
-            this.btn_ProjectionLenth_Up.UseVisualStyleBackColor = false;
-            this.btn_ProjectionLenth_Up.Click += new System.EventHandler(this.Caliper_ProjectionLenth);
-            // 
-            // btn_Threshold_Down
-            // 
-            this.btn_Threshold_Down.BackColor = System.Drawing.Color.DarkGray;
-            this.btn_Threshold_Down.Location = new System.Drawing.Point(292, 345);
-            this.btn_Threshold_Down.Name = "btn_Threshold_Down";
-            this.btn_Threshold_Down.Size = new System.Drawing.Size(45, 36);
-            this.btn_Threshold_Down.TabIndex = 278;
-            this.btn_Threshold_Down.Tag = "1";
-            this.btn_Threshold_Down.Text = "↓";
-            this.btn_Threshold_Down.UseVisualStyleBackColor = false;
-            this.btn_Threshold_Down.Click += new System.EventHandler(this.Insp_Threshold);
-            // 
-            // btn_THRESHOLD_Up
-            // 
-            this.btn_THRESHOLD_Up.BackColor = System.Drawing.Color.DarkGray;
-            this.btn_THRESHOLD_Up.Location = new System.Drawing.Point(249, 345);
-            this.btn_THRESHOLD_Up.Name = "btn_THRESHOLD_Up";
-            this.btn_THRESHOLD_Up.Size = new System.Drawing.Size(45, 36);
-            this.btn_THRESHOLD_Up.TabIndex = 277;
-            this.btn_THRESHOLD_Up.Tag = "0";
-            this.btn_THRESHOLD_Up.Text = "↑";
-            this.btn_THRESHOLD_Up.UseVisualStyleBackColor = false;
-            this.btn_THRESHOLD_Up.Click += new System.EventHandler(this.Insp_Threshold);
-            // 
             // btn_ROI_SHOW
             // 
             this.btn_ROI_SHOW.BackColor = System.Drawing.Color.DarkGray;
             this.btn_ROI_SHOW.Font = new System.Drawing.Font("맑은 고딕", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btn_ROI_SHOW.Location = new System.Drawing.Point(366, 330);
+            this.btn_ROI_SHOW.Location = new System.Drawing.Point(363, 330);
             this.btn_ROI_SHOW.Name = "btn_ROI_SHOW";
             this.btn_ROI_SHOW.Size = new System.Drawing.Size(120, 54);
             this.btn_ROI_SHOW.TabIndex = 168;
             this.btn_ROI_SHOW.Text = "ROI SHOW";
             this.btn_ROI_SHOW.UseVisualStyleBackColor = false;
             this.btn_ROI_SHOW.Click += new System.EventHandler(this.btn_ROI_SHOW_Click);
-            // 
-            // label54
-            // 
-            this.label54.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label54.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label54.Location = new System.Drawing.Point(11, 462);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(115, 36);
-            this.label54.TabIndex = 166;
-            this.label54.Text = "CALIPER ProjectionLenth";
-            this.label54.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LAB_CALIPER_PROJECTIONLENTH
-            // 
-            this.LAB_CALIPER_PROJECTIONLENTH.BackColor = System.Drawing.Color.White;
-            this.LAB_CALIPER_PROJECTIONLENTH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LAB_CALIPER_PROJECTIONLENTH.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LAB_CALIPER_PROJECTIONLENTH.Location = new System.Drawing.Point(127, 462);
-            this.LAB_CALIPER_PROJECTIONLENTH.Name = "LAB_CALIPER_PROJECTIONLENTH";
-            this.LAB_CALIPER_PROJECTIONLENTH.Size = new System.Drawing.Size(122, 36);
-            this.LAB_CALIPER_PROJECTIONLENTH.TabIndex = 167;
-            this.LAB_CALIPER_PROJECTIONLENTH.Text = "0";
-            this.LAB_CALIPER_PROJECTIONLENTH.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LAB_CALIPER_PROJECTIONLENTH.Click += new System.EventHandler(this.LAB_CALIPER_PROJECTIONLENTH_Click);
             // 
             // BTN_INSP_DELETE
             // 
@@ -5569,30 +4919,6 @@
             this.BTN_ROI_SKEW_LINE.Tag = "0";
             this.BTN_ROI_SKEW_LINE.UseVisualStyleBackColor = false;
             this.BTN_ROI_SKEW_LINE.Click += new System.EventHandler(this.ROIType);
-            // 
-            // label78
-            // 
-            this.label78.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label78.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label78.Location = new System.Drawing.Point(11, 345);
-            this.label78.Name = "label78";
-            this.label78.Size = new System.Drawing.Size(115, 36);
-            this.label78.TabIndex = 160;
-            this.label78.Text = "THRESHOLD";
-            this.label78.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LAB_Insp_Threshold
-            // 
-            this.LAB_Insp_Threshold.BackColor = System.Drawing.Color.White;
-            this.LAB_Insp_Threshold.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LAB_Insp_Threshold.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LAB_Insp_Threshold.Location = new System.Drawing.Point(127, 345);
-            this.LAB_Insp_Threshold.Name = "LAB_Insp_Threshold";
-            this.LAB_Insp_Threshold.Size = new System.Drawing.Size(122, 36);
-            this.LAB_Insp_Threshold.TabIndex = 161;
-            this.LAB_Insp_Threshold.Text = "0";
-            this.LAB_Insp_Threshold.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LAB_Insp_Threshold.Click += new System.EventHandler(this.LAB_Insp_Threshold_Click);
             // 
             // RBTN_AKKON00
             // 
@@ -6953,6 +6279,330 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // label77
+            // 
+            this.label77.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label77.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label77.Location = new System.Drawing.Point(3, 5);
+            this.label77.Name = "label77";
+            this.label77.Size = new System.Drawing.Size(115, 36);
+            this.label77.TabIndex = 361;
+            this.label77.Text = "EDGE TH";
+            this.label77.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblEdgeThreshold
+            // 
+            this.lblEdgeThreshold.BackColor = System.Drawing.Color.White;
+            this.lblEdgeThreshold.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblEdgeThreshold.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblEdgeThreshold.Location = new System.Drawing.Point(119, 5);
+            this.lblEdgeThreshold.Name = "lblEdgeThreshold";
+            this.lblEdgeThreshold.Size = new System.Drawing.Size(122, 36);
+            this.lblEdgeThreshold.TabIndex = 362;
+            this.lblEdgeThreshold.Text = "0";
+            this.lblEdgeThreshold.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblEdgeThreshold.Click += new System.EventHandler(this.lblEdgeThreshold_Click);
+            // 
+            // lblEdgeDirection
+            // 
+            this.lblEdgeDirection.BackColor = System.Drawing.Color.DarkGray;
+            this.lblEdgeDirection.Font = new System.Drawing.Font("맑은 고딕", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblEdgeDirection.Location = new System.Drawing.Point(5, 200);
+            this.lblEdgeDirection.Name = "lblEdgeDirection";
+            this.lblEdgeDirection.Size = new System.Drawing.Size(107, 28);
+            this.lblEdgeDirection.TabIndex = 355;
+            this.lblEdgeDirection.Text = "Edge Direction";
+            this.lblEdgeDirection.UseVisualStyleBackColor = false;
+            this.lblEdgeDirection.Click += new System.EventHandler(this.lblEdgeDirection_Click);
+            // 
+            // Combo_Polarity2
+            // 
+            this.Combo_Polarity2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Combo_Polarity2.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Combo_Polarity2.FormattingEnabled = true;
+            this.Combo_Polarity2.Items.AddRange(new object[] {
+            "DARK TO LIGHT",
+            "LIGHT TO DARK"});
+            this.Combo_Polarity2.Location = new System.Drawing.Point(120, 271);
+            this.Combo_Polarity2.Name = "Combo_Polarity2";
+            this.Combo_Polarity2.Size = new System.Drawing.Size(208, 33);
+            this.Combo_Polarity2.TabIndex = 302;
+            this.Combo_Polarity2.SelectedIndexChanged += new System.EventHandler(this.Combo_Polarity2_SelectedIndexChanged);
+            // 
+            // label58
+            // 
+            this.label58.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label58.Location = new System.Drawing.Point(3, 271);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(114, 36);
+            this.label58.TabIndex = 301;
+            this.label58.Text = "POLARITY 2";
+            this.label58.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Combo_Polarity1
+            // 
+            this.Combo_Polarity1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Combo_Polarity1.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Combo_Polarity1.FormattingEnabled = true;
+            this.Combo_Polarity1.Items.AddRange(new object[] {
+            "DARK TO LIGHT",
+            "LIGHT TO DARK"});
+            this.Combo_Polarity1.Location = new System.Drawing.Point(120, 231);
+            this.Combo_Polarity1.Name = "Combo_Polarity1";
+            this.Combo_Polarity1.Size = new System.Drawing.Size(208, 33);
+            this.Combo_Polarity1.TabIndex = 300;
+            this.Combo_Polarity1.SelectedIndexChanged += new System.EventHandler(this.Combo_Polarity1_SelectedIndexChanged);
+            // 
+            // label57
+            // 
+            this.label57.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label57.Location = new System.Drawing.Point(3, 231);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(114, 36);
+            this.label57.TabIndex = 299;
+            this.label57.Text = "POLARITY 1";
+            this.label57.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblParamFilterSizeValueDown
+            // 
+            this.lblParamFilterSizeValueDown.BackColor = System.Drawing.Color.DarkGray;
+            this.lblParamFilterSizeValueDown.Location = new System.Drawing.Point(284, 83);
+            this.lblParamFilterSizeValueDown.Name = "lblParamFilterSizeValueDown";
+            this.lblParamFilterSizeValueDown.Size = new System.Drawing.Size(45, 36);
+            this.lblParamFilterSizeValueDown.TabIndex = 350;
+            this.lblParamFilterSizeValueDown.Tag = "1";
+            this.lblParamFilterSizeValueDown.Text = "↓";
+            this.lblParamFilterSizeValueDown.UseVisualStyleBackColor = false;
+            this.lblParamFilterSizeValueDown.Click += new System.EventHandler(this.lblParamFilterSizeValueUpDown_Click);
+            // 
+            // lblParamFilterSizeValueUp
+            // 
+            this.lblParamFilterSizeValueUp.BackColor = System.Drawing.Color.DarkGray;
+            this.lblParamFilterSizeValueUp.Location = new System.Drawing.Point(241, 83);
+            this.lblParamFilterSizeValueUp.Name = "lblParamFilterSizeValueUp";
+            this.lblParamFilterSizeValueUp.Size = new System.Drawing.Size(45, 36);
+            this.lblParamFilterSizeValueUp.TabIndex = 349;
+            this.lblParamFilterSizeValueUp.Tag = "0";
+            this.lblParamFilterSizeValueUp.Text = "↑";
+            this.lblParamFilterSizeValueUp.UseVisualStyleBackColor = false;
+            this.lblParamFilterSizeValueUp.Click += new System.EventHandler(this.lblParamFilterSizeValueUpDown_Click);
+            // 
+            // lblParamFilterSIze
+            // 
+            this.lblParamFilterSIze.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblParamFilterSIze.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblParamFilterSIze.Location = new System.Drawing.Point(3, 83);
+            this.lblParamFilterSIze.Name = "lblParamFilterSIze";
+            this.lblParamFilterSIze.Size = new System.Drawing.Size(115, 36);
+            this.lblParamFilterSIze.TabIndex = 347;
+            this.lblParamFilterSIze.Text = "FILTER SIZE";
+            this.lblParamFilterSIze.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblParamFilterSizeValue
+            // 
+            this.lblParamFilterSizeValue.BackColor = System.Drawing.Color.White;
+            this.lblParamFilterSizeValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblParamFilterSizeValue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblParamFilterSizeValue.Location = new System.Drawing.Point(119, 83);
+            this.lblParamFilterSizeValue.Name = "lblParamFilterSizeValue";
+            this.lblParamFilterSizeValue.Size = new System.Drawing.Size(122, 36);
+            this.lblParamFilterSizeValue.TabIndex = 348;
+            this.lblParamFilterSizeValue.Text = "0";
+            this.lblParamFilterSizeValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblParamFilterSizeValue.Click += new System.EventHandler(this.lblParamFilterSizeValue_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.DarkGray;
+            this.button2.Location = new System.Drawing.Point(284, 44);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(45, 36);
+            this.button2.TabIndex = 289;
+            this.button2.Tag = "1";
+            this.button2.Text = "↓";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.Caliper_Count);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.DarkGray;
+            this.button3.Location = new System.Drawing.Point(241, 44);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(45, 36);
+            this.button3.TabIndex = 288;
+            this.button3.Tag = "0";
+            this.button3.Text = "↑";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.Caliper_Count);
+            // 
+            // label55
+            // 
+            this.label55.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label55.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label55.Location = new System.Drawing.Point(3, 44);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(115, 36);
+            this.label55.TabIndex = 286;
+            this.label55.Text = "CALIPER CNT";
+            this.label55.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LAB_Caliper_Cnt
+            // 
+            this.LAB_Caliper_Cnt.BackColor = System.Drawing.Color.White;
+            this.LAB_Caliper_Cnt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LAB_Caliper_Cnt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LAB_Caliper_Cnt.Location = new System.Drawing.Point(119, 44);
+            this.LAB_Caliper_Cnt.Name = "LAB_Caliper_Cnt";
+            this.LAB_Caliper_Cnt.Size = new System.Drawing.Size(122, 36);
+            this.LAB_Caliper_Cnt.TabIndex = 287;
+            this.LAB_Caliper_Cnt.Text = "0";
+            this.LAB_Caliper_Cnt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LAB_Caliper_Cnt.Click += new System.EventHandler(this.LAB_Caliper_Cnt_Click);
+            // 
+            // btn_Caliper_SearchLenth_Down
+            // 
+            this.btn_Caliper_SearchLenth_Down.BackColor = System.Drawing.Color.DarkGray;
+            this.btn_Caliper_SearchLenth_Down.Location = new System.Drawing.Point(284, 161);
+            this.btn_Caliper_SearchLenth_Down.Name = "btn_Caliper_SearchLenth_Down";
+            this.btn_Caliper_SearchLenth_Down.Size = new System.Drawing.Size(45, 36);
+            this.btn_Caliper_SearchLenth_Down.TabIndex = 284;
+            this.btn_Caliper_SearchLenth_Down.Tag = "1";
+            this.btn_Caliper_SearchLenth_Down.Text = "↓";
+            this.btn_Caliper_SearchLenth_Down.UseVisualStyleBackColor = false;
+            this.btn_Caliper_SearchLenth_Down.Click += new System.EventHandler(this.Insp_SearchLenth);
+            // 
+            // btn_Caliper_SearchLenth_Up
+            // 
+            this.btn_Caliper_SearchLenth_Up.BackColor = System.Drawing.Color.DarkGray;
+            this.btn_Caliper_SearchLenth_Up.Location = new System.Drawing.Point(241, 161);
+            this.btn_Caliper_SearchLenth_Up.Name = "btn_Caliper_SearchLenth_Up";
+            this.btn_Caliper_SearchLenth_Up.Size = new System.Drawing.Size(45, 36);
+            this.btn_Caliper_SearchLenth_Up.TabIndex = 283;
+            this.btn_Caliper_SearchLenth_Up.Tag = "0";
+            this.btn_Caliper_SearchLenth_Up.Text = "↑";
+            this.btn_Caliper_SearchLenth_Up.UseVisualStyleBackColor = false;
+            this.btn_Caliper_SearchLenth_Up.Click += new System.EventHandler(this.Insp_SearchLenth);
+            // 
+            // label56
+            // 
+            this.label56.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label56.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label56.Location = new System.Drawing.Point(3, 161);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(115, 36);
+            this.label56.TabIndex = 281;
+            this.label56.Text = "CALIPER SEARCH LENTH";
+            this.label56.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LAB_CALIPER_SEARCHLENTH
+            // 
+            this.LAB_CALIPER_SEARCHLENTH.BackColor = System.Drawing.Color.White;
+            this.LAB_CALIPER_SEARCHLENTH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LAB_CALIPER_SEARCHLENTH.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LAB_CALIPER_SEARCHLENTH.Location = new System.Drawing.Point(119, 161);
+            this.LAB_CALIPER_SEARCHLENTH.Name = "LAB_CALIPER_SEARCHLENTH";
+            this.LAB_CALIPER_SEARCHLENTH.Size = new System.Drawing.Size(122, 36);
+            this.LAB_CALIPER_SEARCHLENTH.TabIndex = 282;
+            this.LAB_CALIPER_SEARCHLENTH.Text = "0";
+            this.LAB_CALIPER_SEARCHLENTH.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LAB_CALIPER_SEARCHLENTH.Click += new System.EventHandler(this.LAB_CALIPER_SEARCHLENTH_Click);
+            // 
+            // btn_ProjectionLenth_Down
+            // 
+            this.btn_ProjectionLenth_Down.BackColor = System.Drawing.Color.DarkGray;
+            this.btn_ProjectionLenth_Down.Location = new System.Drawing.Point(284, 122);
+            this.btn_ProjectionLenth_Down.Name = "btn_ProjectionLenth_Down";
+            this.btn_ProjectionLenth_Down.Size = new System.Drawing.Size(45, 36);
+            this.btn_ProjectionLenth_Down.TabIndex = 280;
+            this.btn_ProjectionLenth_Down.Tag = "1";
+            this.btn_ProjectionLenth_Down.Text = "↓";
+            this.btn_ProjectionLenth_Down.UseVisualStyleBackColor = false;
+            this.btn_ProjectionLenth_Down.Click += new System.EventHandler(this.Caliper_ProjectionLenth);
+            // 
+            // btn_ProjectionLenth_Up
+            // 
+            this.btn_ProjectionLenth_Up.BackColor = System.Drawing.Color.DarkGray;
+            this.btn_ProjectionLenth_Up.Location = new System.Drawing.Point(241, 122);
+            this.btn_ProjectionLenth_Up.Name = "btn_ProjectionLenth_Up";
+            this.btn_ProjectionLenth_Up.Size = new System.Drawing.Size(45, 36);
+            this.btn_ProjectionLenth_Up.TabIndex = 279;
+            this.btn_ProjectionLenth_Up.Tag = "0";
+            this.btn_ProjectionLenth_Up.Text = "↑";
+            this.btn_ProjectionLenth_Up.UseVisualStyleBackColor = false;
+            this.btn_ProjectionLenth_Up.Click += new System.EventHandler(this.Caliper_ProjectionLenth);
+            // 
+            // btn_Threshold_Down
+            // 
+            this.btn_Threshold_Down.BackColor = System.Drawing.Color.DarkGray;
+            this.btn_Threshold_Down.Location = new System.Drawing.Point(284, 5);
+            this.btn_Threshold_Down.Name = "btn_Threshold_Down";
+            this.btn_Threshold_Down.Size = new System.Drawing.Size(45, 36);
+            this.btn_Threshold_Down.TabIndex = 278;
+            this.btn_Threshold_Down.Tag = "1";
+            this.btn_Threshold_Down.Text = "↓";
+            this.btn_Threshold_Down.UseVisualStyleBackColor = false;
+            this.btn_Threshold_Down.Click += new System.EventHandler(this.Insp_Threshold);
+            // 
+            // btn_THRESHOLD_Up
+            // 
+            this.btn_THRESHOLD_Up.BackColor = System.Drawing.Color.DarkGray;
+            this.btn_THRESHOLD_Up.Location = new System.Drawing.Point(241, 5);
+            this.btn_THRESHOLD_Up.Name = "btn_THRESHOLD_Up";
+            this.btn_THRESHOLD_Up.Size = new System.Drawing.Size(45, 36);
+            this.btn_THRESHOLD_Up.TabIndex = 277;
+            this.btn_THRESHOLD_Up.Tag = "0";
+            this.btn_THRESHOLD_Up.Text = "↑";
+            this.btn_THRESHOLD_Up.UseVisualStyleBackColor = false;
+            this.btn_THRESHOLD_Up.Click += new System.EventHandler(this.Insp_Threshold);
+            // 
+            // label54
+            // 
+            this.label54.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label54.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label54.Location = new System.Drawing.Point(3, 122);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(115, 36);
+            this.label54.TabIndex = 166;
+            this.label54.Text = "CALIPER ProjectionLenth";
+            this.label54.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LAB_CALIPER_PROJECTIONLENTH
+            // 
+            this.LAB_CALIPER_PROJECTIONLENTH.BackColor = System.Drawing.Color.White;
+            this.LAB_CALIPER_PROJECTIONLENTH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LAB_CALIPER_PROJECTIONLENTH.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LAB_CALIPER_PROJECTIONLENTH.Location = new System.Drawing.Point(119, 122);
+            this.LAB_CALIPER_PROJECTIONLENTH.Name = "LAB_CALIPER_PROJECTIONLENTH";
+            this.LAB_CALIPER_PROJECTIONLENTH.Size = new System.Drawing.Size(122, 36);
+            this.LAB_CALIPER_PROJECTIONLENTH.TabIndex = 167;
+            this.LAB_CALIPER_PROJECTIONLENTH.Text = "0";
+            this.LAB_CALIPER_PROJECTIONLENTH.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LAB_CALIPER_PROJECTIONLENTH.Click += new System.EventHandler(this.LAB_CALIPER_PROJECTIONLENTH_Click);
+            // 
+            // label78
+            // 
+            this.label78.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label78.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label78.Location = new System.Drawing.Point(3, 5);
+            this.label78.Name = "label78";
+            this.label78.Size = new System.Drawing.Size(115, 36);
+            this.label78.TabIndex = 160;
+            this.label78.Text = "THRESHOLD";
+            this.label78.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LAB_Insp_Threshold
+            // 
+            this.LAB_Insp_Threshold.BackColor = System.Drawing.Color.White;
+            this.LAB_Insp_Threshold.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LAB_Insp_Threshold.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LAB_Insp_Threshold.Location = new System.Drawing.Point(119, 5);
+            this.LAB_Insp_Threshold.Name = "LAB_Insp_Threshold";
+            this.LAB_Insp_Threshold.Size = new System.Drawing.Size(122, 36);
+            this.LAB_Insp_Threshold.TabIndex = 161;
+            this.LAB_Insp_Threshold.Text = "0";
+            this.LAB_Insp_Threshold.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LAB_Insp_Threshold.Click += new System.EventHandler(this.LAB_Insp_Threshold_Click);
+            // 
             // label61
             // 
             this.label61.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -7559,7 +7209,6 @@
             this.button7.Text = "ADD";
             this.button7.UseVisualStyleBackColor = false;
             this.button7.Visible = false;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // BTN_LIVEMODE
             // 
@@ -7634,38 +7283,46 @@
             this.PT_DISPLAY_CONTROL.TabIndex = 278;
             this.PT_DISPLAY_CONTROL.UseCustomCross = false;
             // 
-            // Panel_Maker_Parameter
+            // lblIgnoreSize
             // 
-            this.Panel_Maker_Parameter.Controls.Add(this.lblIgnoreSize);
-            this.Panel_Maker_Parameter.Controls.Add(this.label84);
-            this.Panel_Maker_Parameter.Controls.Add(this.lblMaskingValue);
-            this.Panel_Maker_Parameter.Controls.Add(this.label86);
-            this.Panel_Maker_Parameter.Controls.Add(this.lblBottomCutPixel);
-            this.Panel_Maker_Parameter.Controls.Add(this.lblTopCutPixel);
-            this.Panel_Maker_Parameter.Controls.Add(this.label82);
-            this.Panel_Maker_Parameter.Controls.Add(this.label79);
-            this.Panel_Maker_Parameter.Location = new System.Drawing.Point(677, 885);
-            this.Panel_Maker_Parameter.Name = "Panel_Maker_Parameter";
-            this.Panel_Maker_Parameter.Size = new System.Drawing.Size(353, 149);
-            this.Panel_Maker_Parameter.TabIndex = 342;
+            this.lblIgnoreSize.BackColor = System.Drawing.Color.White;
+            this.lblIgnoreSize.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblIgnoreSize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblIgnoreSize.Location = new System.Drawing.Point(119, 240);
+            this.lblIgnoreSize.Name = "lblIgnoreSize";
+            this.lblIgnoreSize.Size = new System.Drawing.Size(122, 36);
+            this.lblIgnoreSize.TabIndex = 370;
+            this.lblIgnoreSize.Text = "0";
+            this.lblIgnoreSize.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblIgnoreSize.Click += new System.EventHandler(this.lblIgnoreSize_Click);
+            // 
+            // label84
+            // 
+            this.label84.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label84.Location = new System.Drawing.Point(4, 240);
+            this.label84.Name = "label84";
+            this.label84.Size = new System.Drawing.Size(114, 36);
+            this.label84.TabIndex = 369;
+            this.label84.Text = "IgnoreSize";
+            this.label84.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblMaskingValue
             // 
             this.lblMaskingValue.BackColor = System.Drawing.Color.White;
             this.lblMaskingValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblMaskingValue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblMaskingValue.Location = new System.Drawing.Point(121, 87);
+            this.lblMaskingValue.Location = new System.Drawing.Point(119, 201);
             this.lblMaskingValue.Name = "lblMaskingValue";
-            this.lblMaskingValue.Size = new System.Drawing.Size(72, 36);
+            this.lblMaskingValue.Size = new System.Drawing.Size(122, 36);
             this.lblMaskingValue.TabIndex = 368;
             this.lblMaskingValue.Text = "0";
             this.lblMaskingValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblMaskingValue.Click += new System.EventHandler(this.lblMakerVisionData_Click);
+            this.lblMaskingValue.Click += new System.EventHandler(this.lblMaskingValue_Click);
             // 
             // label86
             // 
             this.label86.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label86.Location = new System.Drawing.Point(4, 87);
+            this.label86.Location = new System.Drawing.Point(4, 201);
             this.label86.Name = "label86";
             this.label86.Size = new System.Drawing.Size(114, 36);
             this.label86.TabIndex = 367;
@@ -7677,31 +7334,31 @@
             this.lblBottomCutPixel.BackColor = System.Drawing.Color.White;
             this.lblBottomCutPixel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblBottomCutPixel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblBottomCutPixel.Location = new System.Drawing.Point(121, 48);
+            this.lblBottomCutPixel.Location = new System.Drawing.Point(119, 162);
             this.lblBottomCutPixel.Name = "lblBottomCutPixel";
-            this.lblBottomCutPixel.Size = new System.Drawing.Size(72, 36);
+            this.lblBottomCutPixel.Size = new System.Drawing.Size(122, 36);
             this.lblBottomCutPixel.TabIndex = 366;
             this.lblBottomCutPixel.Text = "0";
             this.lblBottomCutPixel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblBottomCutPixel.Click += new System.EventHandler(this.lblMakerVisionData_Click);
+            this.lblBottomCutPixel.Click += new System.EventHandler(this.lblBottomCutPixel_Click);
             // 
             // lblTopCutPixel
             // 
             this.lblTopCutPixel.BackColor = System.Drawing.Color.White;
             this.lblTopCutPixel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblTopCutPixel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblTopCutPixel.Location = new System.Drawing.Point(121, 7);
+            this.lblTopCutPixel.Location = new System.Drawing.Point(119, 121);
             this.lblTopCutPixel.Name = "lblTopCutPixel";
-            this.lblTopCutPixel.Size = new System.Drawing.Size(72, 36);
+            this.lblTopCutPixel.Size = new System.Drawing.Size(122, 36);
             this.lblTopCutPixel.TabIndex = 365;
             this.lblTopCutPixel.Text = "0";
             this.lblTopCutPixel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblTopCutPixel.Click += new System.EventHandler(this.lblMakerVisionData_Click);
+            this.lblTopCutPixel.Click += new System.EventHandler(this.lblTopCutPixel_Click);
             // 
             // label82
             // 
             this.label82.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label82.Location = new System.Drawing.Point(4, 47);
+            this.label82.Location = new System.Drawing.Point(4, 161);
             this.label82.Name = "label82";
             this.label82.Size = new System.Drawing.Size(114, 36);
             this.label82.TabIndex = 364;
@@ -7711,35 +7368,117 @@
             // label79
             // 
             this.label79.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label79.Location = new System.Drawing.Point(4, 7);
+            this.label79.Location = new System.Drawing.Point(4, 121);
             this.label79.Name = "label79";
             this.label79.Size = new System.Drawing.Size(114, 36);
             this.label79.TabIndex = 363;
             this.label79.Text = "Top Cut Pixel";
             this.label79.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblIgnoreSize
+            // pnlEdgeParam
             // 
-            this.lblIgnoreSize.BackColor = System.Drawing.Color.White;
-            this.lblIgnoreSize.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblIgnoreSize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblIgnoreSize.Location = new System.Drawing.Point(241, 47);
-            this.lblIgnoreSize.Name = "lblIgnoreSize";
-            this.lblIgnoreSize.Size = new System.Drawing.Size(72, 36);
-            this.lblIgnoreSize.TabIndex = 370;
-            this.lblIgnoreSize.Text = "0";
-            this.lblIgnoreSize.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblIgnoreSize.Click += new System.EventHandler(this.lblIgnoreSize_Click);
+            this.pnlEdgeParam.Controls.Add(this.lblIgnoreSize);
+            this.pnlEdgeParam.Controls.Add(this.label83);
+            this.pnlEdgeParam.Controls.Add(this.label84);
+            this.pnlEdgeParam.Controls.Add(this.lblEdgeCaliperThreshold);
+            this.pnlEdgeParam.Controls.Add(this.lblMaskingValue);
+            this.pnlEdgeParam.Controls.Add(this.label77);
+            this.pnlEdgeParam.Controls.Add(this.label86);
+            this.pnlEdgeParam.Controls.Add(this.lblEdgeCaliperFilterSize);
+            this.pnlEdgeParam.Controls.Add(this.lblBottomCutPixel);
+            this.pnlEdgeParam.Controls.Add(this.lblEdgeThreshold);
+            this.pnlEdgeParam.Controls.Add(this.lblTopCutPixel);
+            this.pnlEdgeParam.Controls.Add(this.label82);
+            this.pnlEdgeParam.Controls.Add(this.label79);
+            this.pnlEdgeParam.Controls.Add(this.label90);
+            this.pnlEdgeParam.Location = new System.Drawing.Point(501, 106);
+            this.pnlEdgeParam.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlEdgeParam.Name = "pnlEdgeParam";
+            this.pnlEdgeParam.Size = new System.Drawing.Size(333, 309);
+            this.pnlEdgeParam.TabIndex = 364;
+            this.pnlEdgeParam.Visible = false;
             // 
-            // label84
+            // label83
             // 
-            this.label84.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label84.Location = new System.Drawing.Point(199, 6);
-            this.label84.Name = "label84";
-            this.label84.Size = new System.Drawing.Size(114, 36);
-            this.label84.TabIndex = 369;
-            this.label84.Text = "IgnoreSize";
-            this.label84.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label83.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label83.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label83.Location = new System.Drawing.Point(3, 44);
+            this.label83.Name = "label83";
+            this.label83.Size = new System.Drawing.Size(115, 36);
+            this.label83.TabIndex = 160;
+            this.label83.Text = "THRESHOLD";
+            this.label83.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblEdgeCaliperThreshold
+            // 
+            this.lblEdgeCaliperThreshold.BackColor = System.Drawing.Color.White;
+            this.lblEdgeCaliperThreshold.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblEdgeCaliperThreshold.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblEdgeCaliperThreshold.Location = new System.Drawing.Point(119, 44);
+            this.lblEdgeCaliperThreshold.Name = "lblEdgeCaliperThreshold";
+            this.lblEdgeCaliperThreshold.Size = new System.Drawing.Size(122, 36);
+            this.lblEdgeCaliperThreshold.TabIndex = 161;
+            this.lblEdgeCaliperThreshold.Text = "0";
+            this.lblEdgeCaliperThreshold.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblEdgeCaliperThreshold.Click += new System.EventHandler(this.lblEdgeCaliperThreshold_Click);
+            // 
+            // lblEdgeCaliperFilterSize
+            // 
+            this.lblEdgeCaliperFilterSize.BackColor = System.Drawing.Color.White;
+            this.lblEdgeCaliperFilterSize.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblEdgeCaliperFilterSize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblEdgeCaliperFilterSize.Location = new System.Drawing.Point(119, 82);
+            this.lblEdgeCaliperFilterSize.Name = "lblEdgeCaliperFilterSize";
+            this.lblEdgeCaliperFilterSize.Size = new System.Drawing.Size(122, 36);
+            this.lblEdgeCaliperFilterSize.TabIndex = 348;
+            this.lblEdgeCaliperFilterSize.Text = "0";
+            this.lblEdgeCaliperFilterSize.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblEdgeCaliperFilterSize.Click += new System.EventHandler(this.lblEdgeCaliperFilterSize_Click);
+            // 
+            // label90
+            // 
+            this.label90.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label90.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label90.Location = new System.Drawing.Point(3, 82);
+            this.label90.Name = "label90";
+            this.label90.Size = new System.Drawing.Size(115, 36);
+            this.label90.TabIndex = 347;
+            this.label90.Text = "FILTER SIZE";
+            this.label90.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pnlOrgParam
+            // 
+            this.pnlOrgParam.Controls.Add(this.label78);
+            this.pnlOrgParam.Controls.Add(this.LAB_Insp_Threshold);
+            this.pnlOrgParam.Controls.Add(this.button2);
+            this.pnlOrgParam.Controls.Add(this.LAB_CALIPER_PROJECTIONLENTH);
+            this.pnlOrgParam.Controls.Add(this.button3);
+            this.pnlOrgParam.Controls.Add(this.label54);
+            this.pnlOrgParam.Controls.Add(this.label55);
+            this.pnlOrgParam.Controls.Add(this.lblEdgeDirection);
+            this.pnlOrgParam.Controls.Add(this.btn_THRESHOLD_Up);
+            this.pnlOrgParam.Controls.Add(this.LAB_Caliper_Cnt);
+            this.pnlOrgParam.Controls.Add(this.btn_Threshold_Down);
+            this.pnlOrgParam.Controls.Add(this.btn_Caliper_SearchLenth_Down);
+            this.pnlOrgParam.Controls.Add(this.btn_ProjectionLenth_Up);
+            this.pnlOrgParam.Controls.Add(this.btn_Caliper_SearchLenth_Up);
+            this.pnlOrgParam.Controls.Add(this.lblParamFilterSizeValueDown);
+            this.pnlOrgParam.Controls.Add(this.lblParamFilterSizeValue);
+            this.pnlOrgParam.Controls.Add(this.btn_ProjectionLenth_Down);
+            this.pnlOrgParam.Controls.Add(this.label56);
+            this.pnlOrgParam.Controls.Add(this.lblParamFilterSizeValueUp);
+            this.pnlOrgParam.Controls.Add(this.lblParamFilterSIze);
+            this.pnlOrgParam.Controls.Add(this.LAB_CALIPER_SEARCHLENTH);
+            this.pnlOrgParam.Controls.Add(this.label57);
+            this.pnlOrgParam.Controls.Add(this.Combo_Polarity1);
+            this.pnlOrgParam.Controls.Add(this.label58);
+            this.pnlOrgParam.Controls.Add(this.Combo_Polarity2);
+            this.pnlOrgParam.Location = new System.Drawing.Point(157, 106);
+            this.pnlOrgParam.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlOrgParam.Name = "pnlOrgParam";
+            this.pnlOrgParam.Size = new System.Drawing.Size(333, 309);
+            this.pnlOrgParam.TabIndex = 365;
+            this.pnlOrgParam.Visible = false;
             // 
             // Form_PatternTeach
             // 
@@ -7747,9 +7486,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(1800, 1005);
+            this.ClientSize = new System.Drawing.Size(1966, 989);
             this.ControlBox = false;
-            this.Controls.Add(this.Panel_Maker_Parameter);
+            this.Controls.Add(this.pnlOrgParam);
+            this.Controls.Add(this.pnlEdgeParam);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.BTN_CAM_DIST);
             this.Controls.Add(this.GB_TRAY);
@@ -7849,7 +7589,6 @@
             this.TAB_05.ResumeLayout(false);
             this.TAB_05.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            this.Panel_Over_Fusion.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Result)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridview_Insp)).EndInit();
             this.TAB_06.ResumeLayout(false);
@@ -7869,7 +7608,8 @@
             this.GB_SIZE.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.Panel_Maker_Parameter.ResumeLayout(false);
+            this.pnlEdgeParam.ResumeLayout(false);
+            this.pnlOrgParam.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -8196,12 +7936,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label55;
         private System.Windows.Forms.Label LAB_Caliper_Cnt;
-        private System.Windows.Forms.Button btn_Section_Apply;
-        private System.Windows.Forms.ComboBox Comb_Over_Fusion_ROI_No;
-        private System.Windows.Forms.Label label60;
         private System.Windows.Forms.Button btn_Param_Apply;
-        private System.Windows.Forms.Button btn_image_Apply;
-        private System.Windows.Forms.Button btn_TrimOrigin;
         private System.Windows.Forms.Button btn_ROI_SHOW;
         private System.Windows.Forms.ComboBox Combo_Polarity1;
         private System.Windows.Forms.Label label57;
@@ -8211,8 +7946,6 @@
         private System.Windows.Forms.Button btn_Inspection_Test;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Label label59;
-        private System.Windows.Forms.Label LAB_EDGE_WIDTH;
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.Label Lab_Tact;
         private System.Windows.Forms.Button button6;
@@ -8248,8 +7981,6 @@
         private System.Windows.Forms.Button btn_Test;
         private System.Windows.Forms.Button btn_Insp_Ignore_down;
         private System.Windows.Forms.Button btn_Insp_Ignore_Up;
-        private System.Windows.Forms.Label lab_Inspection_Ignore;
-        private System.Windows.Forms.Label text_Insp_Ignore;
         private System.Windows.Forms.Button btn_Spec_Dist_Down;
         private System.Windows.Forms.Button btn_Spec_Dist_Up;
         private System.Windows.Forms.Label lab_Dist;
@@ -8261,25 +7992,6 @@
         private System.Windows.Forms.ListBox List_NG;
         private System.Windows.Forms.CheckBox chkUseRoiTracking;
         private System.Windows.Forms.CheckBox chkUseLoadImageTeachMode;
-        private System.Windows.Forms.Button btn_blobThr_Down;
-        private System.Windows.Forms.Button btn_blobThr_Up;
-        private System.Windows.Forms.Label label71;
-        private System.Windows.Forms.Label lab_BlobThr;
-        private System.Windows.Forms.CheckBox Chk_Use_Over_Fusion;
-        private System.Windows.Forms.Button btn_Over_Fusion_down;
-        private System.Windows.Forms.Button btn_Over_Fusion_Up;
-        private System.Windows.Forms.Label label69;
-        private System.Windows.Forms.Label lab_Over_Fusion_ROI_Cnt;
-        private System.Windows.Forms.Panel Panel_Over_Fusion;
-        private System.Windows.Forms.Button btn_BlobTest;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button btn_BlobSize_Down;
-        private System.Windows.Forms.Button btn_BlobSize_Up;
-        private System.Windows.Forms.Label lab_Size;
-        private System.Windows.Forms.Label lab_blobSize;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button btn_Blob_Apply;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.CheckBox Chk_All_Select;
         private System.Windows.Forms.Button button8;
@@ -8391,7 +8103,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn COL_18;
         private System.Windows.Forms.DataGridViewCheckBoxColumn COL_19;
         private System.Windows.Forms.DataGridViewTextBoxColumn COL_20;
-        private System.Windows.Forms.Panel Panel_Maker_Parameter;
         private System.Windows.Forms.Label lblMaskingValue;
         private System.Windows.Forms.Label label86;
         private System.Windows.Forms.Label lblBottomCutPixel;
@@ -8400,5 +8111,16 @@
         private System.Windows.Forms.Label label79;
         private System.Windows.Forms.Label lblIgnoreSize;
         private System.Windows.Forms.Label label84;
+        private System.Windows.Forms.Panel pnlParam;
+        private System.Windows.Forms.Panel pnlEdgeParam;
+        private System.Windows.Forms.Label label83;
+        private System.Windows.Forms.Label lblEdgeCaliperThreshold;
+        private System.Windows.Forms.Label label90;
+        private System.Windows.Forms.Label lblEdgeCaliperFilterSize;
+        private System.Windows.Forms.Panel pnlOrgParam;
+        private System.Windows.Forms.Label lab_Inspection_Ignore;
+        private System.Windows.Forms.Label text_Insp_Ignore;
+        private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.Label LAB_EDGE_WIDTH;
     }
 }

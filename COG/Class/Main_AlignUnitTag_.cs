@@ -3063,53 +3063,6 @@ namespace COG
                                     bRes = false;
                                 }
                             }
-
-                            if (PAT[m_PatTagNo, 0].m_InspParameter[i].bUseOverFusion == true)
-                            {
-                                for (int nBlobRoi = 0; nBlobRoi < PAT[m_PatTagNo, 0].m_InspParameter[i].iOverFusionCnt; nBlobRoi++)
-                                {
-
-                                    double dROIX, dROIY;
-                                    List<CogPolygon> SearchBlob = new List<CogPolygon>();
-                                    CogBlobTool InspCogBolob = new CogBlobTool();
-                                    CogPolygon BlobTracking = new CogPolygon();
-                                    CogPolygon OriPosition = new CogPolygon();
-                                    InspCogBolob = PAT[m_PatTagNo, 0].m_InspParameter[i].m_CogBlobTool[nBlobRoi];
-                                    BlobTracking = (CogPolygon)InspCogBolob.Region;
-
-                                    InspCogBolob.InputImage = PAT[m_PatTagNo, 0].FixtureImage;
-                                    BlobTracking.Color = CogColorConstants.Blue;
-                                    BlobTracking.Interactive = false;
-                                    PAT[m_PatTagNo, 0].resultGraphics.Add(BlobTracking);
-                                    InspCogBolob.Run();
-                                    if (InspCogBolob.Results.GetBlobs().Count > 0)
-                                    {
-                                        string LogMsg;
-                                        LogMsg = string.Format("OverFusion Inspection NG ROI:{0:D}", nBlobRoi); // 실제로 Mark를 못찾는지 확인하는 Log 뿌려줌 - cyh
-                                        LogdataDisplay(LogMsg, true);
-                                        Label = new CogGraphicLabel[InspCogBolob.Results.GetBlobs().Count];
-                                        for (int nSearchCnt = 0; nSearchCnt < InspCogBolob.Results.GetBlobs().Count; nSearchCnt++)
-                                        {
-                                            Label[nSearchCnt] = new CogGraphicLabel();
-                                            Label[nSearchCnt].Font = new Font(Main.DEFINE.FontStyle, 15);
-                                            double dArea = InspCogBolob.Results.GetBlobs()[nSearchCnt].Area;
-                                            Label[nSearchCnt].Color = CogColorConstants.Red;
-                                            double dCenterX = InspCogBolob.Results.GetBlobs()[nSearchCnt].CenterOfMassX;
-                                            double dCenterY = InspCogBolob.Results.GetBlobs()[nSearchCnt].CenterOfMassY;
-                                            SearchBlob.Add(InspCogBolob.Results.GetBlobs()[nSearchCnt].GetBoundary());
-                                            SearchBlob[nSearchCnt].Color = CogColorConstants.Red;
-                                            Label[nSearchCnt].Text = string.Format("NG Size: {0:F3}", dArea);
-                                            Label[nSearchCnt].X = dCenterX;
-                                            Label[nSearchCnt].Y = dCenterY;
-                                            PAT[m_PatTagNo, 0].resultGraphics.Add(SearchBlob[nSearchCnt]);
-                                            PAT[m_PatTagNo, 0].resultGraphics.Add(Label[nSearchCnt]);
-                                            bRes = false;
-                                        }
-                                    }
-
-                                    InspCogBolob.Region = OriPosition;
-                                }
-                            }
                         }
                         nRoi = i;
                         m_ROYTpe = (enumROIType)PAT[m_PatTagNo, 0].m_InspParameter[i].m_enumROIType;
