@@ -1,0 +1,1697 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4D2A103D-9B0E-405F-AB57-AD384DB775D8}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>COG</RootNamespace>
+    <AssemblyName>VISION</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>게시\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Phone.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'OLB_ACF_BONDER_PC1_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\OLB_ACF_BONDER_PC1_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;OLB_ACF_BONDER_PC1_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'OLB_ACF_BONDER_PC2_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\OLB_ACF_BONDER_PC2_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;OLB_ACF_BONDER_PC2_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'OLB_PRE_BONDER_PC3_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\OLB_PRE_BONDER_PC3_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;OLB_PRE_BONDER_PC3_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'OLB_COF_LOADER_PC4_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\OLB_COF_LOADER_PC4_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;OLB_COF_LOADER_PC4_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'OLB_COF_LOADER_PC5_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\OLB_COF_LOADER_PC5_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;OLB_COF_LOADER_PC5_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'OLB_FINAL_BONDER_PC6_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\OLB_FINAL_BONDER_PC6_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;OLB_FINAL_BONDER_PC6_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOF_FOP_ACF_BONDER_PC1_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\FOF_FOP_ACF_BONDER_PC1_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOF_FOP_ACF_BONDER_PC1_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOF_FOP_ACF_BONDER_PC2_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\FOF_FOP_ACF_BONDER_PC2_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOF_FOP_ACF_BONDER_PC2_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOF_PRE_BONDER_PC3_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\FOF_PRE_BONDER_PC3_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOF_PRE_BONDER_PC3_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOF_PRE_BONDER_PC4_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\FOF_PRE_BONDER_PC4_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOF_PRE_BONDER_PC4_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOF_FINAL_BONDER_PC5_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\FOF_FINAL_BONDER_PC5_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOF_FINAL_BONDER_PC5_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOF_FPC_LOADER_PC6_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\FOF_FPC_LOADER_PC6_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOF_FPC_LOADER_PC6_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOF_FOF_ACF_BONDER_PC7_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\FOF_FOF_ACF_BONDER_PC7_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOF_FOF_ACF_BONDER_PC7_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOF_FOF_ACF_BONDER_PC8_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\FOF_FOF_ACF_BONDER_PC8_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOF_FOF_ACF_BONDER_PC8_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TFOG_FOP_ACF_BONDER_PC1_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\TFOG_FOP_ACF_BONDER_PC1_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TFOG_FOP_ACF_BONDER_PC1_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TFOG_PRE_BONDER_PC2_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\TFOG_PRE_BONDER_PC2_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TFOG_PRE_BONDER_PC2_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TFOG_FINAL_BONDER_PC3_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\TFOG_FINAL_BONDER_PC3_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TFOG_FINAL_BONDER_PC3_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TFOG_ALIGN_INSPECT_PC4_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\TFOG_ALIGN_INSPECT_PC4_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TFOG_ALIGN_INSPECT_PC4_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOB_PANEL_ALIGN_PC1_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\FOB_PANEL_ALIGN_PC1_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOB_PANEL_ALIGN_PC1_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOB_FINAL_BONDER_PC2_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\FOB_FINAL_BONDER_PC2_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOB_FINAL_BONDER_PC2_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOB_FINAL_BONDER_PC3_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\FOB_FINAL_BONDER_PC3_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOB_FINAL_BONDER_PC3_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOB_INSPECT_PC4_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\FOB_INSPECT_PC4_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOB_INSPECT_PC4_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOB_ACF_BONDER_PC5_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\FOB_ACF_BONDER_PC5_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOB_ACF_BONDER_PC5_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOB_ACF_BONDER_PC6_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\FOB_ACF_BONDER_PC6_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOB_ACF_BONDER_PC6_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ENCAP_CRD_PC1_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ENCAP_CRD_PC1_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ENCAP_CRD_PC1_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CRD_TUFFY_PC1_MODE|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\CRD_TUFFY_PC1_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CRD_TUFFY_PC1_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Releas|AnyCPU'">
+    <OutputPath>bin\Releas\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'OLB_ACF_BONDER_PC1_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\OLB_ACF_BONDER_PC1_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;OLB_ACF_BONDER_PC1_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'OLB_ACF_BONDER_PC2_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\OLB_ACF_BONDER_PC2_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;OLB_ACF_BONDER_PC2_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'OLB_PRE_BONDER_PC3_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\OLB_PRE_BONDER_PC3_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;OLB_PRE_BONDER_PC3_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'OLB_COF_LOADER_PC4_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\OLB_COF_LOADER_PC4_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;OLB_COF_LOADER_PC4_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'OLB_COF_LOADER_PC5_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\OLB_COF_LOADER_PC5_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;OLB_COF_LOADER_PC5_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'OLB_FINAL_BONDER_PC6_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\OLB_FINAL_BONDER_PC6_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;OLB_FINAL_BONDER_PC6_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOF_FOP_ACF_BONDER_PC1_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\FOF_FOP_ACF_BONDER_PC1_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOF_FOP_ACF_BONDER_PC1_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOF_FOP_ACF_BONDER_PC2_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\FOF_FOP_ACF_BONDER_PC2_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOF_FOP_ACF_BONDER_PC2_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOF_PRE_BONDER_PC3_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\FOF_PRE_BONDER_PC3_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOF_PRE_BONDER_PC3_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOF_PRE_BONDER_PC4_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\FOF_PRE_BONDER_PC4_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOF_PRE_BONDER_PC4_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOF_FINAL_BONDER_PC5_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\FOF_FINAL_BONDER_PC5_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOF_FINAL_BONDER_PC5_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOF_FPC_LOADER_PC6_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\FOF_FPC_LOADER_PC6_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOF_FPC_LOADER_PC6_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOF_FOF_ACF_BONDER_PC7_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\FOF_FOF_ACF_BONDER_PC7_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOF_FOF_ACF_BONDER_PC7_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOF_FOF_ACF_BONDER_PC8_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\FOF_FOF_ACF_BONDER_PC8_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOF_FOF_ACF_BONDER_PC8_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TFOG_FOP_ACF_BONDER_PC1_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\TFOG_FOP_ACF_BONDER_PC1_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TFOG_FOP_ACF_BONDER_PC1_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TFOG_PRE_BONDER_PC2_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\TFOG_PRE_BONDER_PC2_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TFOG_PRE_BONDER_PC2_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TFOG_FINAL_BONDER_PC3_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\TFOG_FINAL_BONDER_PC3_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TFOG_FINAL_BONDER_PC3_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TFOG_ALIGN_INSPECT_PC4_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\TFOG_ALIGN_INSPECT_PC4_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TFOG_ALIGN_INSPECT_PC4_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOB_PANEL_ALIGN_PC1_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\FOB_PANEL_ALIGN_PC1_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOB_PANEL_ALIGN_PC1_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOB_FINAL_BONDER_PC2_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\FOB_FINAL_BONDER_PC2_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOB_FINAL_BONDER_PC2_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOB_FINAL_BONDER_PC3_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\FOB_FINAL_BONDER_PC3_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOB_FINAL_BONDER_PC3_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOB_INSPECT_PC4_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\FOB_INSPECT_PC4_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOB_INSPECT_PC4_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOB_ACF_BONDER_PC5_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\FOB_ACF_BONDER_PC5_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOB_ACF_BONDER_PC5_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOB_ACF_BONDER_PC6_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\FOB_ACF_BONDER_PC6_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOB_ACF_BONDER_PC6_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ENCAP_CRD_PC1_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\ENCAP_CRD_PC1_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ENCAP_CRD_PC1_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CRD_TUFFY_PC1_MODE|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\CRD_TUFFY_PC1_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CRD_TUFFY_PC1_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Releas|x64'">
+    <OutputPath>bin\x64\Releas\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'OLB_ACF_BONDER_PC1_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\OLB_ACF_BONDER_PC1_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;OLB_ACF_BONDER_PC1_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'OLB_ACF_BONDER_PC2_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\OLB_ACF_BONDER_PC2_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;OLB_ACF_BONDER_PC2_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'OLB_PRE_BONDER_PC3_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\OLB_PRE_BONDER_PC3_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;OLB_PRE_BONDER_PC3_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'OLB_COF_LOADER_PC4_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\OLB_COF_LOADER_PC4_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;OLB_COF_LOADER_PC4_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'OLB_COF_LOADER_PC5_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\OLB_COF_LOADER_PC5_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;OLB_COF_LOADER_PC5_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'OLB_FINAL_BONDER_PC6_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\OLB_FINAL_BONDER_PC6_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;OLB_FINAL_BONDER_PC6_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOF_FOP_ACF_BONDER_PC1_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\FOF_FOP_ACF_BONDER_PC1_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOF_FOP_ACF_BONDER_PC1_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOF_FOP_ACF_BONDER_PC2_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\FOF_FOP_ACF_BONDER_PC2_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOF_FOP_ACF_BONDER_PC2_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOF_PRE_BONDER_PC3_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\FOF_PRE_BONDER_PC3_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOF_PRE_BONDER_PC3_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOF_PRE_BONDER_PC4_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\FOF_PRE_BONDER_PC4_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOF_PRE_BONDER_PC4_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOF_FINAL_BONDER_PC5_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\FOF_FINAL_BONDER_PC5_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOF_FINAL_BONDER_PC5_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOF_FPC_LOADER_PC6_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\FOF_FPC_LOADER_PC6_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOF_FPC_LOADER_PC6_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOF_FOF_ACF_BONDER_PC7_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\FOF_FOF_ACF_BONDER_PC7_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOF_FOF_ACF_BONDER_PC7_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOF_FOF_ACF_BONDER_PC8_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\FOF_FOF_ACF_BONDER_PC8_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOF_FOF_ACF_BONDER_PC8_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TFOG_FOP_ACF_BONDER_PC1_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\TFOG_FOP_ACF_BONDER_PC1_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TFOG_FOP_ACF_BONDER_PC1_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TFOG_PRE_BONDER_PC2_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\TFOG_PRE_BONDER_PC2_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TFOG_PRE_BONDER_PC2_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TFOG_FINAL_BONDER_PC3_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\TFOG_FINAL_BONDER_PC3_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TFOG_FINAL_BONDER_PC3_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TFOG_ALIGN_INSPECT_PC4_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\TFOG_ALIGN_INSPECT_PC4_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TFOG_ALIGN_INSPECT_PC4_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOB_PANEL_ALIGN_PC1_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\FOB_PANEL_ALIGN_PC1_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOB_PANEL_ALIGN_PC1_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOB_FINAL_BONDER_PC2_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\FOB_FINAL_BONDER_PC2_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOB_FINAL_BONDER_PC2_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOB_FINAL_BONDER_PC3_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\FOB_FINAL_BONDER_PC3_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOB_FINAL_BONDER_PC3_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOB_INSPECT_PC4_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\FOB_INSPECT_PC4_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOB_INSPECT_PC4_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOB_ACF_BONDER_PC5_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\FOB_ACF_BONDER_PC5_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOB_ACF_BONDER_PC5_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FOB_ACF_BONDER_PC6_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\FOB_ACF_BONDER_PC6_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FOB_ACF_BONDER_PC6_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ENCAP_CRD_PC1_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\ENCAP_CRD_PC1_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ENCAP_CRD_PC1_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CRD_TUFFY_PC1_MODE|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\CRD_TUFFY_PC1_MODE\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CRD_TUFFY_PC1_MODE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Releas|x86'">
+    <OutputPath>bin\x86\Releas\</OutputPath>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="Cognex.FieldCalibrationApplication.Plugin, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.FieldCalibrationApplication.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ApplicationWizard.Core, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ApplicationWizard.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.AutoSelect, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.AutoSelect.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Blob, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Blob.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Blob.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Blob.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.CAD, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CAD.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.CalibFix, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CalibFix.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.CalibFix.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CalibFix.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.CalibFixPlus, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CalibFixPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Caliper, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Caliper.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Caliper.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Caliper.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.CNLSearch, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CNLSearch.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.CNLSearch.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CNLSearch.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ColorExtractor, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ColorExtractor.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ColorExtractor.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ColorExtractor.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ColorMatch, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ColorMatch.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ColorMatch.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ColorMatch.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ColorSegmenter, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ColorSegmenter.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ColorSegmenter.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ColorSegmenter.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Comm, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Comm.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Comm.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Comm.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.CompositeColorMatch, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CompositeColorMatch.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.CompositeColorMatch.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CompositeColorMatch.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Core, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.CorePlus, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.CorePlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Database, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Dimensioning, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Dimensioning.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Dimensioning.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Dimensioning.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Display.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Display.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.EdgeBlob, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.EdgeBlob.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.FG1394DCAM, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.FG1394DCAM.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.FG8500L, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.FG8500L.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.FG8501, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.FG8501.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.FG8504, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.FG8504.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.FGGigE, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.FGGigE.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.GenTL, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.GenTL.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ID, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ID.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ID.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ID.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ImageFile, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ImageFile.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ImageFile.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ImageFile.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ImageProcessing, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ImageProcessing.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ImageProcessing.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ImageProcessing.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ImagingDevice, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ImagingDevice.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Inspection, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Inspection.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Inspection.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Inspection.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.Interop.Core, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.Interop.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.LineMax, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.LineMax.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.LineMax.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.LineMax.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.LinescanDistortionCorrection, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.LinescanDistortionCorrection.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.LinescanDistortionCorrection.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.LinescanDistortionCorrection.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.OC, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.OC.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.OCRMax, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.OCRMax.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.OCRMax.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.OCRMax.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.OCVMax, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.OCVMax.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.OCVMax.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.OCVMax.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.PadLocator, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PadLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.PatInspect, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PatInspect.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.PatInspect.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PatInspect.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.PixelMap, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PixelMap.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.PixelMap.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PixelMap.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.PMAlign, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PMAlign.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.PMAlign.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PMAlign.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.PMRedLine, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PMRedLine.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.PMRedLine.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PMRedLine.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.PointMatcher, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.PointMatcher.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.QuickBuild.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.QuickBuild.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.QuickBuild.Core, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.QuickBuild.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.QuickBuild.IO, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.QuickBuild.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ResultsAnalysis, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ResultsAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ResultsAnalysis.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ResultsAnalysis.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.SearchMax, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.SearchMax.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.SearchMax.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.SearchMax.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.StreetFinder, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.StreetFinder.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.SurfaceFX, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.SurfaceFX.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.SurfaceFX.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.SurfaceFX.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ToolGroup, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ToolGroup.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro.ToolGroup.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro.ToolGroup.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro3D, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro3D.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro3D.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro3D.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro3D.Core, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro3D.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro3D.Display.Controls, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro3D.Display.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Cognex.VisionPro3D.Graphic, Version=69.3.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Cognex\VisionPro\ReferencedAssemblies\Cognex.VisionPro3D.Graphic.dll</HintPath>
+    </Reference>
+    <Reference Include="JAS.Calibration">
+      <HintPath>dll\JAS.Calibration.dll</HintPath>
+    </Reference>
+    <Reference Include="JAS.Interface">
+      <HintPath>dll\JAS.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="netchartdir">
+      <HintPath>dll\netchartdir.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class\cls_SceneData.cs" />
+    <Compile Include="Class\cls_InspParameter.cs" />
+    <Compile Include="Class\COM\AsyncSocket.cs" />
+    <Compile Include="Class\COM\ePLC2.cs" />
+    <Compile Include="Class\EdgeAlgorithm.cs" />
+    <Compile Include="Class\FTPManager.cs" />
+    <Compile Include="Class\Main_CCLink.cs" />
+    <Compile Include="Class\LOG_CAL_LOAD_SAVE\Main_DataFile.cs" />
+    <Compile Include="Class\COM\COM_MCProtocol.cs" />
+    <Compile Include="Class\Main_RCS_.cs" />
+    <Compile Include="Class\MIL\LineScan.cs" />
+    <Compile Include="Class\MIL\MILFrameGrabber.cs" />
+    <Compile Include="Class\_Main_Define.cs" />
+    <Compile Include="Class_MEMO.cs" />
+    <Compile Include="Core\Control\Display.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Core\Control\Display.designer.cs">
+      <DependentUpon>Display.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_Permission.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_Permission.Designer.cs">
+      <DependentUpon>Form_Permission.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_RecipeCopy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_RecipeCopy.Designer.cs">
+      <DependentUpon>Form_RecipeCopy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_RCS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_RCS.Designer.cs">
+      <DependentUpon>Form_RCS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_Melsec.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_Melsec.Designer.cs">
+      <DependentUpon>Form_Melsec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_NGMonitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_NGMonitor.designer.cs">
+      <DependentUpon>Form_NGMonitor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_PatternTeach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_PatternTeach.Designer.cs">
+      <DependentUpon>Form_PatternTeach.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_Main.Designer.cs">
+      <DependentUpon>Form_Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_PatternSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_PatternSelect.Designer.cs">
+      <DependentUpon>Form_PatternSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class\Main.cs" />
+    <Compile Include="Class\Program.cs" />
+    <Compile Include="Form\Form_KeyPad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_KeyPad.Designer.cs">
+      <DependentUpon>Form_KeyPad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_SetUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_SetUp.Designer.cs">
+      <DependentUpon>Form_SetUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_KeyBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_KeyBoard.Designer.cs">
+      <DependentUpon>Form_KeyBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_Project.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_Project.Designer.cs">
+      <DependentUpon>Form_Project.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class\Main_AlignUnitTag_.cs" />
+    <Compile Include="Class\Main_PatternTag_.cs" />
+    <Compile Include="Class\LOG_CAL_LOAD_SAVE\Main_DrawTag.cs" />
+    <Compile Include="Form\Form_CalDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_CalDisplay.Designer.cs">
+      <DependentUpon>Form_CalDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class\LOG_CAL_LOAD_SAVE\Main_Log_Img_Save_Del.cs" />
+    <Compile Include="Form\Form_ManualSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_ManualSet.Designer.cs">
+      <DependentUpon>Form_ManualSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_CameraSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_CameraSet.Designer.cs">
+      <DependentUpon>Form_CameraSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_LiveView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_LiveView.Designer.cs">
+      <DependentUpon>Form_LiveView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_ToolTeach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_ToolTeach.Designer.cs">
+      <DependentUpon>Form_ToolTeach.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_ProgressBar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_ProgressBar.Designer.cs">
+      <DependentUpon>Form_ProgressBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_LogView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_LogView.Designer.cs">
+      <DependentUpon>Form_LogView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_ProgressBar_Sub.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_ProgressBar_Sub.Designer.cs">
+      <DependentUpon>Form_ProgressBar_Sub.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class\Main_Thread.cs" />
+    <Compile Include="Form\Form_Message.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_Message.Designer.cs">
+      <DependentUpon>Form_Message.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class\LOG_CAL_LOAD_SAVE\Main_Calibration.cs" />
+    <Compile Include="Form\Form_CalMatix.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_CalMatix.Designer.cs">
+      <DependentUpon>Form_CalMatix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_LightSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_LightSet.Designer.cs">
+      <DependentUpon>Form_LightSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class\Main_AlignUnitTag_-Define.cs" />
+    <Compile Include="Class\Main_PatternTag_-Define.cs" />
+    <Compile Include="Form\Form_TrayDataView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_TrayDataView.Designer.cs">
+      <DependentUpon>Form_TrayDataView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_PMMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_PMMode.Designer.cs">
+      <DependentUpon>Form_PMMode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_Password.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_Password.Designer.cs">
+      <DependentUpon>Form_Password.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_PatternTagSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_PatternTagSelect.Designer.cs">
+      <DependentUpon>Form_PatternTagSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_Chart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_Chart.Designer.cs">
+      <DependentUpon>Form_Chart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\UserControls\UserControl_ComInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\UserControls\UserControl_ComInfo.Designer.cs" />
+    <Compile Include="Form_CMD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_CMD.Designer.cs">
+      <DependentUpon>Form_CMD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_PatternMask.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_PatternMask.Designer.cs">
+      <DependentUpon>Form_PatternMask.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class\Main_Camera.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Class\COM\COM_Light_Control.cs" />
+    <EmbeddedResource Include="Core\Control\Display.resx">
+      <DependentUpon>Display.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_CalMatix.resx">
+      <DependentUpon>Form_CalMatix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_Chart.resx">
+      <DependentUpon>Form_Chart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_KeyPad.resx">
+      <DependentUpon>Form_KeyPad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_LightSet.resx">
+      <DependentUpon>Form_LightSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_Permission.resx">
+      <DependentUpon>Form_Permission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_RCS.resx">
+      <DependentUpon>Form_RCS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_Melsec.resx">
+      <DependentUpon>Form_Melsec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_NGMonitor.resx">
+      <DependentUpon>Form_NGMonitor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_Password.resx">
+      <DependentUpon>Form_Password.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_PatternSelect.resx">
+      <DependentUpon>Form_PatternSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_PatternTagSelect.resx">
+      <DependentUpon>Form_PatternTagSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_PatternTeach.resx">
+      <DependentUpon>Form_PatternTeach.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_Main.resx">
+      <DependentUpon>Form_Main.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_ProgressBar_Sub.resx">
+      <DependentUpon>Form_ProgressBar_Sub.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_RecipeCopy.resx">
+      <DependentUpon>Form_RecipeCopy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_ToolTeach.resx">
+      <DependentUpon>Form_ToolTeach.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_SetUp.resx">
+      <DependentUpon>Form_SetUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_KeyBoard.resx">
+      <DependentUpon>Form_KeyBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_Project.resx">
+      <DependentUpon>Form_Project.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_CalDisplay.resx">
+      <DependentUpon>Form_CalDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_ManualSet.resx">
+      <DependentUpon>Form_ManualSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_CameraSet.resx">
+      <DependentUpon>Form_CameraSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_LiveView.resx">
+      <DependentUpon>Form_LiveView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_ProgressBar.resx">
+      <DependentUpon>Form_ProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_LogView.resx">
+      <DependentUpon>Form_LogView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_Message.resx">
+      <DependentUpon>Form_Message.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_TrayDataView.resx">
+      <DependentUpon>Form_TrayDataView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_PMMode.resx">
+      <DependentUpon>Form_PMMode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\UserControls\UserControl_ComInfo.resx" />
+    <EmbeddedResource Include="Form_CMD.resx">
+      <DependentUpon>Form_CMD.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_PatternMask.resx">
+      <DependentUpon>Form_PatternMask.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\app.manifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CALIBRATION.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5%28x86 및 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Phone.ico" />
+    <None Include="Resources\RIGHT1.png" />
+    <None Include="Resources\LEFT2.png" />
+    <None Include="Resources\Cross_Custom.png" />
+    <None Include="Resources\PLCX.bmp" />
+    <None Include="Resources\PLC.bmp" />
+    <None Include="Resources\PCX.bmp" />
+    <None Include="Resources\PC.bmp" />
+    <None Include="Resources\L2X.bmp" />
+    <None Include="Resources\L2.bmp" />
+    <None Include="Resources\L1X.bmp" />
+    <None Include="Resources\L1.bmp" />
+    <None Include="Resources\1.bmp" />
+    <None Include="Resources\1X.bmp" />
+    <None Include="Resources\2.bmp" />
+    <None Include="Resources\2X.bmp" />
+    <None Include="Resources\3.bmp" />
+    <None Include="Resources\3X.bmp" />
+    <None Include="Resources\4.bmp" />
+    <None Include="Resources\4X.bmp" />
+    <None Include="Resources\5.bmp" />
+    <None Include="Resources\5X.bmp" />
+    <None Include="Resources\6.bmp" />
+    <None Include="Resources\6X.bmp" />
+    <None Include="Resources\7.bmp" />
+    <None Include="Resources\7X.bmp" />
+    <None Include="Resources\8.bmp" />
+    <None Include="Resources\8X.bmp" />
+    <Content Include="Resources\Arc_24.png" />
+    <None Include="Resources\caldata40.png" />
+    <None Include="Resources\setup40.png" />
+    <None Include="Resources\recipe40.png" />
+    <None Include="Resources\project40.png" />
+    <None Include="Resources\interface40.png" />
+    <None Include="Resources\log40.png" />
+    <None Include="Resources\SAMSUNG_DISPLAY.png" />
+    <None Include="Resources\Focus.ico" />
+    <None Include="Resources\Circle3_16.ico" />
+    <None Include="Resources\Circle2_16.ico" />
+    <None Include="Resources\angle3_20.ico" />
+    <None Include="Resources\square1_24.png" />
+    <None Include="Resources\arrows_24.png" />
+    <None Include="Resources\Line_20.ico" />
+    <None Include="Resources\Corss22_20.ico" />
+    <None Include="Resources\undo3_16.ico" />
+    <None Include="Resources\delete_16.ico" />
+    <None Include="Resources\touch_16.ico" />
+    <None Include="Resources\Fit2_16.ico" />
+    <None Include="Resources\open3_16.ico" />
+    <None Include="Resources\Cal_Image.bmp" />
+    <None Include="Resources\새 비트맵 이미지.bmp" />
+    <None Include="Resources\TRAY_ALIGN2.PNG" />
+    <None Include="Resources\TRAY_ALIGN.PNG" />
+    <None Include="Resources\TRAY_CAL.png" />
+    <None Include="Resources\EXIT1.png" />
+    <None Include="Resources\visionox.jpg" />
+    <None Include="Resources\GVO.png" />
+    <None Include="Resources\CSOT1.png" />
+    <None Include="Resources\UNITEDKING.jpg" />
+    <None Include="Resources\VIETNAM.jpg" />
+    <None Include="Resources\CHINA.jpg" />
+    <None Include="Resources\KOREA.jpg" />
+    <None Include="Resources\FPC_PITCH.PNG" />
+    <None Include="Resources\Picker4.PNG" />
+    <None Include="Resources\Picker3.PNG" />
+    <None Include="Resources\TRAY.PNG" />
+    <None Include="Resources\TRAY.JPG" />
+    <None Include="Resources\DIS.JPG" />
+    <None Include="Resources\Key.png" />
+    <None Include="Resources\inspection.jpg" />
+    <None Include="Resources\Map.JPG" />
+    <None Include="Resources\UP1.png" />
+    <None Include="Resources\DOWN1.png" />
+    <None Include="Resources\합착기.jpg" />
+    <None Include="Resources\도포기.jpg" />
+    <None Include="Resources\그림1.jpg" />
+    <None Include="Resources\그림2.jpg" />
+    <None Include="Resources\EXIT.png" />
+    <None Include="Resources\1453278410_ruler_sticker.png" />
+    <None Include="Resources\Check_1_48.png" />
+    <None Include="Resources\Check48.png" />
+    <None Include="Resources\Finde48.png" />
+    <None Include="Resources\Find.png" />
+    <None Include="Resources\CAL.png" />
+    <None Include="Resources\Setting.png" />
+    <None Include="Resources\VIEW1.png" />
+    <None Include="Resources\CAMSETTING1.png" />
+    <None Include="Resources\network.png" />
+    <None Include="Resources\h1_samsungdisplay.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Emgu.CV">
+      <Version>4.7.0.5276</Version>
+    </PackageReference>
+    <PackageReference Include="Emgu.CV.Bitmap">
+      <Version>4.7.0.5276</Version>
+    </PackageReference>
+    <PackageReference Include="Emgu.CV.runtime.windows">
+      <Version>4.7.0.5276</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
