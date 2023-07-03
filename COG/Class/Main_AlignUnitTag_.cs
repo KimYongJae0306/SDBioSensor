@@ -2617,8 +2617,8 @@ namespace COG
 
                                     var filterImage = edgeAlgorithm.GetConvertCogImage(matImage);
 
-                                    SingleFindLine[i].RunParams.CaliperRunParams.ContrastThreshold = m_TeachParameter[nROI].iEdgeCaliperThreshold;
-                                    SingleFindLine[i].RunParams.CaliperRunParams.FilterHalfSizeInPixels = m_TeachParameter[nROI].iEdgeCaliperFilterSize;
+                                    SingleFindLine[i].RunParams.CaliperRunParams.ContrastThreshold = PAT[m_PatTagNo, 0].m_InspParameter[nROI].iEdgeCaliperThreshold;
+                                    SingleFindLine[i].RunParams.CaliperRunParams.FilterHalfSizeInPixels = PAT[m_PatTagNo, 0].m_InspParameter[nROI].iEdgeCaliperFilterSize;
                                     SingleFindLine[i].InputImage = (CogImage8Grey)filterImage;
                                 }
                                 else
