@@ -103,7 +103,8 @@ namespace COG
                 {
                     while (true)
                     {
-                        if (ImageGrab(0)) break;
+                        if (ImageGrab(0))
+                            break;
                     }
                 }
                 Thread.Sleep(50);
@@ -117,7 +118,8 @@ namespace COG
                 {
                     while (true)
                     {
-                        if (ImageGrab(1)) break;
+                        if (ImageGrab(1))
+                            break;
                     }
                 }
                 Thread.Sleep(50);
@@ -193,7 +195,6 @@ namespace COG
 
         private static void ThreadProc_MMM()
         {
-
             while (threadFlag)
             {
                 if (Status.MC_STATUS == DEFINE.MC_RUN)
@@ -312,7 +313,6 @@ namespace COG
                         break;
 
                 }
-
             }
 
         }
@@ -362,8 +362,6 @@ namespace COG
                 {
                     try
                     {
-                        //AlignUnit[2].ExecuteCMD();
-                        //AlignUnit[2].ReceiveCommand();
                         //2022 11 12 YSH 비동작 10분이상 소요 시 조명 Off 
                         if (bFirstStartRun && TimerRunningCheck.GetElapsedTime() > 600000)
                         {

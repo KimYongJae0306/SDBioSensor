@@ -246,7 +246,8 @@ namespace COG
                                 if (!Main.vision.Grab_Flag_End[PAT[m_PatTagNo, nPatNum[i]].m_CamNo])
                                     GrabEnd = false;
                             }
-                            if (!GrabEnd) break;
+                            if (!GrabEnd)
+                                break;
                             seq++;
                             break;
 
@@ -725,7 +726,8 @@ namespace COG
                         }
 
                     }
-                    if (cmd != 0) CmdCheck();
+                    if (cmd != 0)
+                        CmdCheck();
 
                     m_Cmd = cmd = 0;
                 }
@@ -2134,15 +2136,10 @@ namespace COG
                 PAT[m_PatTagNo, 0].GetImage();
                 LogMsg = "Image Grab Complete";
                 LogdataDisplay(LogMsg, true);
-                //Thread.Sleep(300);
-                //PAT[m_PatTagNo, 1].SetAllLight(Main.DEFINE.M_LIGHT_CNL);
-                //PAT[m_PatTagNo, 1].GetImage();
-                //LogMsg = "Image Grab Align Complete";
-                //LogdataDisplay(LogMsg, true);
+
                 bRes = PAT[m_PatTagNo, 0].Search();
                 LogMsg = "Mark Search Complete";
                 LogdataDisplay(LogMsg, true);
-                //bRes = PAT[0, 1].Search(); // cyh
 
                 if (bRes == false) //Mark Searh NG
                 {
@@ -2440,6 +2437,9 @@ namespace COG
                     double searchDirection = m_LineTool.RunParams.CaliperSearchDirection;
                     CogCaliperPolarityConstants edgePolarity = m_LineTool.RunParams.CaliperRunParams.Edge0Polarity;
 
+                    double noneEdge_Threshold = 0;
+                    int noeEdge_FilterSize = 0;
+
                     try
                     {
                         //1Well 일때 동작
@@ -2472,6 +2472,8 @@ namespace COG
                         {
                             SingleFindLine[i] = new CogFindLineTool();
                             SingleFindLine[i] = m_LineTool;
+                            noneEdge_Threshold = SingleFindLine[i].RunParams.CaliperRunParams.ContrastThreshold;
+                            noeEdge_FilterSize = SingleFindLine[i].RunParams.CaliperRunParams.FilterHalfSizeInPixels;
 
                             if (i == 1)
                             {
@@ -2538,10 +2540,7 @@ namespace COG
                             if (PAT[m_PatTagNo, 0].m_InspParameter[nROI].bThresholdUse == true && i == 1)
                             {
                                 // Crop 처리
-                                //var transform = Main.AlignUnit[m_AlignNo].PAT[m_PatTagNo, 0].FixtureImage.GetTransform("@", Main.AlignUnit[m_AlignNo].PAT[m_PatTagNo, 0].FixtureImage.SelectedSpaceName) as CogTransform2DLinear;
                                 var transform = Main.AlignUnit[m_AlignNo].PAT[m_PatTagNo, 0].TempFixtureTrans;
-                                Console.WriteLine("검사 : " + transform.TranslationX + "    " + transform.TranslationY);
-                                //var transform = cogImage.GetTransform("@", cogImage.SelectedSpaceName) as CogTransform2DLinear;
                                 var cropResult = GetCropImage(cogImage, SingleFindLine[i], transform, out CogRectangle cropRect);
 
                                 EdgeAlgorithm edgeAlgorithm = new EdgeAlgorithm();
@@ -2556,7 +2555,7 @@ namespace COG
                                 double lengthX = Math.Abs(SingleFindLine[i].RunParams.ExpectedLineSegment.StartX - SingleFindLine[i].RunParams.ExpectedLineSegment.EndX);
                                 double lengthY = Math.Abs(SingleFindLine[i].RunParams.ExpectedLineSegment.StartY - SingleFindLine[i].RunParams.ExpectedLineSegment.EndY);
 
-                                int minPos = -1;
+                                int searchedValue = -1;
                                 List<Point> boundRectPointList = new List<Point>();
 
                                 if (lengthX > lengthY) // 가로
@@ -2565,13 +2564,13 @@ namespace COG
 
                                     if (posYList.Count > 0)
                                     {
-                                        minPos = posYList.Min();
+                                        searchedValue = posYList.Min();
 
                                         transform.MapPoint(cropRect.X, cropRect.Y, out double mappingStartX, out double mappingStartY);
 
                                         // 마스크를 그릴 영역의 X, Y 좌표 계산
                                         int maskX = (int)mappingStartX; // X 좌표 설정
-                                        int maskY = minPos + (int)mappingStartY; // Y 좌표 설정
+                                        int maskY = searchedValue + (int)mappingStartY; // Y 좌표 설정
 
                                         Rectangle rect = new Rectangle((int)mappingStartX, 0, convertImage.Width, maskY);
 
@@ -2584,17 +2583,16 @@ namespace COG
                                         boundRectPointList.Add(new Point(maskX + maskWidth, maskY - convertImage.Height));
                                         boundRectPointList.Add(new Point(maskX + maskWidth, maskY));
                                     }
-
                                 }
                                 else
                                 {
-                                    minPos = edgeAlgorithm.GetHorizontalMinEdgePosY(convertImage, PAT[m_PatTagNo, 0].m_InspParameter[nROI].iTopCutPixel, PAT[m_PatTagNo, 0].m_InspParameter[nROI].iBottomCutPixel);
-                                    if (minPos >= 0)
+                                    searchedValue = edgeAlgorithm.GetHorizontalMinEdgePosY(convertImage, PAT[m_PatTagNo, 0].m_InspParameter[nROI].iTopCutPixel, PAT[m_PatTagNo, 0].m_InspParameter[nROI].iBottomCutPixel);
+                                    if (searchedValue >= 0)
                                     {
                                         transform.MapPoint(cropRect.X, cropRect.Y, out double mappingStartX, out double mappingStartY);
 
                                         // 마스크를 그릴 영역의 X, Y 좌표 계산
-                                        int maskX = minPos + (int)mappingStartX; // X 좌표 설정
+                                        int maskX = searchedValue + (int)mappingStartX; // X 좌표 설정
                                         int maskY = (int)mappingStartY; // Y 좌표 설정
 
                                         Rectangle rect = new Rectangle((int)mappingStartX, 0, convertImage.Width, maskY);
@@ -2609,29 +2607,32 @@ namespace COG
                                         boundRectPointList.Add(new Point(maskX, maskY + maskHeight));
                                     }
                                 }
-                                if (minPos >= 0)
+                                if (searchedValue >= 0)
                                 {
                                     int MaskingValue = PAT[m_PatTagNo, 0].m_InspParameter[nROI].iMaskingValue; // UI 에 빼야함
                                     MCvScalar maskingColor = new MCvScalar(MaskingValue);
 
                                     Mat matImage = edgeAlgorithm.GetConvertMatImage(cogImage.CopyBase(CogImageCopyModeConstants.CopyPixels) as CogImage8Grey);
                                     CvInvoke.FillPoly(matImage, new VectorOfPoint(boundRectPointList.ToArray()), maskingColor);
-                                    //matImage.Save(@"D:\matImage.bmp");
 
                                     var filterImage = edgeAlgorithm.GetConvertCogImage(matImage);
 
+                                    SingleFindLine[i].RunParams.CaliperRunParams.ContrastThreshold = m_TeachParameter[nROI].iEdgeCaliperThreshold;
+                                    SingleFindLine[i].RunParams.CaliperRunParams.FilterHalfSizeInPixels = m_TeachParameter[nROI].iEdgeCaliperFilterSize;
                                     SingleFindLine[i].InputImage = (CogImage8Grey)filterImage;
                                 }
                                 else
                                 {
                                     // Edge 못찾은 경우
+                                    SingleFindLine[i].RunParams.CaliperRunParams.ContrastThreshold = noneEdge_Threshold;
+                                    SingleFindLine[i].RunParams.CaliperRunParams.FilterHalfSizeInPixels = noeEdge_FilterSize;
                                     SingleFindLine[i].InputImage = cogImage;
                                 }
 
                                 if (cogImage.SelectedSpaceName == "@\\Fixture\\Fixture")
                                     isTwiceFixture = true;
 
-                                if (minPos >= 0)
+                                if (searchedValue >= 0)
                                 {
                                     mCogFixtureTool2.InputImage = SingleFindLine[i].InputImage;
                                     mCogFixtureTool2.RunParams.UnfixturedFromFixturedTransform = Main.AlignUnit[m_AlignNo].PAT[m_PatTagNo, 0].TempFixtureTrans;
@@ -2650,6 +2651,8 @@ namespace COG
                             SingleFindLine[i].Run();
                             if (SingleFindLine[i].Results == null)
                             {
+                                m_LineTool.RunParams.CaliperRunParams.ContrastThreshold = noneEdge_Threshold;
+                                m_LineTool.RunParams.CaliperRunParams.FilterHalfSizeInPixels = noeEdge_FilterSize;
                                 m_LineTool.RunParams.CaliperSearchDirection = searchDirection;
                                 m_LineTool.RunParams.CaliperRunParams.Edge0Polarity = edgePolarity;
                                 m_LineTool.RunParams.ExpectedLineSegment.StartX = startPosX;
@@ -2732,7 +2735,8 @@ namespace COG
                        
                         SingleFindLine[1].RunParams.CaliperSearchDirection *= (-1);
                         #endregion
-
+                        m_LineTool.RunParams.CaliperRunParams.ContrastThreshold = noneEdge_Threshold;
+                        m_LineTool.RunParams.CaliperRunParams.FilterHalfSizeInPixels = noeEdge_FilterSize;
                         m_LineTool.RunParams.CaliperSearchDirection = searchDirection;
                         m_LineTool.RunParams.CaliperRunParams.Edge0Polarity = edgePolarity;
                         m_LineTool.RunParams.ExpectedLineSegment.StartX = startPosX;
@@ -2743,6 +2747,8 @@ namespace COG
                     }
                     catch (Exception err)
                     {
+                        m_LineTool.RunParams.CaliperRunParams.ContrastThreshold = noneEdge_Threshold;
+                        m_LineTool.RunParams.CaliperRunParams.FilterHalfSizeInPixels = noeEdge_FilterSize;
                         m_LineTool.RunParams.CaliperSearchDirection = searchDirection;
                         m_LineTool.RunParams.CaliperRunParams.Edge0Polarity = edgePolarity;
                         m_LineTool.RunParams.ExpectedLineSegment.StartX = startPosX;
@@ -4041,7 +4047,6 @@ namespace COG
                             }
                             seq++;
                             break;
-
                         case 1:
                             if (nPatNum.Count > 1)
                             {
@@ -4056,7 +4061,7 @@ namespace COG
                                     GetImage(nPatNum);
                                 }
                             }
-                            else // nPatNum.Count = 1
+                            else
                             {
                                 if (!nLightCompare[nPatNum[0]])
                                 {

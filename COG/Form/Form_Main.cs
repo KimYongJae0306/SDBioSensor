@@ -935,27 +935,7 @@ namespace COG
                 {
                     Main.DisplayClear(cogDisplay[i]);
                 }
-                //                 int icmd, iunit;
-                //                 iunit = Convert.ToInt16(TB_COMMANDTEST.Text.Substring(0, 1));
-                //                 icmd = Convert.ToInt16(TB_COMMANDTEST.Text.Substring(1, 4));
-                //                 Main.AlignUnit[iunit].m_Cmd = icmd;
-
-                //try
-                //{
-                //    using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"test.csv", false, System.Text.Encoding.GetEncoding("utf-8")))
-                //    {
-                //        // 필드에 값을 채워준다.  
-                //        file.WriteLine("{0},{1},{2},{3}", "민수", "67", "D", "합격");
-
-                //        // 필드에 값을 채워준다.  
-                //        file.WriteLine("{0},{1},{2},{3}", "바보", "49", "F", "불합격");
-                //    }
-                //}
-                //catch (IOException ee)
-                //{
-                //    MessageBox.Show(ee.Message);
-                //}
-
+             
                 for (int i = 0; i < Main.DEFINE.AlignUnit_Max; i++)
                 {
                     Main.AlignUnit[i].m_UnitBusy = false;
@@ -963,6 +943,7 @@ namespace COG
                     Main.AlignUnit[i].WriteCSVLogFile("555.666,777.888", Main.DEFINE.CAM_SELECT_ALIGN);
                 }
             }
+
             LiveFormHide();
             this.BTN_STOP.Visible = true;
             this.BTN_START.Visible = false;
@@ -974,22 +955,8 @@ namespace COG
 
             Main.Status.MC_STATUS = Main.DEFINE.MC_RUN;
 
-            //Main.CCLink_PutBit(Main.DEFINE.CCLINK_OUT_AUTO_RUN, true);
-            //Main.CCLink_PutBit(Main.DEFINE.CCLINK_OUT_AUTO_READY, true);
-
-            //2022 05 09 YSH
             Main.WriteDevice(PLCDataTag.BASE_RW_ADDR + Main.DEFINE.VIS_READY, 9000);
-            //int[] setValue = new int[1];
-            //setValue[0] = 9000;
-            //Main.PLCsocket.WriteDevice_W((PLCDataTag.BASE_RW_ADDR + Main.DEFINE.VIS_READY).ToString(), 1, setValue);
-
-            //Main.CCLink_WriteWord(Main.DEFINE.CCLINK_WW_CAMERA1_SEARCH1_X, 1234);
-            //Main.CCLink_WriteWord(Main.DEFINE.CCLINK_WW_CAMERA1_SEARCH1_X+1, 5678);
-            //Main.CCLink_WriteDWord(Main.DEFINE.CCLINK_WW_CAMERA1_SEARCH1_Y, -1234567);
-            //Form_RCS r = new Form_RCS();
-            //r.ShowDialog();
-            //r.Dispose();
-
+       
             BTN_FIT_IMAGE_Click(null, null);
 
             ReadModuleID();

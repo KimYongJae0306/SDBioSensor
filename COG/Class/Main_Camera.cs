@@ -546,15 +546,11 @@ namespace COG
                         //                         nTempIMG = new CogImage8Grey(Main.vision.IMAGE_SIZE_X[CamNo], Main.vision.IMAGE_SIZE_Y[CamNo]);
                         seq++;
                         break;
-
-
                     case 1:
                         if (CamNo >= DEFINE.MIL_CAM_MAX)
                             Main.vision.CogImageBlock[CamNo].Run();
                         seq++;
                         break;
-
-
                     case 2:
                         try
                         {

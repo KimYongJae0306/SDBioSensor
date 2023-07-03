@@ -9675,6 +9675,7 @@ namespace COG
 
                 double noneEdge_Threshold = 0;
                 int noeEdge_FilterSize = 0;
+
                 try
                 {
                     if (!m_bROIFinealignFlag)
@@ -9783,8 +9784,6 @@ namespace COG
 
                             EdgeAlgorithm edgeAlgorithm = new EdgeAlgorithm();
                             edgeAlgorithm.Threshold = m_TeachParameter[nROI].iThreshold;
-
-                            //var trans = Main.AlignUnit[m_AlignNo].PAT[m_PatTagNo, m_PatNo].TempFixtureTrans;
 
                             var image = cropResult.Item1 as CogImage8Grey;
                             image.CoordinateSpaceTree = new CogCoordinateSpaceTree();
