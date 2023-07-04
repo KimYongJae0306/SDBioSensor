@@ -77,7 +77,7 @@ namespace COG
 
             for (int i = 0; i < Main.DEFINE.CAM_MAX; i++)
             {
-                CAMThread[i].SetApartmentState(ApartmentState.STA);
+               // CAMThread[i].SetApartmentState(ApartmentState.STA);
                 CAMThread[i].Start();
             }
         }
@@ -134,14 +134,14 @@ namespace COG
 
             ThreadProcM = new Thread(new ThreadStart(ThreadProc_MMM));
             ThreadPLCRead = new Thread(new ThreadStart(ThreadPLC_Read));
-            ThreadPLCAlive = new Thread(new ThreadStart(ThreadPLC_Alive));
+            //ThreadPLCAlive = new Thread(new ThreadStart(ThreadPLC_Alive));
 
             ThreadProcM.SetApartmentState(ApartmentState.STA);
             ThreadPLCRead.SetApartmentState(ApartmentState.STA);
-            ThreadPLCAlive.SetApartmentState(ApartmentState.STA);
+            //ThreadPLCAlive.SetApartmentState(ApartmentState.STA);
             ThreadProcM.Start();
             ThreadPLCRead.Start();
-            ThreadPLCAlive.Start();
+            //ThreadPLCAlive.Start();
             ThreadProcDir = new Thread(new ThreadStart(ThreadDIR_Delete));
             ThreadProcDir.SetApartmentState(ApartmentState.STA);
             ThreadProcDir.Start();
@@ -342,6 +342,7 @@ namespace COG
                 {
                     try
                     {
+                        if (bFirstStartRun)
                         AlignUnit[1].ExecuteCMD();
                         //2번 스테이지
                        // AlignUnit[1].ReceiveCommand();

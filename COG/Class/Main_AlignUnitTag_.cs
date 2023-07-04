@@ -46,7 +46,7 @@ namespace COG
         public static Stopwatch TestSW = new Stopwatch();
         public partial class AlignUnitTag
         {
-            public ManualResetEvent InspectionDoneEvent = new ManualResetEvent(false);
+            public ManualResetEvent InspectionDoneEvent = new ManualResetEvent(true);
             public bool m_bThetaNGFlag;
             public bool m_bMarkNGFlag;
             public bool m_bFilmNGFlag;
@@ -285,7 +285,9 @@ namespace COG
                 int TempnCmd = nCmd;
                 TempnCmd = Convert.ToInt16("1" + nCmd.ToString().Substring(1, nCmd.ToString().Length - 1));
                 m_PatTagNo = (int)(nCmd / 1000) - 1;
-                if (m_PatTagNo >= m_AlignPatTagMax) TempnCmd = 0;
+                if (m_PatTagNo >= m_AlignPatTagMax)
+                    TempnCmd = 0;
+
                 return TempnCmd;
             }
 
@@ -372,7 +374,10 @@ namespace COG
 
             public void ExecuteCMD()
             {
+                if (PAT[m_PatTagNo, 0].InspComplete)
+                    return;
 
+                InspectionDoneEvent.WaitOne();
                 int status1 = 0, cmd;
                 if (DEFINE.OPEN_F || DEFINE.OPEN_CAM)
                 {
@@ -392,7 +397,7 @@ namespace COG
 
                 if (status1 == 0 && m_Cmd > 0 && m_Cmd != 9000)
                 {
-                    InspectionDoneEvent.WaitOne();
+                   
                     InspectionDoneEvent.Reset();
                     m_Timer_index.StartTimer();
                     m_Cmd = SetPatTagCmd(m_Cmd);
@@ -718,7 +723,9 @@ namespace COG
                         }
                         else if (cmd != 9000)
                         {
+                            //Console.WriteLine("Write Result");
                             WriteStsEnd(cmd);
+                            //Console.WriteLine("Write Done");
                         }
                         if (cmd < 0 && m_errSts > -1)
                         {
@@ -2557,9 +2564,6 @@ namespace COG
                                 edgeAlgorithm.IgnoreSize = PAT[m_PatTagNo, 0].m_InspParameter[nROI].iIgnoreSize;
                                 Mat convertImage = edgeAlgorithm.Inspect(image, ref SingleFindLine[i], cropResult.Item2, transform, cropRect);
 
-                                if (Main.machine.PermissionCheck == Main.ePermission.MAKER)
-                                    convertImage.Save(@"D:\convertImage.bmp");
-
                                 double lengthX = Math.Abs(SingleFindLine[i].RunParams.ExpectedLineSegment.StartX - SingleFindLine[i].RunParams.ExpectedLineSegment.EndX);
                                 double lengthY = Math.Abs(SingleFindLine[i].RunParams.ExpectedLineSegment.StartY - SingleFindLine[i].RunParams.ExpectedLineSegment.EndY);
 
@@ -2712,7 +2716,6 @@ namespace COG
 
                                     Mat matImage = edgeAlgorithm.GetConvertMatImage(cogImage.CopyBase(CogImageCopyModeConstants.CopyPixels) as CogImage8Grey);
                                     CvInvoke.FillPoly(matImage, new VectorOfPoint(boundRectPointList.ToArray()), maskingColor);
-                                    //matImage.Save(@"D:\matImage.bmp");
 
                                     var filterImage = edgeAlgorithm.GetConvertCogImage(matImage);
 
@@ -2794,10 +2797,7 @@ namespace COG
                                                 var graphic = SingleFindLine[i].Results[j].CreateResultGraphics(CogFindLineResultGraphicConstants.CaliperEdge /*| CogFindLineResultGraphicConstants.CaliperRegion*/);
                                                 GraphicData.Add(graphic);
                                             }
-                                        if (SingleFindLine[i].Results[j].CaliperResults == null)
-                                            {
-                                            int b = 1;
-                                             }
+                                      
                                         if (SingleFindLine[i].Results[j].CaliperResults.Count == 1)
                                             {
                                                 RawSearchData[i, j].X = (float)SingleFindLine[i].Results[j].CaliperResults[0].Edge0.PositionX;
@@ -2819,7 +2819,7 @@ namespace COG
                                 }
                             }
                         #endregion
-
+                        
                         #region Result Data Calculate
 
                         if (SingleFindLine[0].Results != null)
@@ -3061,44 +3061,17 @@ namespace COG
 
                 EdgeAlgorithm edge = new EdgeAlgorithm();
                 Mat mat = edge.GetConvertMatImage(cogImage);
-                //mat.Save(@"D:\test.bmp");
-
-                //cogImage.GetTransform("@", cogImage.SelectedSpaceName).MapPoint(cropRect.X, cropRect.Y, out double cropX, out double cropY);
 
                 transform.MapPoint(cropRect.X, cropRect.Y, out double cropX, out double cropY);
                 Mat cropMat = null;
-                //if (cropRect.X == cropX)
-                //{
-                //    cogImage.GetTransform("@", "@").MapPoint(cropRect.X, cropRect.Y, out double cropX2, out double cropY2);
-                //    Rectangle rectFromMat = new Rectangle();
-                //    rectFromMat.X = (int)cropX2;
-                //    rectFromMat.Y = (int)cropY2;
-                //    rectFromMat.Width = (int)cropRect.Width;
-                //    rectFromMat.Height = (int)cropRect.Height;
+      
+                Rectangle rectFromMat = new Rectangle();
+                rectFromMat.X = (int)cropX;
+                rectFromMat.Y = (int)cropY;
+                rectFromMat.Width = (int)cropRect.Width;
+                rectFromMat.Height = (int)cropRect.Height;
 
-                //    cropMat = edge.CropRoi(mat, rectFromMat);
-                //    cropMat.Save(@"D:\cropMat.bmp");
-                //}
-                //else
-                //{
-                    Rectangle rectFromMat = new Rectangle();
-                    rectFromMat.X = (int)cropX;
-                    rectFromMat.Y = (int)cropY;
-                    rectFromMat.Width = (int)cropRect.Width;
-                    rectFromMat.Height = (int)cropRect.Height;
-
-                    cropMat = edge.CropRoi(mat, rectFromMat);
-                    cropMat.Save(@"D:\cropMat.bmp");
-                //}
-                
-
-                //Rectangle rectFromCognex = new Rectangle();
-                //cogImage.GetTransform("@", cogImage.SelectedSpaceName).MapPoint(cropRect.X, cropRect.Y, out double mX, out double mY);
-                //rectFromCognex.X = (int)mX;
-                //rectFromCognex.Y = (int)mY;
-                //rectFromCognex.Width = (int)cropRect.Width;
-                //rectFromCognex.Height = (int)cropRect.Height;
-
+                cropMat = edge.CropRoi(mat, rectFromMat);
 
                 mat.Dispose();
 
@@ -3524,7 +3497,7 @@ namespace COG
                         TempData.TranslationY = dGapy;
                         TempData.Rotation = dGapT;
                         PAT[m_PatTagNo, 0].m_FinealignGapT = dGapT;
-                        Console.WriteLine(TempData.TranslationX.ToString() + "    " + TempData.TranslationY);
+                        //Console.WriteLine(TempData.TranslationX.ToString() + "    " + TempData.TranslationY);
                         Main.AlignUnit[m_AlignNo].PAT[m_PatTagNo, 0].TempFixtureTrans = TempData;
                         mCogFixtureTool.RunParams.UnfixturedFromFixturedTransform = TempData;
                         mCogFixtureTool.RunParams.FixturedSpaceNameDuplicateHandling = CogFixturedSpaceNameDuplicateHandlingConstants.Compatibility;
@@ -9213,7 +9186,7 @@ namespace COG
             {
                 int seq = 0;
                 bool LoopFlag = true;
-
+                string prevValue = "";
                 while (LoopFlag)
                 {
                     switch (seq)
@@ -9229,10 +9202,22 @@ namespace COG
                                 seq = SEQ.COMPLET_SEQ;
                                 break;
                             }
-                            if (PLCDataTag.RData[ALIGN_UNIT_ADDR + DEFINE.PLC_CMD] != 0)
+                            Int16 value = PLCDataTag.RData[ALIGN_UNIT_ADDR + DEFINE.PLC_CMD];
+                            if (prevValue != value.ToString())
+                            {
+                                //Console.WriteLine("C : " + value.ToString());
+                                //prevValue = value.ToString();
+                            }
+                            if (value != 0)
+                            {
+                                //Console.WriteLine("Re : " + value.ToString());
                                 break;
+                            }
                             else
+                            {
+                                //Console.WriteLine("2111111");
                                 seq = SEQ.COMPLET_SEQ;
+                            }
                             break;
 
                         case SEQ.COMPLET_SEQ:
@@ -9399,6 +9384,7 @@ namespace COG
                 nDataBuf = (short)iCmd;
                 nAddress = PLCDataTag.BASE_RW_ADDR + ALIGN_UNIT_ADDR + Main.DEFINE.VIS_STATUS;
                 //2022 05 09 YSH
+                //Console.WriteLine("Send Result " + nAddress.ToString());
                 Main.WriteDevice(nAddress, nDataBuf);
 
                 //-----------------------------------------------------------------------------------------------               
@@ -9942,7 +9928,8 @@ namespace COG
                 Date = DateTime.Now.ToString("[MM_dd HH:mm:ss:fff] ");
                 if (nTimeDisPlay)
                     nMessage = Date + nMessage;
-                if (machine.LogMsg_Onf) Save_Command(nMessage, DEFINE.CMD);
+                if (machine.LogMsg_Onf)
+                    Save_Command(nMessage, DEFINE.CMD);
                 m_LogString.Enqueue(nMessage);
             }
             public void LogdataDisplayData(string nMessage)
@@ -9950,7 +9937,8 @@ namespace COG
                 string Date;
                 Date = DateTime.Now.ToString("[MM_dd HH:mm:ss:fff] ");
                 nMessage = " CELL ID:" + m_PatTagNo.ToString() + "<-" + m_Cell_ID + " , " + Date + " , " + nMsgMarks + nMessage;
-                if (machine.LogMsg_Onf) Save_Command(nMessage, DEFINE.DATA);
+                if (machine.LogMsg_Onf)
+                    Save_Command(nMessage, DEFINE.DATA);
             }
             public void PatternScoreResultSave(string nMessage)
             {
@@ -9993,7 +9981,8 @@ namespace COG
                 nMessage[0] = new string[] { PAT[m_PatTagNo,nPatNo].m_PatternName, PAT[m_PatTagNo,nPatNo].Pixel[DEFINE.X].ToString("0.000"), PAT[m_PatTagNo,nPatNo].Pixel[DEFINE.Y].ToString("0.000"), PAT[m_PatTagNo,nPatNo].m_RobotPosX.ToString("0.00"), PAT[m_PatTagNo,nPatNo].m_RobotPosY.ToString("0.00"),
                                                     m_StageX.ToString(), m_StageY.ToString(), m_StageT.ToString()};
 
-                m_MainGridString.Enqueue(nMessage[0]);
+                lock(m_MainGridString)
+                    m_MainGridString.Enqueue(nMessage[0]);
 
                 PatternPixelRobotSave(nPatNo);
             }
@@ -10016,18 +10005,16 @@ namespace COG
                 string[][] nMessage = new string[1][];
                 for (int i = 0; i < m_AlignPatMax[m_PatTagNo]; i++)
                 {
-                    if (Main.DEFINE.PROGRAM_TYPE == "QD_LPA_PC1")
-                        nMessage[0] = new string[] { PAT[m_PatTagNo, i].m_PatternName, PAT[m_PatTagNo, i].Pixel[DEFINE.X].ToString("0.000"), PAT[m_PatTagNo, i].Pixel[DEFINE.Y].ToString("0.000"), PAT[m_PatTagNo, i].m_RobotPosX.ToString("0.000"), PAT[m_PatTagNo, i].m_RobotPosY.ToString("0.000"), "0.000", "0.000", "0.000" };
-                    else
-                        nMessage[0] = new string[] { PAT[m_PatTagNo,i].m_PatternName, PAT[m_PatTagNo,i].Pixel[DEFINE.X].ToString("0.000"), PAT[m_PatTagNo,i].Pixel[DEFINE.Y].ToString("0.000"), PAT[m_PatTagNo,i].m_RobotPosX.ToString("0.000"), PAT[m_PatTagNo,i].m_RobotPosY.ToString("0.000"),
+                    nMessage[0] = new string[] { PAT[m_PatTagNo,i].m_PatternName, PAT[m_PatTagNo,i].Pixel[DEFINE.X].ToString("0.000"), PAT[m_PatTagNo,i].Pixel[DEFINE.Y].ToString("0.000"), PAT[m_PatTagNo,i].m_RobotPosX.ToString("0.000"), PAT[m_PatTagNo,i].m_RobotPosY.ToString("0.000"),
                                                      m_StageX.ToString("0.000"), m_StageY.ToString("0.000"), m_StageT.ToString("0.000")};
-
-                    m_MainGridString.Enqueue(nMessage[0]);
+                    lock(m_MainGridString)
+                        m_MainGridString.Enqueue(nMessage[0]);
                 }
             }
             private void PatternPixelRobotSave()
             {
-                if (!machine.LogMsg_Onf) return;
+                if (!machine.LogMsg_Onf)
+                    return;
 
                 string Date;
                 string nSavemessage = "";
@@ -10040,7 +10027,8 @@ namespace COG
                                     "RobotPosX_" + i.ToString() + ": " + PAT[m_PatTagNo, i].m_RobotPosX.ToString("0.000") + ", " + "RobotPosY_" + i.ToString() + ": " + PAT[m_PatTagNo, i].m_RobotPosY.ToString("0.000") + ", ";
                 }
                 nSavemessage = Date + " " + m_Cell_ID + nSavemessage;
-                if (machine.LogMsg_Onf) Save_Command(nSavemessage, DEFINE.PIXEL);
+                if (machine.LogMsg_Onf)
+                    Save_Command(nSavemessage, DEFINE.PIXEL);
             }
 
             object syncLock = new object();
@@ -10050,8 +10038,10 @@ namespace COG
                 string nFileName = "";
                 nFolder = LogdataPath + DateTime.Now.ToString("yyyyMMdd") + "\\";
 
-                if (!Directory.Exists(LogdataPath)) Directory.CreateDirectory(LogdataPath);
-                if (!Directory.Exists(nFolder)) Directory.CreateDirectory(nFolder);
+                if (!Directory.Exists(LogdataPath))
+                    Directory.CreateDirectory(LogdataPath);
+                if (!Directory.Exists(nFolder))
+                    Directory.CreateDirectory(nFolder);
 
                 lock (syncLock)
                 {

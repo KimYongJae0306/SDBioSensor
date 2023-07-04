@@ -548,7 +548,9 @@ namespace COG
                         break;
                     case 1:
                         if (CamNo >= DEFINE.MIL_CAM_MAX)
+                        {
                             Main.vision.CogImageBlock[CamNo].Run();
+                        }
                         seq++;
                         break;
                     case 2:

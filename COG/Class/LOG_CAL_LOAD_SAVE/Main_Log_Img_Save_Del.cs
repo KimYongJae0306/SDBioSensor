@@ -240,11 +240,6 @@ namespace COG
                                 BMP_SAVE(fileName + "_OV", nImage, nImageOverlay, machine.Overlay_Image_Onf);
                             else
                                 JPG_SAVE(fileName + "_OV", nImage, dispImage, machine.Overlay_Image_Onf);
-
-                            if (Main.machine.BMP_ImageSave_Onf)
-                                BMP_SAVE(fileName + "_OV", nImage, nImageOverlay, machine.Overlay_Image_Onf);
-                            else
-                                JPG_SAVE(fileName + "_OV", nImage, dispImage, machine.Overlay_Image_Onf);
                         }
                         else
                         {

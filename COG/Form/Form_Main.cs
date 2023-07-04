@@ -1174,7 +1174,7 @@ namespace COG
                         }
                     }
                 }
-                Thread.Sleep(5);
+                Thread.Sleep(50);
             }
         }
         private void Thread_Stop()
@@ -1407,13 +1407,17 @@ namespace COG
             else
             {
                 nGridView.Rows.Clear();
-                while (str.Count > 0)
+                lock(str)
                 {
-                    string[] LogMessage;
-                    LogMessage = str.Dequeue();
-                    nGridView.Rows.Add(LogMessage);
-
+                    while (str.Count > 0)
+                    {
+                        string[] LogMessage;
+                        LogMessage = str.Dequeue();
+                        nGridView.Rows.Add(LogMessage);
+                        Thread.Sleep(0);
+                    }
                 }
+               
             }
         }
 

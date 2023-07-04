@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 
@@ -181,11 +182,16 @@ namespace AsyncSocket
         {
             try
             {
+                sw.Stop();
+                if(sw.ElapsedMilliseconds > 70)
+                    Console.WriteLine("PLC Received : " + sw.ElapsedMilliseconds.ToString());
                 StateObject asyncState = (StateObject)ar.AsyncState;
                 int receiveBytes = asyncState.Worker.EndReceive(ar);
                 AsyncSocketReceiveEventArgs e = new AsyncSocketReceiveEventArgs(this.id, receiveBytes, asyncState.Buffer);
+
                 if (receiveBytes > 0)
                     this.Received(e);
+                //else
                 this.Receive();
             }
             catch (Exception ex)
@@ -194,10 +200,12 @@ namespace AsyncSocket
             }
         }
 
+        Stopwatch sw = new Stopwatch();
         public bool Send(byte[] buffer)
         {
             try
             {
+                sw.Restart();
                 Socket conn = this.conn;
                 conn.BeginSend(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(this.OnSendCallBack), (object)conn);
             }

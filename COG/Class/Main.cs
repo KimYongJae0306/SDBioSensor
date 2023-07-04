@@ -1472,7 +1472,7 @@ namespace COG
         public static int VisionStatusSize = 100;
         public static int PLCStatusSize = 300;
         public static int ProcessSize = 100;
-        public static int ReadSize = 500;
+        public static int ReadSize = 310;//500;
         public static bool Readflag = false;
         public static int[] BData = new int[ReadSize];
         public static Int16[] RData = new Int16[ReadSize];

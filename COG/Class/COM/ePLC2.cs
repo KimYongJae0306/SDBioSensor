@@ -14,6 +14,7 @@ using System.Net.NetworkInformation;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Net.Sockets;
+using System.Diagnostics;
 
 namespace COG
 {
@@ -23,7 +24,7 @@ namespace COG
         private static ePLCControl MCClient_WRITE = new ePLCControl();
         private static ePLCControl.DeviceName deviceName = ePLCControl.DeviceName.R;
         public static DateTime m_dtLastWriteTime;
-
+      
         public static int PLC_TimeOut
         {
             get
@@ -113,33 +114,59 @@ namespace COG
             }
         }
 
+        static Stopwatch AliveSW = new Stopwatch();
+        static bool Alive { get; set; } = false;
         public static void ThreadPLC_Read()
         {
             if (!Main.DEFINE.OPEN_F && !Main.DEFINE.OPEN_CAM)
             {
+                AliveSW.Restart();
                 while (threadFlag)
                 {
-                    string DeviceName;
-                    DeviceName = "D" + Convert.ToString(PLCDataTag.BASE_RW_ADDR).ToUpper();
-
-                    ReadDeviceBlock(DeviceName, PLCDataTag.ReadSize, out PLCDataTag.BData);
-                    try
+                    if(AliveSW.ElapsedMilliseconds > 1000)
                     {
-                        if (PLCDataTag.BData.Length == PLCDataTag.ReadSize)
-                        {
-                            for (int i = 0; i < PLCDataTag.ReadSize; i++)
-                                PLCDataTag.RData[i] = (Int16)PLCDataTag.BData[i];
-                        }
-                        else
-                        {
-
-                        }
+                        Alive = !Alive;
+                        Main.WriteDevice(PLCDataTag.BASE_RW_ADDR + Main.DEFINE.PLC_ALIVE, Alive == true ? 1 : 0);
+                        AliveSW.Restart();
                     }
-                    catch (System.Exception ex)
+                    else
                     {
-                        MessageBox.Show("PLC READ DISCONNECT" + ex.Source + ex.Message + ex.StackTrace);
+                        string DeviceName;
+                        DeviceName = "D" + Convert.ToString(PLCDataTag.BASE_RW_ADDR).ToUpper();
+
+                        ReadDeviceBlock(DeviceName, PLCDataTag.ReadSize, out PLCDataTag.BData);
+                        try
+                        {
+                            if (PLCDataTag.BData.Length == PLCDataTag.ReadSize)
+                            {
+                                for (int i = 0; i < PLCDataTag.ReadSize; i++)
+                                {
+                                    Int16 value = (Int16)PLCDataTag.BData[i];
+                                    PLCDataTag.RData[i] = value;
+                                    //if (i == 116)
+                                    //    Console.WriteLine("쌩 116  : " + value.ToString());
+
+                                    //if (i == 126)
+                                    //Console.WriteLine("쌩 126  : " + value.ToString());
+                                }
+                                   
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                        catch (System.Exception ex)
+                        {
+                            MessageBox.Show("PLC READ DISCONNECT" + ex.Source + ex.Message + ex.StackTrace);
+                        }
+
                     }
-                    Thread.Sleep(50);
+                    //Thread.Sleep(1000);
+                    //Main.WriteDevice(PLCDataTag.BASE_RW_ADDR + Main.DEFINE.PLC_ALIVE, 0);
+                    //Thread.Sleep(1000);
+                   
+                    Thread.Sleep(100);
                 }
             }
         }
@@ -221,6 +248,7 @@ namespace COG
 
     public class ePLCControl
     {
+        private ManualResetEvent PlcSendResetEvent = new ManualResetEvent(true);
         private string sLogPath = "D:\\ePLCLog\\";
         private string IP = "";
         private int Port = 5002;
@@ -540,19 +568,22 @@ namespace COG
             {
             }
             this.bReceived = true;
+            PlcSendResetEvent.Set();
         }
 
         private void PLCCommunicationReset()
         {
-            this.client.Send(this.SendBytes_ErrorLEDOff);
+            //PlcSendResetEvent.WaitOne(100);
+            PlcSendResetEvent.Reset();
             this.bReceived = false;
+            this.client.Send(this.SendBytes_ErrorLEDOff);
             int tickCount = Environment.TickCount;
             while (!this.bReceived)
             {
                 if (Environment.TickCount - tickCount > this.TimeOut)
                     return;
             }
-            this.bReceived = false;
+           // this.bReceived = false;
         }
 
         private bool IsConnected1()
@@ -721,31 +752,50 @@ namespace COG
                 }
                 if (this.client == null || this.client.Connection == null || !this.client.Connection.Connected)
                     return array;
-                this.bReceived = false;
-                this.client.Send(this.SendBytes_BlockRead);
-                int tickCount = Environment.TickCount;
 
-                int RetryCount = 0;
+                //PlcSendResetEvent.WaitOne(100);
+                PlcSendResetEvent.Reset();
+                this.bReceived = false;
+
+                Stopwatch receivedSW = new Stopwatch();
+                receivedSW.Restart();
+
+                this.client.Send(this.SendBytes_BlockRead);
+
+                int RetryCount = 3;
+                int timeOut = 100;
                 int seq = 0;
                 while (!this.bReceived)
                 {
-                    if (Environment.TickCount - tickCount > this.TimeOut)
+                    //Console.WriteLine(receivedSW.ElapsedMilliseconds);
+
+
+                    if (receivedSW.ElapsedMilliseconds > timeOut)
                     {
-                       // if(RetryCount <= 0)
-                       // {
-                       //     this.WriteLogFile("PLC Read TimeOut Retry Send:" + this.TimeOut.ToString());
-                       //     tickCount = Environment.TickCount;
-                       //     this.client.Send(this.SendBytes_BlockRead);
-                       // }
-                       // else
+                        Console.WriteLine("여기??");
+
+                        if (RetryCount >= 0)
                         {
-                            this.WriteLogFile("PLC Read TimeOut LimitTime:" + this.TimeOut.ToString());
-                            this.Close();
-                            this.evhDisconnected((object)this, (EventArgs)null);
-                            return array;
+                            this.WriteLogFile("PLC Read TimeOut Retry Send:" + timeOut.ToString());
+                            this.client.Send(this.SendBytes_BlockRead);
+                            RetryCount--;
                         }
+                        else
+                        {
+                            this.WriteLogFile("PLC Read TimeOut LimitTime:" + timeOut.ToString());
+                        }
+                        // else
+                        //{
+                        //    this.WriteLogFile("PLC Read TimeOut LimitTime:" + this.TimeOut.ToString());
+                        //    this.Close();
+                        //    this.evhDisconnected((object)this, (EventArgs)null);
+                        //    return array;
+                        //}
                     }
+                    Thread.Sleep(50);
                 }
+                //Console.WriteLine("Read OK");
+
                 switch (_Unit)
                 {
                     case ePLCControl.SubCommand.Bit:
@@ -778,7 +828,7 @@ namespace COG
                 }
                 --num1;
             }
-            this.bReceived = false;
+            //this.bReceived = false;
             return array;
         }
 
@@ -981,16 +1031,25 @@ namespace COG
                 }
                 if (this.client == null || this.client.Connection == null || !this.client.Connection.Connected)
                     return 1;
+
+                //PlcSendResetEvent.WaitOne(100);
+                PlcSendResetEvent.Reset();
                 this.bReceived = false;
+
                 this.client.Send(this.SendBytes_BlockWrite);
                 int tickCount = Environment.TickCount;
                 while (!this.bReceived)
                 {
                     if (Environment.TickCount - tickCount > this.TimeOut)
+                    {
+                        Console.WriteLine("Write Data TimeOut");
                         return 1;
+                    }
+
+                    Thread.Sleep(50);
                 }
                 --num1;
-                this.bReceived = false;
+                //this.bReceived = false;
             }
             return 0;
         }
@@ -1066,7 +1125,11 @@ namespace COG
                 }
                 if (this.client == null || this.client.Connection == null || !this.client.Connection.Connected)
                     return numArray;
+
+                //PlcSendResetEvent.WaitOne(100);
+                PlcSendResetEvent.Reset();
                 this.bReceived = false;
+
                 this.client.Send(this.SendBytes_RandomRead);
                 int tickCount = Environment.TickCount;
                 while (!this.bReceived)
@@ -1080,7 +1143,7 @@ namespace COG
                     numArray[index2] = (int)this.ReceivedData[index4 * 2 + 1] * 256 + (int)this.ReceivedData[index4 * 2];
                     ++index2;
                 }
-                this.bReceived = false;
+                //this.bReceived = false;
                 --num1;
             }
             return numArray;
@@ -1185,7 +1248,11 @@ namespace COG
                 this.SendBytes_RandomWrite[8] = (byte)((8 + num3 * 6) / 256);
                 if (this.client == null || this.client.Connection == null || !this.client.Connection.Connected)
                     return 1;
+
+               // PlcSendResetEvent.WaitOne(100);
+                PlcSendResetEvent.Reset();
                 this.bReceived = false;
+
                 this.client.Send(this.SendBytes_RandomWrite);
                 int tickCount = Environment.TickCount;
                 while (!this.bReceived)
@@ -1323,7 +1390,11 @@ namespace COG
             }
             if (this.client == null || this.client.Connection == null || !this.client.Connection.Connected)
                 return numArray1;
+
+            //PlcSendResetEvent.WaitOne(100);
+            PlcSendResetEvent.Reset();
             this.bReceived = false;
+
             this.client.Send(this.SendBytes_MultiBlockRead);
             int tickCount = Environment.TickCount;
             while (!this.bReceived)
@@ -1453,7 +1524,11 @@ namespace COG
                 }
                 if (this.client == null || this.client.Connection == null || !this.client.Connection.Connected)
                     return numArray2;
+
+                //PlcSendResetEvent.WaitOne(100);
+                PlcSendResetEvent.Reset();
                 this.bReceived = false;
+
                 this.client.Send(this.SendBytes_MultiBlockRead);
                 int tickCount = Environment.TickCount;
                 while (!this.bReceived)
@@ -1587,7 +1662,11 @@ namespace COG
                 }
                 if (this.client == null || this.client.Connection == null || !this.client.Connection.Connected)
                     return numArray2;
+
+                //PlcSendResetEvent.WaitOne(100);
+                PlcSendResetEvent.Reset();
                 this.bReceived = false;
+
                 this.client.Send(this.SendBytes_MultiBlockRead);
                 int tickCount = Environment.TickCount;
                 while (!this.bReceived)
@@ -1763,7 +1842,11 @@ namespace COG
             }
             if (this.client == null || this.client.Connection == null || !this.client.Connection.Connected)
                 return 1;
+
+            //PlcSendResetEvent.WaitOne(100);
+            PlcSendResetEvent.Reset();
             this.bReceived = false;
+
             this.client.Send(this.SendBytes_MultiBlockWrite);
             int tickCount = Environment.TickCount;
             while (!this.bReceived)
@@ -1894,7 +1977,11 @@ namespace COG
                 }
                 if (this.client == null || this.client.Connection == null || !this.client.Connection.Connected)
                     return 1;
+
+                //PlcSendResetEvent.WaitOne(100);
+                PlcSendResetEvent.Reset();
                 this.bReceived = false;
+
                 this.client.Send(this.SendBytes_MultiBlockWrite);
                 int tickCount2 = Environment.TickCount;
                 while (!this.bReceived)
@@ -2026,7 +2113,11 @@ namespace COG
                 }
                 if (this.client == null || this.client.Connection == null || !this.client.Connection.Connected)
                     return 1;
+
+                //PlcSendResetEvent.WaitOne(100);
+                PlcSendResetEvent.Reset();
                 this.bReceived = false;
+
                 this.client.Send(this.SendBytes_MultiBlockWrite);
                 int tickCount = Environment.TickCount;
                 while (!this.bReceived)
