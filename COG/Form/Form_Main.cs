@@ -968,11 +968,13 @@ namespace COG
             //             {
             this.BTN_START.Visible = true;
             this.BTN_STOP.Visible = false;
-            for (int j = 0; j < Main.DEFINE.DISPLAY_MAX; j++)
+            //shkang_s 20230706
+            //STOP 시 Main Display Overlay Clear
+            for (int k = 0; k < Main.DEFINE.DISPLAY_MAX; k++)
             {
-                //                     cogDisplay[j].Image = Main.vision.CogCamBuf[cogDisplayCamNo[j]];
-                //                     Main.DisplayClear(cogDisplay[j]);
+                Main.DisplayClear(cogDisplay[k]);
             }
+            //shkang_e
             Main.Status.MC_STATUS = Main.DEFINE.MC_STOP;
 
             //2022 05 09 YSH
