@@ -3270,6 +3270,8 @@ namespace COG
                     #region Left,Right Mark Search
                     for (int i = 0; i < Main.DEFINE.Pattern_Max; i++)
                     {
+                        if (bLeftMarkRet && bRightMarkRet == true)
+                            break;
                         SearchPosition[i] = new PointF();
                         OriginPosition[i] = new PointF();
                         //Get Main Mark Origin Data 
@@ -3286,7 +3288,6 @@ namespace COG
                             {
                                 if (FinealignMark[i, j].Results.Count >= 1)
                                     nRetSearch_CNL = true;
-
                             }
                             else
                             {
