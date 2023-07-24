@@ -53,13 +53,13 @@ namespace COG
 
                 if (m_AlignNo == 0)
                 {
-                    BTN_UNIT[i].Text = "PANEL " + (m_AlignNo + i + 1).ToString();
+                    BTN_UNIT[i].Text = "INSPECTION " + (m_AlignNo + i + 1).ToString();
                     //if (i == 1)
                     //    BTN_UNIT[i].Text = "PANEL " + (m_AlignNo + i).ToString();
                 }
                 else
                 {
-                    BTN_UNIT[i].Text = "PANEL " + (m_AlignNo + i + 2).ToString();
+                    BTN_UNIT[i].Text = "INSPECTION " + (m_AlignNo + i + 2).ToString();
                     //if (i == 1)
                     //    BTN_UNIT[i].Text = "PANEL " + (m_AlignNo + i + 2).ToString();
                 }

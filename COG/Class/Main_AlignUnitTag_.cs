@@ -53,6 +53,7 @@ namespace COG
             public bool m_bThetaMarkNGFlag;
 
             private int m_DistIgnoreCnt = 0;
+            public List<Double> ngDistList = new List<double>();
             public void PatAlloc(int AlignType, string AlignName, int PatternTagMax, int CAM0, int CAM1)
             {
                 m_AlignName = AlignName;
@@ -413,6 +414,32 @@ namespace COG
                         case CMD.REQ_INSPECTION:
                             TimerRunningCheck.StartTimer();
                             bFirstStartRun = true;
+                            if (m_AlignNo == 0) //inspection 1,2
+                            {
+                                if (m_PatTagNo == 0) 
+                                {
+                                    string LogMsg = "===== INSPECTION 1 =====";
+                                    LogdataDisplay(LogMsg, true);
+                                }
+                                else
+                                {
+                                    string LogMsg = "===== INSPECTION 2 =====";
+                                    LogdataDisplay(LogMsg, true);
+                                }
+                            }
+                            else  //inspection 3,4
+                            {
+                                if (m_PatTagNo == 0)
+                                {
+                                    string LogMsg = "===== INSPECTION 3 =====";
+                                    LogdataDisplay(LogMsg, true);
+                                }
+                                else
+                                {
+                                    string LogMsg = "===== INSPECTION 4 =====";
+                                    LogdataDisplay(LogMsg, true);
+                                }
+                            }
                             //shkang_s      설정한 카운트만큼 Retry
                             if (!Inspection())
                             {                             
@@ -2172,7 +2199,7 @@ namespace COG
                         LogMsg = string.Format("AmpModule Load Position, X : {0:F3}(mm) , Y: {1:F3}(mm)", PAT[m_PatTagNo, 0].Pattern[0].Results[0].GetPose().TranslationX * 13.36 / 1000, PAT[m_PatTagNo, 0].Pattern[0].Results[0].GetPose().TranslationY * 13.36 / 1000);
                         LogdataDisplay(LogMsg, true);
 
-                        PAT[m_PatTagNo, 0].bResult = GaloInspection(dMoveX, dMoveY); // bRes로 X,Y값 보
+                        PAT[m_PatTagNo, 0].bResult = GaloInspection(dMoveX, dMoveY);    //관로검사함수
 
                         PAT[m_PatTagNo, 0].resultDipGraphics = new CogGraphicInteractiveCollection();
                         PAT[m_PatTagNo, 0].resultDipGraphics = PAT[m_PatTagNo, 0].resultGraphics;
@@ -2374,6 +2401,13 @@ namespace COG
                                 {
                                     LabelText.X = 1000;
                                     LabelText.Y = 3000;
+                                    if (m_bThetaNGFlag || m_bMarkNGFlag || m_bFilmNGFlag || m_bThetaMarkNGFlag)
+                                    {
+                                        LabelText.X = 2500;
+                                        LabelText.Y = 3600;
+                                        LabelNGText.X = 2000;
+                                        LabelNGText.Y = 3800;
+                                    }
                                 }
                                 else
                                 {
@@ -3147,7 +3181,7 @@ namespace COG
                         IDistgnore = PAT[m_PatTagNo, 0].m_InspParameter[i].IDistgnore;
                         dSpec = PAT[m_PatTagNo, 0].m_InspParameter[i].dSpecDistance;
                         m_DistIgnoreCnt = 0;
-                        if (m_ROYTpe == enumROIType.FindLine)
+                        if (m_ROYTpe == enumROIType.FindLine)   //Line
                         {
                             double[] Result;
 
@@ -3157,8 +3191,7 @@ namespace COG
                             int ignore = 0;
                             bROIRes[i] = GaloOppositeInspection(i, (int)enumROIType.FindLine, InpFindLine, PAT[m_PatTagNo, 0].FixtureImage, out Result, out ignore, ref PAT[m_PatTagNo, 0].resultGraphics);
                             if (bROIRes[i] == true)
-                                bROIRes[i] = InspResultData(Result, PAT[m_PatTagNo, 0].m_InspParameter[i].dSpecDistance, PAT[m_PatTagNo, 0].m_InspParameter[i].dSpecDistanceMax, PAT[m_PatTagNo, 0].m_InspParameter[i].IDistgnore,
-                                    ignore);
+                                bROIRes[i] = InspResultData(Result, PAT[m_PatTagNo, 0].m_InspParameter[i].dSpecDistance, PAT[m_PatTagNo, 0].m_InspParameter[i].dSpecDistanceMax, PAT[m_PatTagNo, 0].m_InspParameter[i].IDistgnore, ignore);
                            
                             if (bROIRes[i] == false)
                             {
@@ -3166,7 +3199,13 @@ namespace COG
                                 string LogMsg;
                                 LogMsg = string.Format("Inspection NG ROI:{0:D}", i); // 실제로 Mark를 못찾는지 확인하는 Log 뿌려줌 - cyh
                                 LogdataDisplay(LogMsg, true);
+                                for (int j = 0; j < ngDistList.Count(); j++)
+                                {
+                                    LogMsg = string.Format("ROI{0:D} NG Dist :{1:F2}mm", i, ngDistList[j]);
+                                    LogdataDisplay(LogMsg, true);
+                                }
                                 CogRectangleAffine CogNGRectAffine = new CogRectangleAffine();
+                                CogGraphicLabel ngROINumLabel = new CogGraphicLabel();
                                 double dCenterX = InpFindLine.RunParams.ExpectedLineSegment.MidpointX;
                                 double dCenterY = InpFindLine.RunParams.ExpectedLineSegment.MidpointY;
                                 double dAngle = InpFindLine.RunParams.ExpectedLineSegment.Rotation;
@@ -3177,12 +3216,17 @@ namespace COG
                                 CogNGRectAffine.SideXLength = dLenth;
                                 CogNGRectAffine.SideYLength = 100;
                                 CogNGRectAffine.Rotation = dAngle;
+                                ngROINumLabel.Color = CogColorConstants.Red;
+                                ngROINumLabel.Text = string.Format("ROI : {0:D}, spec : {1:F2}mm", i, PAT[m_PatTagNo, 0].m_InspParameter[i].dSpecDistance);
+                                ngROINumLabel.X = dCenterX;
+                                ngROINumLabel.Y = dCenterY;
                                 PAT[m_PatTagNo, 0].resultGraphics.Add(CogNGRectAffine);
+                                PAT[m_PatTagNo, 0].resultGraphics.Add(ngROINumLabel);
                                 continue;
                             }
 
                         }
-                        else
+                        else   //Circle
                         {
                             double[] Result;
 
@@ -3192,9 +3236,7 @@ namespace COG
                             bROIRes[i] = GaloOppositeInspection(i, (int)enumROIType.FindCircle, InspFindCircle, PAT[m_PatTagNo, 0].FixtureImage, out Result, out ignorecnt, ref PAT[m_PatTagNo, 0].resultGraphics);
 
                             if (bROIRes[i] == true)
-                                bROIRes[i] = InspResultData(Result, PAT[m_PatTagNo, 0].m_InspParameter[i].dSpecDistance, PAT[m_PatTagNo, 0].m_InspParameter[i].dSpecDistanceMax, PAT[m_PatTagNo, 0].m_InspParameter[i].IDistgnore,
-                                     ignorecnt);
-
+                                bROIRes[i] = InspResultData(Result, PAT[m_PatTagNo, 0].m_InspParameter[i].dSpecDistance, PAT[m_PatTagNo, 0].m_InspParameter[i].dSpecDistanceMax, PAT[m_PatTagNo, 0].m_InspParameter[i].IDistgnore, ignorecnt);
 
                             if (bROIRes[i] == false)
                             {
@@ -3203,6 +3245,11 @@ namespace COG
                                 string LogMsg;
                                 LogMsg = string.Format("Inspection NG ROI:{0:D}", i); // 실제로 Mark를 못찾는지 확인하는 Log 뿌려줌 - cyh
                                 LogdataDisplay(LogMsg, true);
+                                for (int j = 0; j < ngDistList.Count(); j++)
+                                {
+                                    LogMsg = string.Format("ROI{0:D} NG Dist :{1:F2}mm", i, ngDistList[j]);
+                                    LogdataDisplay(LogMsg, true);
+                                }
                                 double dStartX = InspFindCircle.RunParams.ExpectedCircularArc.StartX;
                                 double dStartY = InspFindCircle.RunParams.ExpectedCircularArc.StartY;
                                 double dEndX = InspFindCircle.RunParams.ExpectedCircularArc.EndX;
@@ -3214,20 +3261,23 @@ namespace COG
                                 cogTempLine.RunParams.ExpectedLineSegment.EndY = dEndY;
 
                                 CogRectangleAffine CogNGRectAffine = new CogRectangleAffine();
+                                CogGraphicLabel ngROINumLabel = new CogGraphicLabel();
                                 CogNGRectAffine.Color = CogColorConstants.Red;
                                 CogNGRectAffine.CenterX = cogTempLine.RunParams.ExpectedLineSegment.MidpointX;
                                 CogNGRectAffine.CenterY = cogTempLine.RunParams.ExpectedLineSegment.MidpointY;
                                 CogNGRectAffine.SideXLength = cogTempLine.RunParams.ExpectedLineSegment.Length;
                                 CogNGRectAffine.SideYLength = 100;
                                 CogNGRectAffine.Rotation = cogTempLine.RunParams.ExpectedLineSegment.Rotation;
+                                ngROINumLabel.Color = CogColorConstants.Red;
+                                ngROINumLabel.Text = string.Format("ROI : {0:D}, spec : {1:F2}mm", i, PAT[m_PatTagNo, 0].m_InspParameter[i].dSpecDistance);
+                                ngROINumLabel.X = CogNGRectAffine.CenterX;
+                                ngROINumLabel.Y = CogNGRectAffine.CenterY;
                                 PAT[m_PatTagNo, 0].resultGraphics.Add(CogNGRectAffine);
-                                //InspFindCircle.RunParams.ExpectedCircularArc.CenterX = TenmpCenterX;
-                                //InspFindCircle.RunParams.ExpectedCircularArc.CenterY = TenmpCenterY; //data가 누적되서 
+                                PAT[m_PatTagNo, 0].resultGraphics.Add(ngROINumLabel);
                                 continue;
                             }
                         }
                     };
-
                     //PAT[m_PatTagNo, 0].bResult = bRes;
                     PAT[m_PatTagNo, 0].SetAllLight(Main.DEFINE.M_LIGHT_CNL);
                     return bRes;
@@ -3240,11 +3290,10 @@ namespace COG
                     LogdataDisplay(LogMsg, true);
                     LogMsg = "Inspeciton Excetion NG"; LogMsg += "Error : " + err.ToString();
                     LogdataDisplay(LogMsg, true);
-
-
                     return false;
                 }
             }
+
 
             public bool ROIFinealign(CogSearchMaxTool[,] FinealignMark, CogImage8Grey cogImage, out double GapX, out double GapY, out double GapT, ref CogGraphicInteractiveCollection ResultGraphic)
             {
@@ -3991,6 +4040,7 @@ namespace COG
                 bool Res = true;
                 CurrentIgnor = 0;
                 m_DistIgnoreCnt = CurrentIgnor;
+                ngDistList.Clear();
                 for (int i = 0; i < Dist.Length; i++)
                 {
                     if (Dist[i] > SpecMin && Dist[i] < SpecMax)
@@ -3998,6 +4048,7 @@ namespace COG
                     }
                     else
                     {
+                        ngDistList.Add(Dist[i]);
                         m_DistIgnoreCnt++;
                         if (SpecIgnore < m_DistIgnoreCnt)
                         {
@@ -9921,6 +9972,7 @@ namespace COG
                 Date = DateTime.Now.ToString("[MM_dd HH:mm:ss:fff]");
                 if (nTimeDisPlay)
                     nMessage = Date + "\t" + nMessage;
+
                 if (machine.LogMsg_Onf) Save_Command(nMessage, DEFINE.INSPECTION);
             }
             public void LogdataDisplay(string nMessage, bool nTimeDisPlay)

@@ -372,10 +372,13 @@ namespace COG
                 cogDisplayButton[i].Visible = true;
             }
 
-            for (int i = 0; i < Main.DEFINE.AlignUnit_Max; i++)
-            {
-                TAB_LOGDISPLAY.TabPages[i].Text = Main.AlignUnit[i].m_AlignName;
-            }
+            //TabPage Naming 변경
+            //for (int i = 0; i < Main.DEFINE.AlignUnit_Max; i++)
+            //{
+            //    TAB_LOGDISPLAY.TabPages[i].Text = Main.AlignUnit[i].m_AlignName;
+            //}
+            TAB_LOGDISPLAY.TabPages[0].Text = "CAM 1 (INSPECTION 1,2)";
+            TAB_LOGDISPLAY.TabPages[1].Text = "CAM 2 (INSPECTION 3,4)";
 
             while (true)
             {
