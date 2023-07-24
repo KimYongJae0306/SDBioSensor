@@ -455,7 +455,6 @@ namespace COG
 
                                         if (!Inspection())
                                         {
-                                            
                                             if (i == Main.machine.m_RetryCount - 1)
                                             {
                                                 cmd = Math.Abs(cmd) * (-1); // 강제 OK로 해논거.. OK NG 판정하려면 * -1 하면됨 cyh
@@ -3115,6 +3114,7 @@ namespace COG
             private bool GaloInspection(double MoveX, double MoveY)
             {
                 int nRoi = 0, jCaliperIndex = 0;
+                int iNgRoiCnt = 0;
                 enumROIType m_ROYTpe = new enumROIType();
                 try
                 {
@@ -3122,6 +3122,29 @@ namespace COG
                     bool[] bROIRes;
                     double[] dDistance;
                     CogGraphicLabel[] Label;
+                    //coordinate ngdistlabel
+                    int iNgDistLabelX = 0, iNgDistLabelY = 0;
+                    if(Main.DEFINE.UNIT_TYPE == "VENT")
+                    {
+                        if (Main.ProjectInfo == "_1WELL_VENT")
+                        {
+                            iNgDistLabelX = 300;
+                            iNgDistLabelY = 3300;
+                        }
+                        iNgDistLabelX = -750;
+                        iNgDistLabelY = 3300;
+                    }
+                    else
+                    {
+                        if (Main.ProjectInfo == "_1WELL_PATH")
+                        {
+                            iNgDistLabelX = -300;
+                            iNgDistLabelY = 3300;
+                        }
+                        iNgDistLabelX = 600;
+                        iNgDistLabelY = 3300;
+                    }
+
 
                     bROIRes = new bool[PAT[m_PatTagNo, 0].m_InspParameter.Count];
                     dDistance = new double[PAT[m_PatTagNo, 0].m_InspParameter.Count];
@@ -3199,6 +3222,7 @@ namespace COG
                                 string LogMsg;
                                 LogMsg = string.Format("Inspection NG ROI:{0:D}", i); // 실제로 Mark를 못찾는지 확인하는 Log 뿌려줌 - cyh
                                 LogdataDisplay(LogMsg, true);
+                                iNgRoiCnt += 1;
                                 for (int j = 0; j < ngDistList.Count(); j++)
                                 {
                                     LogMsg = string.Format("ROI{0:D} NG Dist :{1:F2}mm", i, ngDistList[j]);
@@ -3206,6 +3230,7 @@ namespace COG
                                 }
                                 CogRectangleAffine CogNGRectAffine = new CogRectangleAffine();
                                 CogGraphicLabel ngROINumLabel = new CogGraphicLabel();
+                                CogGraphicLabel ngROISpecLabel = new CogGraphicLabel();
                                 double dCenterX = InpFindLine.RunParams.ExpectedLineSegment.MidpointX;
                                 double dCenterY = InpFindLine.RunParams.ExpectedLineSegment.MidpointY;
                                 double dAngle = InpFindLine.RunParams.ExpectedLineSegment.Rotation;
@@ -3217,11 +3242,26 @@ namespace COG
                                 CogNGRectAffine.SideYLength = 100;
                                 CogNGRectAffine.Rotation = dAngle;
                                 ngROINumLabel.Color = CogColorConstants.Red;
-                                ngROINumLabel.Text = string.Format("ROI : {0:D}, spec : {1:F2}mm", i, PAT[m_PatTagNo, 0].m_InspParameter[i].dSpecDistance);
+                                ngROINumLabel.Text = string.Format("ROI : {0:D}", i);
                                 ngROINumLabel.X = dCenterX;
                                 ngROINumLabel.Y = dCenterY;
+                                ngROISpecLabel.Color = CogColorConstants.Red;
+                                if (iNgRoiCnt == 1)
+                                {
+                                    ngROISpecLabel.Text = string.Format("ROI{0:D} NG Dist (min,max) : {1:F2},{2:F2} / Spec:{3:F2}", i, ngDistList.Min(), ngDistList.Max(), PAT[m_PatTagNo, 0].m_InspParameter[i].dSpecDistance);
+                                    ngROISpecLabel.X = iNgDistLabelX;
+                                    ngROISpecLabel.Y = iNgDistLabelY;
+                                }
+                                else
+                                {
+                                    ngROISpecLabel.Text = string.Format("ROI{0:D} NG Dist (min,max) : {1:F2},{2:F2} / Spec:{3:F2}", i, ngDistList.Min(), ngDistList.Max(), PAT[m_PatTagNo, 0].m_InspParameter[i].dSpecDistance);
+                                    ngROISpecLabel.X = iNgDistLabelX;
+                                    ngROISpecLabel.Y = iNgDistLabelY + 100;
+                                    iNgDistLabelY = iNgDistLabelY + 100;
+                                }
                                 PAT[m_PatTagNo, 0].resultGraphics.Add(CogNGRectAffine);
                                 PAT[m_PatTagNo, 0].resultGraphics.Add(ngROINumLabel);
+                                PAT[m_PatTagNo, 0].resultGraphics.Add(ngROISpecLabel);
                                 continue;
                             }
 
@@ -3245,6 +3285,7 @@ namespace COG
                                 string LogMsg;
                                 LogMsg = string.Format("Inspection NG ROI:{0:D}", i); // 실제로 Mark를 못찾는지 확인하는 Log 뿌려줌 - cyh
                                 LogdataDisplay(LogMsg, true);
+                                iNgRoiCnt += 1;
                                 for (int j = 0; j < ngDistList.Count(); j++)
                                 {
                                     LogMsg = string.Format("ROI{0:D} NG Dist :{1:F2}mm", i, ngDistList[j]);
@@ -3262,6 +3303,7 @@ namespace COG
 
                                 CogRectangleAffine CogNGRectAffine = new CogRectangleAffine();
                                 CogGraphicLabel ngROINumLabel = new CogGraphicLabel();
+                                CogGraphicLabel ngROISpecLabel = new CogGraphicLabel();
                                 CogNGRectAffine.Color = CogColorConstants.Red;
                                 CogNGRectAffine.CenterX = cogTempLine.RunParams.ExpectedLineSegment.MidpointX;
                                 CogNGRectAffine.CenterY = cogTempLine.RunParams.ExpectedLineSegment.MidpointY;
@@ -3269,11 +3311,26 @@ namespace COG
                                 CogNGRectAffine.SideYLength = 100;
                                 CogNGRectAffine.Rotation = cogTempLine.RunParams.ExpectedLineSegment.Rotation;
                                 ngROINumLabel.Color = CogColorConstants.Red;
-                                ngROINumLabel.Text = string.Format("ROI : {0:D}, spec : {1:F2}mm", i, PAT[m_PatTagNo, 0].m_InspParameter[i].dSpecDistance);
+                                ngROINumLabel.Text = string.Format("ROI : {0:D}", i);
                                 ngROINumLabel.X = CogNGRectAffine.CenterX;
                                 ngROINumLabel.Y = CogNGRectAffine.CenterY;
+                                ngROISpecLabel.Color = CogColorConstants.Red;
+                                if (iNgRoiCnt == 1)
+                                {
+                                    ngROISpecLabel.Text = string.Format("ROI{0:D} NG Dist (min,max) : {1:F2},{2:F2} / Spec:{3:F2}", i, ngDistList.Min(), ngDistList.Max(), PAT[m_PatTagNo, 0].m_InspParameter[i].dSpecDistance);
+                                    ngROISpecLabel.X = iNgDistLabelX;
+                                    ngROISpecLabel.Y = iNgDistLabelY;
+                                }
+                                else
+                                {
+                                    ngROISpecLabel.Text = string.Format("ROI{0:D} NG Dist (min,max) : {1:F2},{2:F2} / Spec:{3:F2}", i, ngDistList.Min(), ngDistList.Max(), PAT[m_PatTagNo, 0].m_InspParameter[i].dSpecDistance);
+                                    ngROISpecLabel.X = iNgDistLabelX;
+                                    ngROISpecLabel.Y = iNgDistLabelY + 100;
+                                    iNgDistLabelY = iNgDistLabelY + 100;
+                                }
                                 PAT[m_PatTagNo, 0].resultGraphics.Add(CogNGRectAffine);
                                 PAT[m_PatTagNo, 0].resultGraphics.Add(ngROINumLabel);
+                                PAT[m_PatTagNo, 0].resultGraphics.Add(ngROISpecLabel);
                                 continue;
                             }
                         }
